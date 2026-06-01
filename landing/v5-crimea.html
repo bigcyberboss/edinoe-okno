@@ -64,7 +64,8 @@ body{
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
-h1,h2,h3{font-family:var(--display);line-height:1.06;letter-spacing:-0.015em}
+h1,h2,h3{font-family:var(--display);line-height:1.06;letter-spacing:-0.015em;text-wrap:balance;overflow-wrap:break-word}
+p,li,.sd,.hero-sub,.panel-note{text-wrap:pretty;overflow-wrap:break-word}
 a{color:inherit;text-decoration:none}
 img,svg{display:block}
 :focus-visible{outline:2.5px solid var(--terra);outline-offset:3px;border-radius:3px}
@@ -116,9 +117,9 @@ header{
   backdrop-filter:blur(14px);
   border-bottom:1px solid var(--line-2);
 }
-.brand{display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
 .brand-mark{width:40px;height:40px;flex:none;color:var(--amber);background:var(--sea);display:grid;place-items:center;border-radius:var(--r-sm);box-shadow:0 6px 16px -8px oklch(0.345 0.058 214 / 0.6)}
-.brand-name{font-family:var(--display);font-weight:800;font-size:1.02rem;letter-spacing:0.01em;color:var(--sea)}
+.brand-name{font-family:var(--display);font-weight:800;font-size:1.02rem;letter-spacing:0.01em;color:var(--sea);white-space:nowrap}
 .brand-sub{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-mute)}
 nav{display:flex;gap:clamp(14px,1.6vw,28px)}
 nav a{font-weight:600;font-size:0.92rem;color:var(--sea);transition:color .25s var(--ease)}
@@ -128,9 +129,10 @@ nav a:hover{color:var(--terra)}
 .phone:hover{color:var(--terra)}
 .btn-lk{padding:10px 17px;border:1.5px solid var(--sea);border-radius:var(--r-sm);font-weight:600;font-size:0.85rem;color:var(--sea);transition:.25s var(--ease)}
 .btn-lk:hover{background:var(--sea);color:var(--on-sea)}
-.phone-icon{display:none;color:var(--sea);padding:6px;border-radius:var(--r-sm)}
+.phone-icon{display:none;color:var(--sea);width:44px;height:44px;place-items:center;border-radius:var(--r-sm)}
 .phone-icon:hover{color:var(--terra)}
-.burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;padding:0 9px;background:transparent;border:1.5px solid var(--line-2);border-radius:var(--r-sm);cursor:pointer}
+.burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:44px;height:44px;padding:0 9px;flex:none;background:transparent;border:1.5px solid var(--line-2);border-radius:var(--r-sm);cursor:pointer}
+.burger span{width:22px}
 .burger span{display:block;height:2px;width:100%;background:var(--sea);border-radius:2px;transition:transform .3s var(--ease),opacity .2s var(--ease)}
 .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
@@ -256,7 +258,7 @@ section.block{padding:var(--sect-y) var(--pad-x);position:relative;scroll-margin
 .cyl{border-radius:var(--r-lg);padding:clamp(28px,3vw,48px);display:flex;flex-direction:column}
 .cyl.form{background:var(--card);border:1px solid var(--line-2);box-shadow:var(--depth)}
 .cyl.protect{background:var(--sea);color:var(--on-sea);box-shadow:0 30px 64px -34px oklch(0.255 0.05 218 / 0.75)}
-.cyl .tag{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:var(--s-3)}
+.cyl .tag{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:var(--s-3);text-wrap:balance}
 .cyl.protect .tag{color:var(--on-sea-soft)}
 .cyl h3{font-weight:800;font-size:clamp(1.7rem,1.2rem+1.4vw,2.4rem);color:var(--sea);margin-bottom:var(--s-4);letter-spacing:0.005em}
 .cyl.protect h3{color:var(--on-sea)}
@@ -330,14 +332,15 @@ section.block{padding:var(--sect-y) var(--pad-x);position:relative;scroll-margin
 .contact-card .crow{display:grid;gap:3px;padding:var(--s-3) 0;border-top:1px solid oklch(0.62 0.072 205 / 0.24)}
 .contact-card .crow:first-of-type{border-top:none}
 .contact-card .ck{font-size:0.74rem;color:var(--on-sea-soft)}
-.contact-card .cv{font-family:var(--mono);font-weight:500;font-size:1rem;color:var(--on-sea)}
+.contact-card .cv{font-family:var(--mono);font-weight:500;font-size:1rem;color:var(--on-sea);word-break:break-word}
+.contact-card a.cv{display:inline-flex;align-items:center;min-height:32px;width:fit-content}
 .contact-card a.cv:hover{color:var(--amber)}
 .contact-card .btn-primary{width:100%;justify-content:center;margin-top:var(--s-5)}
 
 /* ─────────── FOOTER ─────────── */
 footer{background:var(--sea-deep);color:var(--on-sea-soft);padding:var(--s-7) var(--pad-x);border-top:1px solid oklch(0.62 0.072 205 / 0.2);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-5);font-size:0.82rem}
-footer .fl{display:flex;flex-wrap:wrap;gap:var(--s-5)}
-footer a{transition:color .25s var(--ease)}
+footer .fl{display:flex;flex-wrap:wrap;gap:var(--s-3) var(--s-5)}
+footer a{display:inline-flex;align-items:center;min-height:40px;transition:color .25s var(--ease)}
 footer a:hover{color:var(--amber)}
 
 /* ─────────── reveal (контент виден без JS) ─────────── */
@@ -363,13 +366,24 @@ html.js .reveal.in{opacity:1;transform:none}
 }
 @media(max-width:600px){
   .hero{padding-bottom:clamp(90px,28vw,140px)}
-  .cta-row .btn{flex:1;justify-content:center}
+  .cta-row{gap:var(--s-2)}
+  .cta-row .btn{flex:1 1 100%;justify-content:center}
   .proof .n{font-size:clamp(1.6rem,1.2rem+2vw,2rem)}
+  .contact-card .btn-primary{white-space:normal}
+}
+@media(max-width:440px){
+  .header-right .btn-lk{display:none}
+  .header-right{gap:6px}
 }
 @media(max-width:420px){
   .brand-name{font-size:0.9rem}
   .ey-full{display:none}
   .ey-short{display:inline}
+}
+@media(max-width:360px){
+  :root{--pad-x:16px}
+  .brand-name{font-size:0.86rem}
+  .brand{gap:9px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -418,7 +432,7 @@ html.js .reveal.in{opacity:1;transform:none}
     <a href="#why">Почему мы</a>
     <a href="#steps">Этапы</a>
     <a href="#contacts">Контакты</a>
-    <a class="mn-cta" href="tel:+79790775777">Позвонить · +7 979 077 5 777</a>
+    <a class="mn-cta" href="tel:+79790775777">Позвонить · +7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a>
   </nav>
 </header>
 
@@ -485,7 +499,7 @@ html.js .reveal.in{opacity:1;transform:none}
     <div><div class="n">400+</div><div class="t">объектов<br>зарегистрировано</div></div>
     <div><div class="n">20+</div><div class="t">лет<br>опыта</div></div>
     <div><div class="n">250+</div><div class="t">успешных<br>дел</div></div>
-    <div><div class="n">100+</div><div class="t">млн ₽ ущерба<br>возмещено</div></div>
+    <div><div class="n">100+</div><div class="t">млн&nbsp;₽ ущерба<br>возмещено</div></div>
   </div>
 </section>
 
@@ -578,7 +592,7 @@ html.js .reveal.in{opacity:1;transform:none}
         <div class="sn">Оформление «Под ключ»</div>
         <div class="sd">Полное сопровождение от А до Я: все этапы до зарегистрированного права собственности.</div>
       </div>
-      <div class="sp">от 20 000 ₽</div>
+      <div class="sp">от&nbsp;20&nbsp;000&nbsp;₽</div>
     </div>
     <div class="sol reveal">
       <span class="si">02</span>
@@ -586,7 +600,7 @@ html.js .reveal.in{opacity:1;transform:none}
         <div class="sn">Легализация сложных объектов</div>
         <div class="sd">Самострой, узаконивание реконструкций, нестандартные задачи. Превращаем проблемные объекты в ликвидные активы.</div>
       </div>
-      <div class="sp">от 60 000 ₽</div>
+      <div class="sp">от&nbsp;60&nbsp;000&nbsp;₽</div>
     </div>
     <div class="sol reveal">
       <span class="si">03</span>
@@ -594,7 +608,7 @@ html.js .reveal.in{opacity:1;transform:none}
         <div class="sn">Сопровождение сделок и проверка</div>
         <div class="sd">Проверка юридической чистоты перед покупкой, безопасное сопровождение купли-продажи.</div>
       </div>
-      <div class="sp">от 25 000 ₽</div>
+      <div class="sp">от&nbsp;25&nbsp;000&nbsp;₽</div>
     </div>
     <div class="sol reveal">
       <span class="si">04</span>
@@ -602,7 +616,7 @@ html.js .reveal.in{opacity:1;transform:none}
         <div class="sn">Защита прав в суде</div>
         <div class="sd">Земельные споры, оспаривание границ, признание права собственности, обжалование отказов Росреестра.</div>
       </div>
-      <div class="sp">от 50 000 ₽</div>
+      <div class="sp">от&nbsp;50&nbsp;000&nbsp;₽</div>
     </div>
   </div>
 </section>
@@ -680,9 +694,9 @@ html.js .reveal.in{opacity:1;transform:none}
     </div>
     <div class="contact-card reveal">
       <div class="ch">Контакты центра</div>
-      <div class="crow"><span class="ck">Телефон</span><a class="cv" href="tel:+79790775777">+7 979 077 5 777</a></div>
+      <div class="crow"><span class="ck">Телефон</span><a class="cv" href="tel:+79790775777">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a></div>
       <div class="crow"><span class="ck">Telegram</span><a class="cv" href="https://t.me/makslegal777">@makslegal777</a></div>
-      <div class="crow"><span class="ck">Офис</span><span class="cv">Ялта, ул. Ленинградская, 34</span></div>
+      <div class="crow"><span class="ck">Офис</span><span class="cv">Ялта,&nbsp;ул.&nbsp;Ленинградская,&nbsp;34</span></div>
       <a class="btn btn-primary" href="tel:+79790775777">Заказать звонок →</a>
     </div>
   </div>
@@ -706,7 +720,7 @@ html.js .reveal.in{opacity:1;transform:none}
       <div class="legal-body">
         <p>Настоящая Политика определяет порядок обработки и защиты персональных данных пользователей сайта одно-окно.рф (далее — Оператор) в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных».</p>
         <p>Оператор обрабатывает персональные данные (имя, номер телефона, адрес электронной почты, сведения об объекте недвижимости), которые пользователь предоставляет добровольно через формы на сайте, исключительно для обработки обращения и оказания юридических услуг.</p>
-        <p>Хранение и обработка персональных данных граждан Российской Федерации осуществляются с использованием баз данных, расположенных на территории Российской Федерации, в соответствии с ч. 5 ст. 18 152-ФЗ.</p>
+        <p>Хранение и обработка персональных данных граждан Российской Федерации осуществляются с использованием баз данных, расположенных на территории Российской Федерации, в соответствии с ч.&nbsp;5 ст.&nbsp;18 152-ФЗ.</p>
         <p>Данные не передаются третьим лицам без согласия субъекта, за исключением случаев, предусмотренных законодательством. Пользователь вправе запросить уточнение, блокирование или удаление своих данных, направив обращение по контактам, указанным в реквизитах.</p>
       </div>
     </details>
@@ -722,8 +736,8 @@ html.js .reveal.in{opacity:1;transform:none}
       <summary>Реквизиты</summary>
       <div class="legal-body">
         <p>Центр легализации недвижимости «Единое окно»</p>
-        <p>Адрес: 298600, Республика Крым, г. Ялта, ул. Ленинградская, 34</p>
-        <p>Телефон: <a class="lk-a" href="tel:+79790775777">+7 979 077 5 777</a></p>
+        <p>Адрес: 298600, Республика&nbsp;Крым, г.&nbsp;Ялта, ул.&nbsp;Ленинградская,&nbsp;34</p>
+        <p>Телефон: <a class="lk-a" href="tel:+79790775777">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a></p>
         <p>Telegram: <a class="lk-a" href="https://t.me/makslegal777">@makslegal777</a></p>
         <p>Сайт: одно-окно.рф</p>
         <p class="legal-note">ИНН, ОГРН и полное наименование организации указываются в договоре на оказание услуг.</p>

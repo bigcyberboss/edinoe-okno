@@ -30,7 +30,7 @@
   --sans:  'IBM Plex Sans', sans-serif;
   --mono:  'IBM Plex Mono', monospace;
 
-  --fs-h1:   clamp(2.7rem, 1.4rem + 5.4vw, 6rem);
+  --fs-h1:   clamp(2.5rem, 1.95rem + 3.2vw, 5.25rem);
   --fs-h2:   clamp(1.9rem, 1.3rem + 2.6vw, 3.25rem);
   --fs-h3:   clamp(1.15rem, 1rem + 0.7vw, 1.5rem);
   --fs-lead: clamp(1.05rem, 0.95rem + 0.5vw, 1.3rem);
@@ -56,7 +56,8 @@ body{
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
-h1,h2,h3{font-family:var(--serif);line-height:1.04;letter-spacing:-0.015em;font-weight:600}
+h1,h2,h3{font-family:var(--serif);line-height:1.04;letter-spacing:-0.015em;font-weight:600;text-wrap:balance;overflow-wrap:break-word}
+p{text-wrap:pretty}
 a{color:inherit;text-decoration:none}
 img,svg{display:block}
 
@@ -135,7 +136,7 @@ a:focus-visible,.btn:focus-visible,.btn-lk:focus-visible,nav a:focus-visible,.go
 .docket .k{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:7px}
 .docket .v{font-family:var(--mono);font-weight:600;font-size:clamp(0.82rem,0.74rem+0.3vw,1rem);color:var(--ink-deep);letter-spacing:0.01em;line-height:1.35}
 .docket .v.case{color:var(--stamp)}
-.docket .v.live{display:inline-flex;align-items:center;gap:8px}
+.docket .v.live{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
 @media(max-width:760px){
   .docket{grid-template-columns:1fr 1fr}
   .docket .cell{border-right:none;border-bottom:1px solid var(--rule-2)}
@@ -150,8 +151,8 @@ a:focus-visible,.btn:focus-visible,.btn-lk:focus-visible,nav a:focus-visible,.go
 
 .hero-body{
   position:relative;z-index:1;
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,0.92fr);
-  gap:clamp(36px,4.5vw,80px);
+  display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,0.88fr);
+  gap:clamp(32px,3.5vw,72px);
   align-items:end;
   margin-top:clamp(40px,5vw,72px);
 }
@@ -246,7 +247,7 @@ section.block{padding:clamp(72px,9vw,152px) var(--pad-x);position:relative;scrol
 .directions{position:relative}
 .dir-grid{display:grid;grid-template-columns:1.06fr 0.94fr;gap:var(--s-5);position:relative;z-index:1}
 .dir{border:1.5px solid var(--ink);border-radius:var(--r);padding:clamp(28px,3vw,48px);display:flex;flex-direction:column}
-.dir .tag{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:var(--s-4)}
+.dir .tag{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:var(--s-4);text-wrap:balance}
 .dir h3{font-size:clamp(1.9rem,1.3rem+1.6vw,2.8rem);font-weight:700;margin-bottom:var(--s-4);letter-spacing:-0.01em}
 .dir > p{margin-bottom:var(--s-5);flex:0 0 auto}
 .dir ol{list-style:none;counter-reset:cl;display:grid;gap:0;margin-bottom:var(--s-6);flex:1}
@@ -316,8 +317,9 @@ section.block{padding:clamp(72px,9vw,152px) var(--pad-x);position:relative;scrol
 .why .lead-blk .sub{color:var(--stamp-on-dark)}
 .why .spine{border-color:var(--rule-dk)}
 .why .spine .vol,.why .spine .ttl{color:var(--on-ink-2)}
-.evidence{display:grid;grid-template-columns:1fr 1fr;border:1.5px solid var(--rule-dk);border-radius:var(--r)}
-.ev{display:grid;grid-template-columns:auto 1fr;gap:var(--s-5);padding:clamp(28px,3vw,44px);border-right:1px solid var(--rule-dk);border-bottom:1px solid var(--rule-dk)}
+.evidence{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--rule-dk);border-radius:var(--r)}
+.ev{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s-5);min-width:0;padding:clamp(22px,3vw,44px);border-right:1px solid var(--rule-dk);border-bottom:1px solid var(--rule-dk)}
+.ev>div{min-width:0}
 .ev:nth-child(2n){border-right:none}
 .ev:nth-last-child(-n+2){border-bottom:none}
 .ev .seal-sm{width:54px;height:54px;flex:none;color:var(--stamp)}
@@ -385,14 +387,34 @@ html.js .reveal{opacity:0;transform:translateY(20px)}
 html.js .reveal.in{opacity:1;transform:none}
 
 /* ─────────── адаптив хедер ─────────── */
-@media(max-width:1040px){
+@media(max-width:1120px){
   nav,.header-right .docket-status,.brand-sub{display:none}
   header{gap:12px}
   .header-right{gap:14px}
 }
 @media(max-width:560px){
   .cta-row .btn{flex:1;justify-content:center}
-  .phone{font-size:0.82rem}
+}
+/* узкая шапка: телефон — главный CTA, ЛК прячем чтобы не было overflow */
+@media(max-width:540px){
+  header{padding-left:16px;padding-right:16px;gap:10px}
+  .header-right{gap:10px}
+  .btn-lk{display:none}
+  .phone{font-size:0.86rem;padding:9px 6px;margin-right:-6px}
+}
+@media(max-width:360px){
+  .brand-mark{width:32px;height:32px}
+  .brand-name{font-size:0.94rem}
+  .phone{font-size:0.8rem;letter-spacing:-0.01em}
+}
+/* тач-таргеты на тач-устройствах (≥40px по высоте у интерактивных) */
+@media(max-width:860px){
+  .brand{min-height:44px}
+  .phone{display:inline-flex;align-items:center;min-height:40px}
+  .dir .go{min-height:40px;align-items:center}
+  .res-contacts a.v{display:inline-flex;align-items:center;min-height:40px}
+  footer .fl a{display:inline-flex;align-items:center;min-height:40px}
+  footer .co{align-self:center}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -456,7 +478,7 @@ html.js .reveal.in{opacity:1;transform:none}
   <div class="hero-body">
     <div class="hero-l">
       <span class="hero-eyebrow">Центр легализации недвижимости</span>
-      <h1>Мы не консультируем. <span class="em">Мы легализуем.</span></h1>
+      <h1>Мы&nbsp;не консультируем. <span class="em">Мы&nbsp;легализуем.</span></h1>
       <p class="hero-lead">Берём на себя весь путь объекта — от полевой геодезии до выписки из ЕГРН. Самострой, земля, споры по границам, отказы Росреестра. Юристы, кадастровые инженеры и геодезисты в одной команде.</p>
       <div class="cta-row">
         <a class="btn btn-stamp" href="#contacts">Открыть дело <span class="arr">→</span></a>
@@ -506,7 +528,7 @@ html.js .reveal.in{opacity:1;transform:none}
     <div class="rec"><div class="n">400+</div><div class="t">объектов<br>зарегистрировано</div></div>
     <div class="rec"><div class="n">20+</div><div class="t">лет<br>опыта</div></div>
     <div class="rec"><div class="n">250+</div><div class="t">успешных<br>дел</div></div>
-    <div class="rec"><div class="n">100+</div><div class="t">млн ₽ ущерба<br>возмещено</div></div>
+    <div class="rec"><div class="n">100+</div><div class="t">млн&nbsp;₽ ущерба<br>возмещено</div></div>
   </div>
 </section>
 
@@ -581,7 +603,7 @@ html.js .reveal.in{opacity:1;transform:none}
   </div>
   <div class="dir-grid">
     <article class="dir defend reveal">
-      <span class="tag">[ Правовая защита активов ]</span>
+      <span class="tag">[ Правовая защита активов&nbsp;]</span>
       <h3>«ЗАЩИТИТЬ»</h3>
       <p>Спасение активов в правовом поле: судебная защита «токсичной» недвижимости и сложных, тупиковых ситуаций.</p>
       <ol>
@@ -593,7 +615,7 @@ html.js .reveal.in{opacity:1;transform:none}
       <a class="go" href="#contacts">Активировать защиту <span class="arr">→</span></a>
     </article>
     <article class="dir form reveal">
-      <span class="tag">[ Инженерно-кадастровое производство ]</span>
+      <span class="tag">[ Инженерно-кадастровое производство&nbsp;]</span>
       <h3>«ОФОРМИТЬ»</h3>
       <p>Полный цикл от полевых работ до записи в реестре. Собственное высокоточное GNSS-оборудование, без посредников.</p>
       <ol>
@@ -633,34 +655,34 @@ html.js .reveal.in{opacity:1;transform:none}
         <div class="dn">Полное сопровождение от А до Я: все этапы до зарегистрированного права собственности.</div>
         <span class="basis">осн.: 218-ФЗ</span>
       </div>
-      <div class="rate">от 20 000 ₽</div>
+      <div class="rate">от&nbsp;20&nbsp;000&nbsp;₽</div>
     </div>
     <div class="tariff-row reveal">
       <span class="pos">02</span>
       <div class="subj">
         <div class="nm">Легализация сложных объектов</div>
         <div class="dn">Самострой, узаконивание реконструкций, нестандартные задачи. Превращаем проблемные объекты в ликвидные активы.</div>
-        <span class="basis">осн.: ст. 222 ГК РФ</span>
+        <span class="basis">осн.: ст.&nbsp;222&nbsp;ГК&nbsp;РФ</span>
       </div>
-      <div class="rate">от 60 000 ₽</div>
+      <div class="rate">от&nbsp;60&nbsp;000&nbsp;₽</div>
     </div>
     <div class="tariff-row reveal">
       <span class="pos">03</span>
       <div class="subj">
         <div class="nm">Сопровождение сделок и проверка</div>
         <div class="dn">Проверка юридической чистоты перед покупкой, безопасное сопровождение купли-продажи.</div>
-        <span class="basis">осн.: ст. 549 ГК РФ</span>
+        <span class="basis">осн.: ст.&nbsp;549&nbsp;ГК&nbsp;РФ</span>
       </div>
-      <div class="rate">от 25 000 ₽</div>
+      <div class="rate">от&nbsp;25&nbsp;000&nbsp;₽</div>
     </div>
     <div class="tariff-row reveal">
       <span class="pos">04</span>
       <div class="subj">
         <div class="nm">Защита прав в суде</div>
         <div class="dn">Земельные споры, оспаривание границ, признание права собственности, обжалование отказов Росреестра.</div>
-        <span class="basis">осн.: гл. 22 КАС РФ</span>
+        <span class="basis">осн.: гл.&nbsp;22&nbsp;КАС&nbsp;РФ</span>
       </div>
-      <div class="rate">от 50 000 ₽</div>
+      <div class="rate">от&nbsp;50&nbsp;000&nbsp;₽</div>
     </div>
   </div>
 </section>
@@ -787,11 +809,11 @@ html.js .reveal.in{opacity:1;transform:none}
     <div class="res-contacts">
       <div class="c">
         <div class="k">Телефон</div>
-        <a class="v" href="tel:+79790775777">+7 979 077 5 777</a>
+        <a class="v" href="tel:+79790775777">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a>
       </div>
       <div class="c">
         <div class="k">Офис</div>
-        <span class="v">Ялта, ул. Ленинградская, 34</span>
+        <span class="v">Ялта, ул.&nbsp;Ленинградская,&nbsp;34</span>
       </div>
       <div class="c">
         <div class="k">Telegram</div>
