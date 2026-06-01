@@ -284,7 +284,7 @@ section.block{padding:var(--sect-y) var(--pad-x);position:relative;scroll-margin
 
 /* ── ОФОРМИТЬ / ЗАЩИТИТЬ — две делянки с межевой линией ── */
 .parcels{position:relative}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:0;position:relative}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,3vw,44px);position:relative;align-items:stretch}
 .split::before{content:'';position:absolute;left:50%;top:6%;bottom:6%;width:0;border-left:1.5px dashed var(--hair-navy);transform:translateX(-50%)}
 .delyanka{
   position:relative;
@@ -295,8 +295,8 @@ section.block{padding:var(--sect-y) var(--pad-x);position:relative;scroll-margin
   background:var(--surface);
   overflow:hidden;
 }
-.delyanka.a{margin:0 18px 26px 0}
-.delyanka.b{margin:26px 0 0 18px;background:var(--sunk)}
+.delyanka.a{margin:0}
+.delyanka.b{margin:0;background:var(--sunk)}
 .delyanka .hatch{position:absolute;inset:0;z-index:0;opacity:.6;pointer-events:none}
 .delyanka.a .hatch{background-image:repeating-linear-gradient(-32deg, var(--grid-soft) 0 1px, transparent 1px 13px)}
 .delyanka.b .hatch{background-image:repeating-linear-gradient(38deg, oklch(0.62 0.17 42 / .06) 0 1px, transparent 1px 13px)}
