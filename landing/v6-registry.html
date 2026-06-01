@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add('js')</script>
+<title>ЕДИНОЕ ОКНО — Реестр легализации недвижимости в Ялте и Крыму</title>
+<meta name="description" content="Оформление, легализация и судебная защита недвижимости в Ялте и Крыму: от полевой геодезии до выписки из ЕГРН. Самострой, земля, споры по границам, отказы Росреестра.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;700&family=Geologica:wght@500;600;700;800&family=Martian+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* ── скин «РЕЕСТР»: графит + сигнальный коралл (НЕ платина/navy/жёлтый v1) ── */
+  --graphite:    oklch(0.205 0.014 248);   /* основная тёмная база */
+  --graphite-2:  oklch(0.245 0.016 248);   /* приподнятая поверхность */
+  --graphite-3:  oklch(0.285 0.018 248);   /* hover-поверхность */
+  --carbon:      oklch(0.165 0.012 248);   /* глубокий фон/футер */
+  --slate:       oklch(0.78 0.022 240);    /* холодный вторичный текст */
+  --slate-dim:   oklch(0.72 0.02 240);     /* тусклые метки */
+  --paper:       oklch(0.945 0.008 240);   /* основной светлый текст */
+  --grid:        oklch(0.66 0.05 215 / 0.16);   /* slate-cyan линии сетки */
+  --grid-strong: oklch(0.7 0.07 210 / 0.42);    /* осевые линии */
+  --axis:        oklch(0.78 0.058 210);          /* подписи осей */
+  --signal:      oklch(0.705 0.182 38);    /* тёплый сигнальный коралл — единственный акцент */
+  --signal-2:    oklch(0.66 0.185 36);     /* hover акцента */
+  --signal-dim:  oklch(0.705 0.182 38 / 0.16);
+  --hair:        oklch(0.74 0.022 240 / 0.13);   /* тонкие разделители */
+  --hair-2:      oklch(0.74 0.022 240 / 0.22);
+
+  --display:'Geologica', sans-serif;
+  --body:'Commissioner', sans-serif;
+  --mono:'Martian Mono', ui-monospace, monospace;
+
+  --fs-mega: clamp(3.1rem, 1.1rem + 8.6vw, 9rem);
+  --fs-h2:   clamp(1.9rem, 1.2rem + 2.9vw, 3.4rem);
+  --fs-h3:   clamp(1.15rem, 1rem + 0.7vw, 1.5rem);
+  --fs-body: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+  --fs-label:0.78rem;
+
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px;
+  --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px; --s-10:128px;
+  --pad-x: clamp(20px, 5.5vw, 110px);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-io: cubic-bezier(0.16, 1, 0.3, 1);
+  --r: 4px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--body);
+  font-size:var(--fs-body);
+  line-height:1.6;
+  color:var(--paper);
+  background:var(--graphite);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+h1,h2,h3{line-height:1.02;letter-spacing:-0.02em;font-weight:700}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+::selection{background:var(--signal);color:var(--carbon)}
+
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:2px}
+
+/* монометка */
+.mono{font-family:var(--mono);font-size:var(--fs-label);font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--slate-dim)}
+.sig{color:var(--signal)}
+
+/* ── сквозной примитив: перекрестие ── */
+.cross{display:inline-block;width:13px;height:13px;flex:none;position:relative}
+.cross::before,.cross::after{content:'';position:absolute;background:var(--signal)}
+.cross::before{left:50%;top:0;width:1px;height:100%;transform:translateX(-0.5px)}
+.cross::after{top:50%;left:0;height:1px;width:100%;transform:translateY(-0.5px)}
+
+/* ════════════ ШАПКА (тихая, анти-агрессия) ════════════ */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:90;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:var(--s-4);
+  padding:14px var(--pad-x);
+  background:oklch(0.205 0.014 248 / 0.62);
+  -webkit-backdrop-filter:blur(14px) saturate(1.2);
+  backdrop-filter:blur(14px) saturate(1.2);
+  border-bottom:1px solid transparent;
+  transition:background .4s var(--ease),border-color .4s var(--ease);
+}
+.topbar.scrolled{background:oklch(0.165 0.012 248 / 0.9);border-bottom-color:var(--hair)}
+.brand{display:flex;align-items:center;gap:11px}
+.brand-mark{width:34px;height:34px;flex:none;display:grid;place-items:center;border:1px solid var(--hair-2);border-radius:var(--r);color:var(--signal)}
+.brand-txt{display:flex;flex-direction:column;line-height:1.1}
+.brand-name{font-family:var(--display);font-weight:700;font-size:0.92rem;letter-spacing:0.04em;color:var(--paper)}
+.brand-sub{font-family:var(--mono);font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--slate-dim);margin-top:3px}
+.topnav{display:flex;gap:clamp(16px,1.8vw,30px);align-items:center}
+.topnav a{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--slate);transition:color .25s var(--ease);position:relative}
+.topnav a:hover{color:var(--paper)}
+.topnav a::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--signal);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.topnav a:hover::after{transform:scaleX(1)}
+.top-right{display:flex;align-items:center;gap:var(--s-4)}
+.top-phone{font-family:var(--mono);font-weight:500;font-size:0.82rem;letter-spacing:0.02em;color:var(--paper);white-space:nowrap}
+.top-phone:hover{color:var(--signal)}
+.burger{display:none;width:42px;height:42px;border:1px solid var(--hair-2);background:transparent;border-radius:var(--r);cursor:pointer;color:var(--paper);align-items:center;justify-content:center}
+.burger svg{width:20px;height:20px}
+.phone-icon{display:none;width:42px;height:42px;border:1px solid var(--hair-2);border-radius:var(--r);color:var(--signal);align-items:center;justify-content:center;transition:border-color .25s var(--ease),color .25s var(--ease)}
+.phone-icon svg{width:19px;height:19px}
+.phone-icon:hover{border-color:var(--signal)}
+
+/* мобильное меню */
+.mnav{position:fixed;inset:0;z-index:95;background:oklch(0.165 0.012 248 / 0.98);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:none;flex-direction:column;padding:88px var(--pad-x) var(--s-7)}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--display);font-weight:600;font-size:1.6rem;color:var(--paper);padding:var(--s-4) 0;border-bottom:1px solid var(--hair);display:flex;align-items:center;gap:14px}
+.mnav a .mono{font-size:0.7rem;color:var(--signal)}
+.mnav .m-cta{margin-top:auto;display:flex;flex-direction:column;gap:var(--s-3);padding-top:var(--s-6);border-bottom:none}
+.mnav-close{position:absolute;top:18px;right:var(--pad-x);width:42px;height:42px;border:1px solid var(--hair-2);background:transparent;border-radius:var(--r);color:var(--paper);cursor:pointer;font-size:22px;line-height:1}
+
+/* ════════════ HERO — геодезический холст ════════════ */
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:grid;
+  grid-template-rows:1fr auto;
+  padding:0;
+  overflow:hidden;
+  isolation:isolate;
+}
+.hero-canvas{position:absolute;inset:0;z-index:0}
+.hero-canvas svg{width:100%;height:100%}
+/* затемнение по краям, чтобы текст читался */
+.hero-veil{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(120% 90% at 72% 30%, transparent 30%, oklch(0.205 0.014 248 / 0.55) 100%),
+    linear-gradient(to bottom, oklch(0.205 0.014 248 / 0.25), transparent 22%, transparent 60%, oklch(0.165 0.012 248 / 0.85) 100%);
+}
+.hero-inner{position:relative;z-index:3;align-self:center;padding:clamp(110px,16vh,200px) var(--pad-x) 0;max-width:min(100%,1500px)}
+.hero-tag{display:inline-flex;align-items:center;gap:11px;margin-bottom:clamp(20px,3vw,40px)}
+.hero-tag .mono{color:var(--axis)}
+.hero h1{
+  font-family:var(--display);
+  font-weight:800;
+  font-size:var(--fs-mega);
+  letter-spacing:-0.035em;
+  color:var(--paper);
+  text-wrap:balance;
+}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line > span{display:block}
+.hero h1 .thin{font-weight:500;color:var(--slate)}
+.hero h1 .hit{color:var(--signal);position:relative;white-space:nowrap}
+.hero-sub{margin-top:clamp(22px,3vw,36px);max-width:52ch;color:var(--slate);font-size:clamp(1.02rem,0.95rem+0.5vw,1.22rem);line-height:1.55}
+.hero-actions{margin-top:clamp(26px,3vw,40px);display:flex;flex-wrap:wrap;gap:var(--s-3)}
+
+/* координатный маркер «наведение на Ялту» */
+.hero-pin{position:absolute;z-index:2;left:72%;top:34%;transform:translate(-50%,-50%);pointer-events:none}
+.hero-pin .ring{width:80px;height:80px;border:1px solid var(--signal);border-radius:50%;display:grid;place-items:center;opacity:0.85}
+.hero-pin .ring::before{content:'';width:120%;height:120%;border:1px solid var(--signal-dim);border-radius:50%;position:absolute}
+.hero-pin .dot{width:9px;height:9px;background:var(--signal);border-radius:50%}
+.hero-pin .lbl{position:absolute;left:96px;top:50%;transform:translateY(-50%);white-space:nowrap}
+.hero-pin .lbl b{font-family:var(--mono);font-size:0.72rem;color:var(--paper);letter-spacing:0.08em;display:block}
+.hero-pin .lbl span{font-family:var(--mono);font-size:0.62rem;color:var(--axis);letter-spacing:0.06em}
+html.js .hero-pin{opacity:0;transition:opacity .8s var(--ease) .5s,transform 1s var(--ease) .5s}
+html.js .hero-pin.lit{opacity:1}
+@keyframes pinpulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.06);opacity:1}}
+.hero-pin.lit .ring{animation:pinpulse 3.4s var(--ease) infinite}
+
+/* нижняя кромка hero — координаты-декор */
+.hero-foot{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:flex-end;gap:var(--s-4);padding:var(--s-5) var(--pad-x) var(--s-6);flex-wrap:wrap}
+.hero-foot .coord{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.08em;color:var(--axis)}
+.hero-foot .scroll-cue{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--slate)}
+.scroll-cue .bar{width:34px;height:1px;background:var(--slate-dim);position:relative;overflow:hidden}
+.scroll-cue .bar::after{content:'';position:absolute;inset:0;background:var(--signal);transform:translateX(-100%);animation:cue 2.6s var(--ease) infinite}
+@keyframes cue{0%{transform:translateX(-100%)}55%{transform:translateX(0)}100%{transform:translateX(100%)}}
+
+/* кнопки */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:var(--r);font-family:var(--mono);font-weight:500;font-size:0.82rem;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;border:1px solid transparent;transition:transform .3s var(--ease),background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease)}
+.btn .arr{transition:transform .3s var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+.btn-primary{background:var(--signal);color:oklch(0.14 0 0)}
+.btn-primary:hover{background:var(--signal-2);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--paper);border-color:var(--hair-2)}
+.btn-ghost:hover{border-color:var(--signal);color:var(--signal)}
+
+/* ════════════ TRUST-ЧИСЛА «в воздухе» ════════════ */
+.trust{padding:clamp(72px,11vw,150px) var(--pad-x);background:var(--graphite);position:relative}
+.trust-head{display:flex;align-items:center;gap:12px;margin-bottom:clamp(40px,6vw,80px)}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(24px,4vw,72px)}
+.tnum{position:relative}
+.tnum .n{font-family:var(--mono);font-weight:500;font-size:clamp(2.6rem,1.4rem+4.4vw,5.6rem);letter-spacing:-0.04em;color:var(--paper);line-height:0.9}
+.tnum .n .u{color:var(--signal);font-size:0.42em;vertical-align:0.7em;margin-left:2px}
+.tnum .t{margin-top:var(--s-4);font-size:0.92rem;color:var(--slate);max-width:24ch;line-height:1.4}
+.tnum .art{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.12em;color:var(--slate);margin-bottom:var(--s-3);display:block}
+@media(max-width:820px){.trust-grid{grid-template-columns:1fr 1fr;gap:var(--s-7) var(--s-5)}}
+
+/* ════════════ ПРАЙС-РЕЕСТР (раскрытие по hover) ════════════ */
+.registry{padding:clamp(64px,9vw,128px) var(--pad-x);background:var(--carbon);border-top:1px solid var(--hair)}
+.sec-head{max-width:780px;margin-bottom:clamp(36px,5vw,64px)}
+.sec-head .mono{display:inline-flex;align-items:center;gap:10px;margin-bottom:var(--s-4)}
+.sec-head h2{font-family:var(--display);font-size:var(--fs-h2);color:var(--paper)}
+.sec-head p{margin-top:var(--s-4);color:var(--slate);max-width:60ch}
+
+.reg-thead{display:grid;grid-template-columns:120px 1fr auto;gap:var(--s-5);padding:0 clamp(16px,2vw,28px) var(--s-3);border-bottom:1px solid var(--hair-2)}
+.reg-thead span{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--slate)}
+.reg-thead span:last-child{text-align:right}
+.reg-row{
+  border-bottom:1px solid var(--hair);
+  cursor:pointer;
+  transition:background .3s var(--ease);
+}
+.reg-row:hover,.reg-row.open{background:var(--graphite-2)}
+.reg-row > .reg-main{
+  display:grid;grid-template-columns:120px 1fr auto;gap:var(--s-5);align-items:center;
+  padding:clamp(20px,2.4vw,30px) clamp(16px,2vw,28px);
+  position:relative;
+}
+.reg-row > .reg-main::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--signal);transform:scaleY(0);transform-origin:top;transition:transform .35s var(--ease)}
+.reg-row:hover > .reg-main::before,.reg-row.open > .reg-main::before{transform:scaleY(1)}
+.reg-art{font-family:var(--mono);font-size:0.74rem;color:var(--axis);letter-spacing:0.04em;display:flex;align-items:center;gap:9px}
+.reg-name{font-family:var(--display);font-weight:600;font-size:clamp(1.1rem,0.95rem+0.8vw,1.6rem);color:var(--paper);letter-spacing:-0.01em}
+.reg-price{font-family:var(--mono);font-weight:500;font-size:clamp(1rem,0.85rem+0.6vw,1.35rem);color:var(--signal);white-space:nowrap;text-align:right;display:flex;align-items:center;gap:14px;justify-content:flex-end}
+.reg-price .chev{width:11px;height:11px;border-right:1.5px solid var(--slate);border-bottom:1.5px solid var(--slate);transform:rotate(45deg);transition:transform .35s var(--ease);flex:none}
+.reg-row.open .reg-price .chev{transform:rotate(-135deg);border-color:var(--signal)}
+.reg-detail{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.reg-row.open .reg-detail{grid-template-rows:1fr}
+.reg-detail > div{overflow:hidden}
+.reg-detail-inner{padding:0 clamp(16px,2vw,28px) clamp(22px,2.6vw,32px) calc(120px + var(--s-5) + clamp(16px,2vw,28px));display:grid;grid-template-columns:1.4fr 1fr;gap:var(--s-6)}
+.reg-detail p{color:var(--slate);font-size:0.95rem;line-height:1.6}
+.reg-meta{display:grid;gap:var(--s-3);align-content:start}
+.reg-meta div{display:flex;justify-content:space-between;gap:var(--s-4);font-family:var(--mono);font-size:0.72rem;border-bottom:1px dotted var(--hair-2);padding-bottom:7px}
+.reg-meta dt{color:var(--slate-dim);letter-spacing:0.06em;text-transform:uppercase}
+.reg-meta dd{color:var(--paper);text-align:right}
+.reg-note{margin-top:var(--s-6);font-family:var(--mono);font-size:0.72rem;letter-spacing:0.04em;color:var(--slate-dim);display:flex;align-items:center;gap:10px}
+@media(max-width:760px){
+  .reg-thead{grid-template-columns:74px 1fr;}
+  .reg-thead span:last-child{display:none}
+  .reg-row > .reg-main{grid-template-columns:74px 1fr;row-gap:6px}
+  .reg-price{grid-column:2;justify-content:flex-start;text-align:left}
+  .reg-detail-inner{grid-template-columns:1fr;padding-left:clamp(16px,2vw,28px)}
+}
+
+/* ════════════ БОЛИ — реестр именованных записей ════════════ */
+.pains{padding:clamp(64px,9vw,128px) var(--pad-x);background:var(--graphite)}
+.pain-list{display:grid;border-top:1px solid var(--hair-2)}
+.pain{
+  display:grid;grid-template-columns:auto auto 1fr auto;gap:clamp(16px,3vw,44px);align-items:baseline;
+  padding:clamp(22px,3vw,40px) 0;border-bottom:1px solid var(--hair);
+  transition:transform .35s var(--ease);
+}
+.pain:hover{transform:translateX(8px)}
+.pain .px{font-family:var(--mono);font-size:0.78rem;color:var(--signal);padding-top:6px}
+.pain .ptag{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--slate);width:max-content;align-self:start;padding-top:9px}
+.pain .pbody h3{font-family:var(--display);font-weight:600;font-size:clamp(1.25rem,1rem+1.1vw,2rem);color:var(--paper);letter-spacing:-0.015em}
+.pain .pbody p{margin-top:var(--s-3);color:var(--slate);max-width:62ch;font-size:0.97rem}
+.pain .preg{align-self:center;display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.1em;color:var(--slate-dim);white-space:nowrap}
+.pain .preg .pmark{opacity:0;transform:scale(0.6) rotate(-20deg);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.pain:hover .preg{color:var(--slate)}
+.pain:hover .preg .pmark{opacity:1;transform:scale(1) rotate(0)}
+.pains-foot{margin-top:var(--s-7);font-family:var(--mono);font-size:0.78rem;letter-spacing:0.03em;color:var(--slate-dim);display:flex;align-items:center;gap:12px}
+@media(max-width:680px){
+  .pain{grid-template-columns:auto 1fr;row-gap:var(--s-2)}
+  .pain .ptag{grid-column:2;padding-top:0;order:-1}
+  .pain .preg{display:none}
+}
+
+/* ════════════ ГЛАВЫ: 01 Оформить / 02 Защитить ════════════ */
+.chapters{background:var(--carbon)}
+.chapter{
+  padding:clamp(64px,9vw,128px) var(--pad-x);
+  display:grid;grid-template-columns:minmax(0,0.5fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);
+  align-items:start;
+  border-top:1px solid var(--hair);
+  position:relative;
+}
+.chapter.b{background:var(--graphite)}
+.ch-aside{position:sticky;top:clamp(90px,12vh,140px)}
+.ch-num{font-family:var(--display);font-weight:800;font-size:clamp(3.4rem,2rem+6vw,8rem);line-height:0.82;color:transparent;-webkit-text-stroke:1px var(--hair-2);letter-spacing:-0.04em}
+.chapter.b .ch-num{-webkit-text-stroke-color:oklch(0.705 0.182 38 / 0.4)}
+.ch-kicker{margin-top:var(--s-5);font-family:var(--mono);font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--slate-dim);max-width:30ch;line-height:1.5}
+.ch-title{font-family:var(--display);font-weight:700;font-size:clamp(2rem,1.3rem+3vw,3.6rem);color:var(--paper);letter-spacing:-0.025em}
+.chapter.b .ch-title{color:var(--paper)}
+.ch-lead{margin-top:var(--s-5);color:var(--slate);max-width:54ch;font-size:1.05rem}
+.ch-items{margin-top:clamp(28px,3vw,44px);display:grid;border-top:1px solid var(--hair-2)}
+.ch-item{display:grid;grid-template-columns:auto 1fr;gap:var(--s-4);align-items:baseline;padding:var(--s-4) 0;border-bottom:1px solid var(--hair);transition:padding-left .3s var(--ease)}
+.ch-item:hover{padding-left:10px}
+.ch-item .cross{align-self:center}
+.ch-item span{font-size:1rem;color:var(--paper)}
+.ch-go{margin-top:clamp(28px,3vw,44px);display:inline-flex;align-items:center;gap:11px;font-family:var(--mono);font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--signal);border-bottom:1px solid var(--signal-dim);padding-bottom:5px;transition:gap .25s var(--ease),border-color .25s var(--ease)}
+.ch-go:hover{gap:18px;border-color:var(--signal)}
+@media(max-width:860px){
+  .chapter{grid-template-columns:1fr;gap:var(--s-6)}
+  .ch-aside{position:static}
+  .ch-num{font-size:clamp(3rem,2rem+8vw,5rem)}
+}
+
+/* ════════════ 5 ШАГОВ — горизонтальная sticky-лента ════════════ */
+.steps{background:var(--graphite);position:relative}
+.steps-intro{padding:clamp(64px,8vw,110px) var(--pad-x) clamp(28px,4vw,48px)}
+.steps-track{position:relative}
+/* JS-режим: пиннинг + горизонтальный сдвиг */
+html.js .steps-pin{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.steps-lane{display:flex;gap:clamp(20px,2.5vw,40px);padding:0 var(--pad-x);will-change:transform}
+.scard{
+  flex:0 0 clamp(290px,78vw,440px);
+  background:var(--graphite-2);
+  border:1px solid var(--hair);
+  border-radius:var(--r);
+  padding:clamp(26px,3vw,42px);
+  display:flex;flex-direction:column;gap:var(--s-4);
+  min-height:clamp(300px,46vh,420px);
+  position:relative;
+}
+.scard::after{content:'';position:absolute;right:18px;bottom:18px;width:11px;height:11px;border-right:1px solid var(--hair-2);border-top:1px solid var(--hair-2)}
+.scard .sx{display:flex;align-items:center;justify-content:space-between}
+.scard .sx .si{font-family:var(--mono);font-weight:600;font-size:clamp(2rem,1.4rem+2vw,3.2rem);color:transparent;-webkit-text-stroke:1px var(--signal);line-height:1}
+.scard .sx .of{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.14em;color:var(--slate)}
+.scard .scode{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.08em;color:var(--slate-dim);margin-top:var(--s-2)}
+.scard .scode .sig{color:var(--axis)}
+.scard h3{font-family:var(--display);font-weight:600;font-size:clamp(1.25rem,1rem+1vw,1.7rem);color:var(--paper);margin-top:auto}
+.scard p{color:var(--slate);font-size:0.95rem;line-height:1.55}
+.scard .stag{margin-top:var(--s-2);font-family:var(--mono);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--signal);border:1px solid var(--signal-dim);border-radius:2px;padding:5px 9px;width:max-content;display:inline-flex;align-items:center;gap:7px}
+/* индикатор прогресса ленты */
+.steps-progress{margin:clamp(24px,3vw,40px) var(--pad-x) 0;height:2px;background:var(--hair);position:relative}
+.steps-progress .fill{position:absolute;left:0;top:0;bottom:0;width:20%;background:var(--signal);transition:width .1s linear}
+html.js .steps-progress{display:none}
+html.js .steps-pin .steps-progress{display:block;margin-top:clamp(28px,4vh,48px)}
+/* фолбэк без JS: горизонтальный свайп */
+.steps-lane{overflow-x:auto;scrollbar-width:thin;padding-bottom:var(--s-5)}
+html.js .steps-lane{overflow:visible;padding-bottom:0}
+.steps-lane::-webkit-scrollbar{height:5px}
+.steps-lane::-webkit-scrollbar-thumb{background:var(--hair-2);border-radius:9px}
+.steps-outro{padding:0 var(--pad-x) clamp(64px,8vw,110px)}
+
+/* ════════════ CTA ════════════ */
+.cta{background:var(--carbon);padding:clamp(72px,11vw,150px) var(--pad-x);position:relative;overflow:hidden;text-align:center;border-top:1px solid var(--hair)}
+.cta-grid{position:absolute;inset:0;z-index:0;opacity:0.5;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:clamp(40px,5vw,70px) clamp(40px,5vw,70px);
+  -webkit-mask-image:radial-gradient(ellipse 70% 90% at 50% 50%,#000,transparent 75%);
+          mask-image:radial-gradient(ellipse 70% 90% at 50% 50%,#000,transparent 75%);
+}
+.cta-inner{position:relative;z-index:1;max-width:820px;margin:0 auto}
+.cta .marker{display:inline-flex;margin-bottom:var(--s-5)}
+.cta .marker .cross{width:22px;height:22px}
+.cta h2{font-family:var(--display);font-weight:700;font-size:clamp(2rem,1.3rem+3vw,4rem);color:var(--paper);letter-spacing:-0.03em}
+.cta p{margin:var(--s-5) auto var(--s-7);color:var(--slate);max-width:54ch;font-size:1.08rem}
+.cta-contacts{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s-3) clamp(24px,4vw,56px);margin-bottom:clamp(32px,4vw,52px)}
+.cta-contacts a,.cta-contacts span{font-family:var(--mono);font-size:0.82rem;color:var(--slate);display:inline-flex;flex-direction:column;gap:5px;text-align:center}
+.cta-contacts .k{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--slate)}
+.cta-contacts .v{color:var(--paper);font-size:0.95rem}
+.cta-contacts a:hover .v{color:var(--signal)}
+
+/* ── экспресс-проверка (заглушка) ── */
+.checkbar{max-width:640px;margin:0 auto;text-align:left;background:var(--graphite-2);border:1px solid var(--hair-2);border-radius:var(--r);padding:clamp(20px,2.4vw,30px)}
+.checkbar .ch-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:var(--s-4);margin-bottom:var(--s-4);border-bottom:1px solid var(--hair)}
+.checkbar .ch-head .mono{color:var(--signal)}
+.checkbar .ch-head .corner{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.08em;color:var(--slate)}
+.field label{display:block;font-family:var(--mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--slate);margin-bottom:9px}
+.field-row{display:flex;gap:var(--s-3);flex-wrap:wrap}
+.field input{flex:1;min-width:200px;padding:14px;background:var(--carbon);border:1px solid var(--hair-2);border-radius:var(--r);color:var(--paper);font-family:var(--mono);font-size:0.92rem;letter-spacing:0.02em;transition:border-color .25s var(--ease)}
+.field input::placeholder{color:var(--slate-dim)}
+.field input:focus{outline:none;border-color:var(--signal)}
+.checkbar .btn{white-space:nowrap}
+.check-note{margin-top:var(--s-4);font-family:var(--body);font-size:0.78rem;color:var(--slate-dim);line-height:1.5}
+
+/* ════════════ FOOTER ════════════ */
+footer{background:var(--carbon);border-top:1px solid var(--hair);padding:clamp(40px,5vw,64px) var(--pad-x) clamp(28px,3vw,40px)}
+.foot-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-6);padding-bottom:var(--s-6);border-bottom:1px solid var(--hair)}
+.foot-brand{max-width:34ch}
+.foot-brand .brand{margin-bottom:var(--s-4)}
+.foot-brand p{color:var(--slate);font-size:0.88rem}
+.foot-cols{display:flex;flex-wrap:wrap;gap:clamp(32px,6vw,80px)}
+.foot-col h4{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--slate);margin-bottom:var(--s-4)}
+.foot-col a{display:block;color:var(--slate);font-size:0.88rem;padding:5px 0;transition:color .2s var(--ease)}
+.foot-col a:hover{color:var(--signal)}
+.foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-4);padding-top:var(--s-5);font-family:var(--mono);font-size:0.74rem;letter-spacing:0.04em;color:var(--slate)}
+.foot-bottom .fl{display:flex;flex-wrap:wrap;gap:var(--s-5)}
+.foot-bottom a:hover{color:var(--slate)}
+
+/* ── reveal (progressive enhancement) ── */
+.reveal{transition:opacity .8s var(--ease-io),transform .8s var(--ease-io)}
+html.js .reveal{opacity:0;transform:translateY(26px)}
+html.js .reveal.in{opacity:1;transform:none}
+html.js .stagger > *{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease-io),transform .7s var(--ease-io)}
+html.js .stagger.in > *{opacity:1;transform:none}
+
+/* ── hero intro-режиссура ── */
+html.js .hero h1 .line > span{transform:translateY(110%);transition:transform .9s var(--ease)}
+html.js .hero.ready h1 .line > span{transform:translateY(0)}
+html.js .hero .hero-sub,html.js .hero .hero-actions,html.js .hero .hero-tag{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+html.js .hero.ready .hero-sub,html.js .hero.ready .hero-actions,html.js .hero.ready .hero-tag{opacity:1;transform:none}
+html.js .hero .hero-sub{transition-delay:.55s}
+html.js .hero .hero-actions{transition-delay:.7s}
+html.js .hero .hero-tag{transition-delay:.2s}
+/* линии сетки прорисовываются */
+html.js .grid-line{stroke-dashoffset:var(--len);transition:stroke-dashoffset 1.3s var(--ease)}
+html.js .hero.ready .grid-line{stroke-dashoffset:0}
+
+/* ── адаптив ── */
+@media(max-width:920px){
+  .topnav{display:none}
+  .top-phone{display:none}
+  .top-right > .btn-ghost{display:none}
+  .burger{display:inline-flex}
+  .phone-icon{display:inline-flex}
+  .trust-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  :root{--fs-mega:clamp(2.9rem,1.2rem+9vw,3.6rem)}
+  .trust-grid{grid-template-columns:1fr;gap:var(--s-7)}
+  .hero-actions .btn{flex:1;justify-content:center}
+  .hero h1{letter-spacing:-0.03em}
+  /* пин-«наводка» уводится: на узком экране он мешает слогану */
+  .hero-pin{display:none}
+  /* паразитные геодезические точки поверх текста — убрать вместе с пином */
+  #gridGroup circle{display:none}
+  .hero-inner{padding-top:clamp(124px,20vh,180px)}
+  /* лого-локап не должен жаться к кнопке */
+  .brand-name{font-size:0.82rem;white-space:nowrap}
+  .brand-sub{display:none}
+  .brand{gap:9px}
+  /* телефон-кнопка в бургер-меню: не ломать на 2 строки */
+  .mnav .m-cta a{font-size:1.12rem;white-space:nowrap}
+  .mnav .m-cta a span{font-size:inherit}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto}
+  html.js .reveal,html.js .stagger > *{opacity:1;transform:none}
+  html.js .hero h1 .line > span,html.js .hero .hero-sub,html.js .hero .hero-actions,html.js .hero .hero-tag{opacity:1;transform:none}
+  html.js .grid-line{stroke-dashoffset:0}
+  html.js .steps-pin{position:static;height:auto;display:block}
+  .steps-lane{overflow-x:auto}
+  .hero-pin{opacity:1!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ════ ШАПКА ════ -->
+<header class="topbar" id="topbar">
+  <a class="brand" href="#top" aria-label="Единое окно — на главную">
+    <span class="brand-mark" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+        <circle cx="12" cy="12" r="3.4"/>
+        <path d="M12 1.5v5M12 17.5v5M1.5 12h5M17.5 12h5"/>
+      </svg>
+    </span>
+    <span class="brand-txt">
+      <span class="brand-name">ЕДИНОЕ ОКНО</span>
+      <span class="brand-sub">Реестр · Ялта · Крым</span>
+    </span>
+  </a>
+  <nav class="topnav" aria-label="Основная навигация">
+    <a href="#registry">Реестр услуг</a>
+    <a href="#pains">Задачи</a>
+    <a href="#chapters">Методология</a>
+    <a href="#steps">Порядок</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+  <div class="top-right">
+    <a class="top-phone" href="tel:+79790775777">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a>
+    <a class="btn btn-ghost" href="#contacts" style="padding:10px 16px">Личный кабинет</a>
+    <a class="phone-icon" href="tel:+79790775777" aria-label="Позвонить +7 979 077 5 777">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 4h3.2l1.6 4-2 1.4a12 12 0 0 0 5.4 5.4l1.4-2 4 1.6V20a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></svg>
+    </a>
+    <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mnav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- мобильное меню -->
+<div class="mnav" id="mnav" role="dialog" aria-modal="true" aria-label="Меню">
+  <button class="mnav-close" id="mnavClose" aria-label="Закрыть меню">&times;</button>
+  <a href="#registry"><span class="mono">01</span>Реестр услуг</a>
+  <a href="#pains"><span class="mono">02</span>Задачи</a>
+  <a href="#chapters"><span class="mono">03</span>Методология</a>
+  <a href="#steps"><span class="mono">04</span>Порядок работы</a>
+  <a href="#contacts"><span class="mono">05</span>Контакты</a>
+  <div class="m-cta">
+    <a class="btn btn-primary" href="tel:+79790775777"><span>Позвонить +7 979 077 5 777</span></a>
+    <a class="btn btn-ghost" href="https://t.me/makslegal777">Telegram @makslegal777</a>
+  </div>
+</div>
+
+<!-- ════ HERO — геодезический холст ════ -->
+<section class="hero" id="top">
+  <div class="hero-canvas" aria-hidden="true">
+    <svg id="geoCanvas" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1440 900" role="img" aria-label="Координатная сетка геодезического холста">
+      <!-- генерируется/дополняется JS; статичная база для no-JS -->
+      <g id="gridGroup" stroke="var(--grid)" stroke-width="1"></g>
+      <g id="axisLabels" font-family="var(--mono)" font-size="11" fill="var(--axis)" letter-spacing="1"></g>
+    </svg>
+  </div>
+  <div class="hero-veil" aria-hidden="true"></div>
+
+  <div class="hero-pin" id="heroPin" aria-hidden="true">
+    <div class="ring"><span class="dot"></span></div>
+    <div class="lbl"><b>ОБЪЕКТ · ЯЛТА</b><span>44.4952° N · 34.1664° E</span></div>
+  </div>
+
+  <div class="hero-inner">
+    <span class="hero-tag"><span class="cross" aria-hidden="true"></span><span class="mono">Ялта · Крым · оформление и защита недвижимости</span></span>
+    <h1>
+      <span class="line"><span class="thin">Мы не консультируем.</span></span>
+      <span class="line"><span>Мы <span class="hit">легализуем.</span></span></span>
+    </h1>
+    <p class="hero-sub">Берём объект на полное сопровождение — от полевой геодезии до записи в ЕГРН. Самострой, земля, споры по границам, отказы Росреестра. Юристы, кадастровые инженеры и геодезисты в одной команде.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#contacts"><span>Поставить объект на учёт</span><span class="arr" aria-hidden="true">→</span></a>
+      <a class="btn btn-ghost" href="#check"><span>Экспресс-проверка</span></a>
+    </div>
+  </div>
+
+  <div class="hero-foot">
+    <span class="coord" aria-hidden="true">СК-63 · ЗОНА 5 · М 1:500 — — — Л.34, УЛ. ЛЕНИНГРАДСКАЯ</span>
+    <span class="scroll-cue"><span class="bar"></span>листать реестр</span>
+  </div>
+</section>
+
+<!-- ════ TRUST-ЧИСЛА в воздухе ════ -->
+<section class="trust" aria-label="Показатели работы">
+  <div class="trust-head reveal"><span class="cross" aria-hidden="true"></span><span class="mono">Полевая статистика · подтверждено практикой</span></div>
+  <div class="trust-grid stagger">
+    <div class="tnum"><span class="art">[ R-01 / ОБЪЕКТЫ ]</span><div class="n">400<span class="u">+</span></div><div class="t">объектов поставлено на кадастровый учёт</div></div>
+    <div class="tnum"><span class="art">[ R-02 / ОПЫТ ]</span><div class="n">20<span class="u">+ лет</span></div><div class="t">в оформлении и защите недвижимости Крыма</div></div>
+    <div class="tnum"><span class="art">[ R-03 / ДЕЛА ]</span><div class="n">250<span class="u">+</span></div><div class="t">успешно завершённых дел и споров</div></div>
+    <div class="tnum"><span class="art">[ R-04 / ВОЗМЕЩЕНО ]</span><div class="n">100<span class="u">+ млн ₽</span></div><div class="t">ущерба возмещено доверителям</div></div>
+  </div>
+</section>
+
+<!-- ════ ПРАЙС-РЕЕСТР ════ -->
+<section class="registry" id="registry" aria-label="Реестр услуг и стоимость">
+  <div class="sec-head reveal">
+    <span class="mono"><span class="cross" aria-hidden="true"></span>Реестр услуг · стоимость</span>
+    <h2>Прозрачная стоимость без скрытых платежей</h2>
+    <p>Точная цена фиксируется в договоре после бесплатного анализа документов и оценки сложности. Раскройте запись, чтобы увидеть срок, состав и пример.</p>
+  </div>
+
+  <div class="reg-thead" aria-hidden="true">
+    <span>Артикул</span><span>Наименование услуги</span><span>Стоимость</span>
+  </div>
+
+  <div class="reg-row reveal" tabindex="0" role="button" aria-expanded="false" aria-controls="d01">
+    <div class="reg-main">
+      <span class="reg-art"><span class="cross" aria-hidden="true"></span>01·90:25:01</span>
+      <span class="reg-name">Оформление «Под ключ»</span>
+      <span class="reg-price">от 20&nbsp;000&nbsp;₽<span class="chev" aria-hidden="true"></span></span>
+    </div>
+    <div class="reg-detail"><div><div class="reg-detail-inner" id="d01">
+      <p>Полное сопровождение объекта от А до Я: все этапы — от полевых работ и технического плана до зарегистрированного права собственности. Без посредников, собственное GNSS-оборудование.</p>
+      <dl class="reg-meta">
+        <div><dt>Срок</dt><dd>от 14 дней</dd></div>
+        <div><dt>Состав</dt><dd>геодезия + техплан + ЕГРН</dd></div>
+        <div><dt>Пример</dt><dd>дом ИЖС, дачная амнистия</dd></div>
+      </dl>
+    </div></div></div>
+  </div>
+
+  <div class="reg-row reveal" tabindex="0" role="button" aria-expanded="false" aria-controls="d02">
+    <div class="reg-main">
+      <span class="reg-art"><span class="cross" aria-hidden="true"></span>02·90:25:03</span>
+      <span class="reg-name">Легализация сложных объектов</span>
+      <span class="reg-price">от 60&nbsp;000&nbsp;₽<span class="chev" aria-hidden="true"></span></span>
+    </div>
+    <div class="reg-detail"><div><div class="reg-detail-inner" id="d02">
+      <p>Самострой, узаконивание реконструкций, нестандартные и тупиковые ситуации. Превращаем проблемные объекты в ликвидные активы — в том числе через суд после отказов и приостановок.</p>
+      <dl class="reg-meta">
+        <div><dt>Срок</dt><dd>от 2 месяцев</dd></div>
+        <div><dt>Состав</dt><dd>экспертиза + иск + регистрация</dd></div>
+        <div><dt>Пример</dt><dd>пристройка, коммерческий объект</dd></div>
+      </dl>
+    </div></div></div>
+  </div>
+
+  <div class="reg-row reveal" tabindex="0" role="button" aria-expanded="false" aria-controls="d03">
+    <div class="reg-main">
+      <span class="reg-art"><span class="cross" aria-hidden="true"></span>03·90:24</span>
+      <span class="reg-name">Сопровождение сделок и проверка</span>
+      <span class="reg-price">от 25&nbsp;000&nbsp;₽<span class="chev" aria-hidden="true"></span></span>
+    </div>
+    <div class="reg-detail"><div><div class="reg-detail-inner" id="d03">
+      <p>Проверка юридической чистоты объекта перед покупкой и безопасное сопровождение купли-продажи. Никаких «котов в мешке» — каждая запись ЕГРН под контролем.</p>
+      <dl class="reg-meta">
+        <div><dt>Срок</dt><dd>от 3 дней</dd></div>
+        <div><dt>Состав</dt><dd>анализ ЕГРН + сопровождение</dd></div>
+        <div><dt>Пример</dt><dd>покупка квартиры, участка</dd></div>
+      </dl>
+    </div></div></div>
+  </div>
+
+  <div class="reg-row reveal" tabindex="0" role="button" aria-expanded="false" aria-controls="d04">
+    <div class="reg-main">
+      <span class="reg-art"><span class="cross" aria-hidden="true"></span>04·90:25:02</span>
+      <span class="reg-name">Защита прав в суде</span>
+      <span class="reg-price">от 50&nbsp;000&nbsp;₽<span class="chev" aria-hidden="true"></span></span>
+    </div>
+    <div class="reg-detail"><div><div class="reg-detail-inner" id="d04">
+      <p>Земельные споры, оспаривание и установление границ, признание права собственности, обжалование отказов и приостановок Росреестра. Берёмся за дела, от которых отказываются другие.</p>
+      <dl class="reg-meta">
+        <div><dt>Срок</dt><dd>от 1 инстанции</dd></div>
+        <div><dt>Состав</dt><dd>стратегия + иск + представительство</dd></div>
+        <div><dt>Пример</dt><dd>спор по границе, защита от сноса</dd></div>
+      </dl>
+    </div></div></div>
+  </div>
+
+  <p class="reg-note"><span class="cross" aria-hidden="true"></span>Все цены — стартовые. Точная стоимость — после бесплатного анализа документов.</p>
+</section>
+
+<!-- ════ БОЛИ — реестр именованных записей ════ -->
+<section class="pains" id="pains" aria-label="Задачи, которые мы решаем">
+  <div class="sec-head reveal">
+    <span class="mono"><span class="cross" aria-hidden="true"></span>Узнаёте свою запись в реестре?</span>
+    <h2>Решаем сложные задачи с недвижимостью в&nbsp;Ялте и&nbsp;по&nbsp;всему Крыму</h2>
+  </div>
+  <div class="pain-list">
+    <article class="pain reveal">
+      <span class="px">01</span>
+      <span class="ptag">Самострой</span>
+      <div class="pbody">
+        <h3>Построили без документов и боитесь сноса?</h3>
+        <p>Дом, гараж, пристройка или коммерческий объект без разрешений? Штрафы и угроза сноса — не приговор. Легализуем самовольные постройки и реконструкции в Ялте «под ключ», в том числе через суд.</p>
+      </div>
+      <span class="preg" aria-hidden="true">REC·01<span class="cross pmark"></span></span>
+    </article>
+    <article class="pain reveal">
+      <span class="px">02</span>
+      <span class="ptag">Земля</span>
+      <div class="pbody">
+        <h3>Вопросы по земельному участку</h3>
+        <p>Не можете оформить, получить или выкупить участок у администрации? Наш земельный юрист в Ялте находит законные решения.</p>
+      </div>
+      <span class="preg" aria-hidden="true">REC·02<span class="cross pmark"></span></span>
+    </article>
+    <article class="pain reveal">
+      <span class="px">03</span>
+      <span class="ptag">Границы</span>
+      <div class="pbody">
+        <h3>Споры по границам</h3>
+        <p>Забор соседа на вашей территории, наложение участков? Проведём межевание и защитим в суде.</p>
+      </div>
+      <span class="preg" aria-hidden="true">REC·03<span class="cross pmark"></span></span>
+    </article>
+    <article class="pain reveal">
+      <span class="px">04</span>
+      <span class="ptag">Росреестр</span>
+      <div class="pbody">
+        <h3>Отказы госорганов</h3>
+        <p>Приостановка или отказ в регистрации прав? Профессионально оспорим незаконное решение.</p>
+      </div>
+      <span class="preg" aria-hidden="true">REC·04<span class="cross pmark"></span></span>
+    </article>
+    <article class="pain reveal">
+      <span class="px">05</span>
+      <span class="ptag">Сделка</span>
+      <div class="pbody">
+        <h3>Риски при покупке</h3>
+        <p>Недвижимость — «кот в мешке»? Полная юридическая проверка и безопасное сопровождение сделки.</p>
+      </div>
+      <span class="preg" aria-hidden="true">REC·05<span class="cross pmark"></span></span>
+    </article>
+  </div>
+  <p class="pains-foot"><span class="cross" aria-hidden="true"></span>Знаком хотя бы один вопрос — вы по адресу. Мы специализируемся именно на таких задачах.</p>
+</section>
+
+<!-- ════ ГЛАВЫ: Оформить / Защитить ════ -->
+<section class="chapters" id="chapters" aria-label="Два направления работы">
+  <article class="chapter a">
+    <div class="ch-aside">
+      <div class="ch-num">01</div>
+      <p class="ch-kicker reveal">Инженерно-кадастровое производство</p>
+    </div>
+    <div class="ch-content">
+      <h2 class="ch-title reveal">«Оформить»</h2>
+      <p class="ch-lead reveal">Полный цикл от полевых работ до записи в реестре. Собственное высокоточное GNSS-оборудование, без посредников.</p>
+      <div class="ch-items stagger">
+        <div class="ch-item"><span class="cross" aria-hidden="true"></span><span>Геодезия, межевание, техпланы и акты обследования</span></div>
+        <div class="ch-item"><span class="cross" aria-hidden="true"></span><span>Регистрация прав и постановка на кадастровый учёт</span></div>
+        <div class="ch-item"><span class="cross" aria-hidden="true"></span><span>Дачная и гаражная амнистия, выкуп участков</span></div>
+        <div class="ch-item"><span class="cross" aria-hidden="true"></span><span>Перевод помещений, узаконивание перепланировок</span></div>
+      </div>
+      <a class="ch-go reveal" href="#contacts">Приступить к оформлению <span aria-hidden="true">→</span></a>
+    </div>
+  </article>
+
+  <article class="chapter b">
+    <div class="ch-aside">
+      <div class="ch-num">02</div>
+      <p class="ch-kicker reveal">Правовая защита активов</p>
+    </div>
+    <div class="ch-content">
+      <h2 class="ch-title reveal">«Защитить»</h2>
+      <p class="ch-lead reveal">Спасение активов в правовом поле: судебная защита «токсичной» недвижимости и сложных, тупиковых ситуаций.</p>
+      <div class="ch-items stagger">
+        <div class="ch-item"><span class="cross" aria-hidden="true"></span><span>Легализация самостроя после отказов и приостановок</span></div>
+        <div class="ch-item"><span class="cross" aria-hidden="true"></span><span>Защита от сноса и демонтажа объектов</span></div>
+        <div class="ch-item"><span class="cross" aria-hidden="true"></span><span>Земельные споры, оспаривание и установление границ</span></div>
+        <div class="ch-item"><span class="cross" aria-hidden="true"></span><span>Проверка чистоты и сопровождение сделок</span></div>
+      </div>
+      <a class="ch-go reveal" href="#contacts">Активировать защиту <span aria-hidden="true">→</span></a>
+    </div>
+  </article>
+</section>
+
+<!-- ════ 5 ШАГОВ — горизонтальная sticky-лента ════ -->
+<section class="steps" id="steps" aria-label="Порядок работы">
+  <div class="steps-intro">
+    <div class="sec-head reveal" style="margin-bottom:0">
+      <span class="mono"><span class="cross" aria-hidden="true"></span>Порядок работы · 05 этапов</span>
+      <h2>Пять прозрачных шагов к&nbsp;законной недвижимости</h2>
+      <p>От бесплатной первичной консультации до результата — с онлайн-контролем статуса в личном кабинете.</p>
+    </div>
+  </div>
+
+  <div class="steps-track" id="stepsTrack">
+    <div class="steps-pin" id="stepsPin">
+      <div class="steps-lane" id="stepsLane">
+        <article class="scard">
+          <div class="sx"><span class="si">01</span><span class="of">05</span></div>
+          <span class="scode"><span class="sig">ЭТАП</span> · приём заявки</span>
+          <h3>Консультация и анализ</h3>
+          <p>Бесплатно изучаем задачу и ваши документы, оцениваем риски объекта.</p>
+        </article>
+        <article class="scard">
+          <div class="sx"><span class="si">02</span><span class="of">05</span></div>
+          <span class="scode"><span class="sig">ЭТАП</span> · фиксация условий</span>
+          <h3>Стратегия и договор</h3>
+          <p>Чёткий план работ, сроки, фиксация стоимости в договоре.</p>
+        </article>
+        <article class="scard">
+          <div class="sx"><span class="si">03</span><span class="of">05</span></div>
+          <span class="scode"><span class="sig">ЭТАП</span> · производство</span>
+          <h3>Выполнение работ</h3>
+          <p>Инженеры и юристы готовят всё — от техпланов до исковых заявлений.</p>
+          <span class="stag"><span class="cross" aria-hidden="true" style="width:9px;height:9px"></span>Онлайн-трекер в ЛК</span>
+        </article>
+        <article class="scard">
+          <div class="sx"><span class="si">04</span><span class="of">05</span></div>
+          <span class="scode"><span class="sig">ЭТАП</span> · согласование</span>
+          <h3>Госорганы</h3>
+          <p>Взаимодействие с Росреестром и администрацией Ялты и Крыма.</p>
+        </article>
+        <article class="scard">
+          <div class="sx"><span class="si">05</span><span class="of">05</span></div>
+          <span class="scode"><span class="sig">ЭТАП</span> · запись в ЕГРН</span>
+          <h3>Результат</h3>
+          <p>Выписка о регистрации права и дальнейшая поддержка.</p>
+        </article>
+      </div>
+      <div class="steps-progress" aria-hidden="true"><span class="fill" id="stepsFill"></span></div>
+    </div>
+  </div>
+  <div class="steps-outro"></div>
+</section>
+
+<!-- ════ CTA ════ -->
+<section class="cta" id="contacts">
+  <div class="cta-grid" aria-hidden="true"></div>
+  <div class="cta-inner">
+    <span class="marker reveal" aria-hidden="true"><span class="cross"></span></span>
+    <h2 class="reveal">Готовы обрести уверенность в&nbsp;своей недвижимости?</h2>
+    <p class="reveal">Доверьте задачу команде, которая специализируется на оформлении и защите недвижимости в Крыму. Первичная консультация — бесплатно.</p>
+
+    <div class="cta-contacts reveal">
+      <a href="tel:+79790775777"><span class="k">Телефон</span><span class="v">+7 979 077 5 777</span></a>
+      <span><span class="k">Офис</span><span class="v">Ялта, ул. Ленинградская, 34</span></span>
+      <a href="https://t.me/makslegal777"><span class="k">Telegram</span><span class="v">@makslegal777</span></a>
+    </div>
+
+    <div class="checkbar reveal" id="check">
+      <div class="ch-head">
+        <span class="mono">Экспресс-проверка объекта</span>
+        <span class="corner">[ R-00 / РОСРЕЕСТР ]</span>
+      </div>
+      <form id="checkForm" novalidate>
+        <div class="field">
+          <label for="kad">Кадастровый номер или адрес объекта</label>
+          <div class="field-row">
+            <input id="kad" name="kad" type="text" placeholder="90:25:010105:128" autocomplete="off" inputmode="text">
+            <button class="btn btn-primary" type="submit"><span>Проверить</span><span class="arr" aria-hidden="true">→</span></button>
+          </div>
+        </div>
+        <p class="check-note">Предварительная оценка по публичным данным. Официальная выписка из ЕГРН — только по запросу через нашего специалиста.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <a class="brand" href="#top" aria-label="Единое окно">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="12" cy="12" r="3.4"/><path d="M12 1.5v5M12 17.5v5M1.5 12h5M17.5 12h5"/>
+          </svg>
+        </span>
+        <span class="brand-txt">
+          <span class="brand-name">ЕДИНОЕ ОКНО</span>
+          <span class="brand-sub">Реестр · Ялта · Крым</span>
+        </span>
+      </a>
+      <p>Центр легализации недвижимости в Ялте и Крыму. От полевой геодезии до выписки из ЕГРН.</p>
+    </div>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h4>Навигация</h4>
+        <a href="#registry">Реестр услуг</a>
+        <a href="#pains">Задачи</a>
+        <a href="#chapters">Методология</a>
+        <a href="#steps">Порядок работы</a>
+      </div>
+      <div class="foot-col">
+        <h4>Контакты</h4>
+        <a href="tel:+79790775777">+7 979 077 5 777</a>
+        <a href="https://t.me/makslegal777">Telegram @makslegal777</a>
+        <a href="#contacts">Ялта, ул. Ленинградская, 34</a>
+      </div>
+      <div class="foot-col">
+        <h4>Документы</h4>
+        <a href="#privacy">Политика конфиденциальности</a>
+        <a href="#terms">Согласие на обработку ПД</a>
+        <a href="#requisites">Реквизиты</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 одно-окно.рф — Центр легализации недвижимости в Ялте и Крыму</span>
+    <span class="fl"><span>СК-63 · ЗОНА 5</span><span>44.4952° N · 34.1664° E</span></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasIO = 'IntersectionObserver' in window;
+
+  /* ── мобильное меню ── */
+  var burger = document.getElementById('burger');
+  var mnav = document.getElementById('mnav');
+  var mnavClose = document.getElementById('mnavClose');
+  var mainEls = [].slice.call(document.querySelectorAll('header.topbar, .hero, .trust, .registry, .pains, .chapters, .steps, .cta, footer'));
+  function focusables(){
+    return [].slice.call(mnav.querySelectorAll('a[href], button:not([disabled])'))
+      .filter(function(el){ return el.offsetParent !== null; });
+  }
+  function setMenu(open){
+    mnav.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+    mainEls.forEach(function(el){
+      if(open){ el.setAttribute('aria-hidden','true'); el.setAttribute('inert',''); }
+      else { el.removeAttribute('aria-hidden'); el.removeAttribute('inert'); }
+    });
+    if(open){
+      mnav.removeAttribute('aria-hidden');
+      var f = focusables();
+      (f[0] || mnavClose).focus();
+    } else {
+      burger.focus();
+    }
+  }
+  if(burger){
+    burger.addEventListener('click', function(){ setMenu(true); });
+    mnavClose.addEventListener('click', function(){ setMenu(false); });
+    mnav.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
+    document.addEventListener('keydown', function(e){
+      if(!mnav.classList.contains('open')) return;
+      if(e.key === 'Escape'){ setMenu(false); return; }
+      if(e.key === 'Tab'){
+        var f = focusables();
+        if(!f.length) return;
+        var first = f[0], last = f[f.length - 1];
+        if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+        else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+      }
+    });
+  }
+
+  /* ── шапка: фон при скролле ── */
+  var topbar = document.getElementById('topbar');
+  var onScroll = function(){ topbar.classList.toggle('scrolled', window.scrollY > 20); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* ── геодезический холст: рисуем сетку + подписи осей ── */
+  (function buildCanvas(){
+    var grid = document.getElementById('gridGroup');
+    var labels = document.getElementById('axisLabels');
+    if(!grid || !labels) return;
+    var W = 1440, H = 900, step = 90;
+    var SVGNS = 'http://www.w3.org/2000/svg';
+    var letters = 'АБВГДЕЖЗИКЛМНОПРСТУ'.split('');
+    var frag = document.createDocumentFragment();
+    var lfrag = document.createDocumentFragment();
+    var li = 0;
+    // вертикали + буквенные подписи по X (как на межевом плане)
+    for(var x = step; x < W; x += step){
+      var v = document.createElementNS(SVGNS,'line');
+      v.setAttribute('x1', x); v.setAttribute('y1', 0);
+      v.setAttribute('x2', x); v.setAttribute('y2', H);
+      var strong = (x % (step*4) === 0);
+      v.setAttribute('stroke', strong ? 'var(--grid-strong)' : 'var(--grid)');
+      v.classList.add('grid-line');
+      v.style.setProperty('--len', H);
+      v.setAttribute('stroke-dasharray', H);
+      frag.appendChild(v);
+      if(strong){
+        var tx = document.createElementNS(SVGNS,'text');
+        tx.setAttribute('x', x + 6); tx.setAttribute('y', 22);
+        tx.textContent = letters[li % letters.length];
+        lfrag.appendChild(tx); li++;
+      }
+    }
+    // горизонтали + числовые подписи по Y
+    var ny = 1;
+    for(var y = step; y < H; y += step){
+      var h = document.createElementNS(SVGNS,'line');
+      h.setAttribute('x1', 0); h.setAttribute('y1', y);
+      h.setAttribute('x2', W); h.setAttribute('y2', y);
+      var sg = (y % (step*4) === 0);
+      h.setAttribute('stroke', sg ? 'var(--grid-strong)' : 'var(--grid)');
+      h.classList.add('grid-line');
+      h.style.setProperty('--len', W);
+      h.setAttribute('stroke-dasharray', W);
+      frag.appendChild(h);
+      if(sg){
+        var ty = document.createElementNS(SVGNS,'text');
+        ty.setAttribute('x', 8); ty.setAttribute('y', y - 7);
+        ty.textContent = (ny*100).toString();
+        lfrag.appendChild(ty); ny++;
+      }
+    }
+    // характерные геодезические точки-маркеры (декор-данные)
+    var pts = [[1040,306],[1180,420],[890,520],[1240,250],[760,360]];
+    pts.forEach(function(p){
+      var c = document.createElementNS(SVGNS,'circle');
+      c.setAttribute('cx', p[0]); c.setAttribute('cy', p[1]); c.setAttribute('r', 2.4);
+      c.setAttribute('fill', 'var(--axis)');
+      frag.appendChild(c);
+    });
+    grid.appendChild(frag);
+    labels.appendChild(lfrag);
+  })();
+
+  /* ── hero intro-режиссура ── */
+  var hero = document.querySelector('.hero');
+  var heroPin = document.getElementById('heroPin');
+  if(reduceMotion){
+    if(hero) hero.classList.add('ready');
+    if(heroPin) heroPin.classList.add('lit');
+  } else {
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        if(hero) hero.classList.add('ready');
+        setTimeout(function(){ if(heroPin) heroPin.classList.add('lit'); }, 700);
+      });
+    });
+  }
+
+  /* ── reveal по скроллу (фолбэк: показать всё) ── */
+  var revealEls = document.querySelectorAll('.reveal, .stagger');
+  if(reduceMotion || !hasIO){
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          var el = en.target;
+          if(el.classList.contains('stagger')){
+            var kids = el.children, d = 0;
+            for(var i=0;i<kids.length;i++){
+              kids[i].style.transitionDelay = (d) + 'ms'; d += 80;
+            }
+          }
+          el.classList.add('in');
+          io.unobserve(el);
+        }
+      });
+    }, {threshold:0.14, rootMargin:'0px 0px -8% 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ── прайс-реестр: раскрытие по hover (desktop) + клик/клавиатура ── */
+  var rows = document.querySelectorAll('.reg-row');
+  var canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  rows.forEach(function(row){
+    function toggle(state){
+      var open = (state !== undefined) ? state : !row.classList.contains('open');
+      row.classList.toggle('open', open);
+      row.setAttribute('aria-expanded', String(open));
+    }
+    if(canHover){
+      row.addEventListener('mouseenter', function(){ toggle(true); });
+      row.addEventListener('mouseleave', function(){ toggle(false); });
+    }
+    row.addEventListener('click', function(){ toggle(); });
+    row.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  /* ── 5 шагов: горизонтальный пиннинг по скроллу (vanilla, graceful) ── */
+  (function steps(){
+    var track = document.getElementById('stepsTrack');
+    var pin = document.getElementById('stepsPin');
+    var lane = document.getElementById('stepsLane');
+    var fill = document.getElementById('stepsFill');
+    if(!track || !pin || !lane) return;
+    if(reduceMotion){ return; } // фолбэк: вертикальный/свайп-режим из CSS
+
+    var maxShift = 0, trackH = 0;
+    function measure(){
+      // насколько лента шире вьюпорта
+      maxShift = Math.max(0, lane.scrollWidth - window.innerWidth);
+      // высота секции = вьюпорт + расстояние горизонтального хода
+      trackH = window.innerHeight + maxShift;
+      track.style.height = trackH + 'px';
+      // если контента мало — горизонтальный ход не нужен
+      if(maxShift < 40){
+        track.style.height = '';
+        pin.style.position = '';
+        pin.style.height = '';
+        lane.style.transform = '';
+      }
+    }
+    function tick(){
+      if(maxShift < 40) return;
+      var rect = track.getBoundingClientRect();
+      var total = trackH - window.innerHeight;
+      var progressed = Math.min(Math.max(-rect.top, 0), total);
+      var ratio = total > 0 ? progressed / total : 0;
+      lane.style.transform = 'translate3d(' + (-ratio * maxShift) + 'px,0,0)';
+      if(fill) fill.style.width = (20 + ratio * 80) + '%';
+    }
+    var ticking = false;
+    function req(){ if(!ticking){ ticking = true; requestAnimationFrame(function(){ tick(); ticking=false; }); } }
+    measure(); tick();
+    window.addEventListener('scroll', req, {passive:true});
+    var rt;
+    window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ measure(); tick(); }, 150); });
+    if(document.fonts && document.fonts.ready){ document.fonts.ready.then(function(){ measure(); tick(); }); }
+  })();
+
+  /* ── экспресс-проверка: заглушка, легальный путь через специалиста ── */
+  var form = document.getElementById('checkForm');
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var val = document.getElementById('kad').value.trim();
+      if(!val){ alert('Введите кадастровый номер или адрес объекта.'); return; }
+      alert('Заявка на предварительную проверку объекта «' + val + '» принята. Наш специалист свяжется с вами для уточнения и официального запроса выписки из ЕГРН.');
+      form.reset();
+    });
+  }
+})();
+</script>
+<!--VSWITCH--><!-- превью-переключатель вариантов (dev, убрать в проде) -->
+<div id="vswitch" aria-label="Переключатель вариантов дизайна">
+  <button id="vswitch-t" type="button" aria-expanded="true" title="Свернуть/развернуть">варианты</button>
+  <div id="vswitch-list">
+      <a href="index.html" data-f="index.html">01 · Индустриальный</a>
+      <a href="v2-command.html" data-f="v2-command.html">02 · Командный</a>
+      <a href="v3-geo.html" data-f="v3-geo.html">03 · Геодезия</a>
+      <a href="v4-dossier.html" data-f="v4-dossier.html">04 · Досье</a>
+      <a href="v5-crimea.html" data-f="v5-crimea.html">05 · Крым</a>
+      <a href="v6-registry.html" data-f="v6-registry.html">06 · Реестр</a>
+      <a href="v7-manifest.html" data-f="v7-manifest.html">07 · Манифест</a>
+      <a href="v8-transform.html" data-f="v8-transform.html">08 · Трансформация</a>
+  </div>
+</div>
+<style>
+#vswitch{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:2147483000;display:flex;align-items:center;gap:6px;max-width:96vw;font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(9,13,20,.88);color:#e8edf4;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 8px;box-shadow:0 10px 34px -10px rgba(0,0,0,.65)}
+#vswitch *{box-sizing:border-box}
+#vswitch-t{all:unset;cursor:pointer;padding:7px 11px;border-radius:999px;color:#9aa6b4;white-space:nowrap;letter-spacing:.04em;text-transform:uppercase;font-size:11px}
+#vswitch-t:hover{color:#fff}
+#vswitch-list{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+#vswitch-list::-webkit-scrollbar{display:none}
+#vswitch a{all:unset;cursor:pointer;padding:7px 12px;border-radius:999px;white-space:nowrap;color:#cdd6e0;transition:background .15s,color .15s}
+#vswitch a:hover{background:rgba(255,255,255,.10);color:#fff}
+#vswitch a.cur{background:#ffb800;color:#0a0e14;font-weight:800}
+#vswitch.collapsed #vswitch-list{display:none}
+@media(max-width:640px){#vswitch{bottom:10px;font-size:11px;padding:5px 6px}#vswitch a{padding:6px 9px}}
+@media print{#vswitch{display:none}}
+@media(prefers-reduced-motion:reduce){#vswitch a{transition:none}}
+</style>
+<script>
+(function(){var w=document.getElementById('vswitch');if(!w)return;var f=(location.pathname.split('/').pop()||'index.html');if(f==='')f='index.html';var a=w.querySelectorAll('a[data-f]');for(var i=0;i<a.length;i++){if(a[i].getAttribute('data-f')===f)a[i].classList.add('cur');}var t=document.getElementById('vswitch-t');try{if(localStorage.getItem('vswitch-collapsed')==='1')w.classList.add('collapsed');}catch(e){}t.addEventListener('click',function(){w.classList.toggle('collapsed');var c=w.classList.contains('collapsed');t.setAttribute('aria-expanded',String(!c));try{localStorage.setItem('vswitch-collapsed',c?'1':'0');}catch(e){}});})();
+</script>
+<!--/VSWITCH-->
+</body>
+</html>
