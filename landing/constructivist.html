@@ -58,6 +58,7 @@ h1,h2,h3{
   overflow-wrap:normal;
   word-break:keep-all;
   hyphens:none;
+  text-wrap:balance;
 }
 .wrap{max-width:1320px;margin:0 auto;padding-inline:var(--pad);position:relative;z-index:2}
 .nb{white-space:nowrap}
@@ -107,6 +108,7 @@ header{
 .nav a{
   font-family:var(--display);font-weight:600;font-size:.82rem;text-transform:uppercase;
   letter-spacing:.04em;padding:0 clamp(12px,1.4vw,22px);display:flex;align-items:center;
+  white-space:nowrap;
   border-left:1px solid color-mix(in srgb,var(--ink) 22%,transparent);
   transition:background .15s,color .15s;
 }
