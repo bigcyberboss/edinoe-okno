@@ -29,13 +29,13 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
 body{
   font-family:var(--body);
   background:var(--paper);
   color:var(--ink);
   line-height:1.55;
-  overflow-x:hidden;
+  overflow-x:clip;
   position:relative;
   -webkit-font-smoothing:antialiased;
 }
@@ -55,9 +55,12 @@ h1,h2,h3{
   text-transform:uppercase;
   line-height:.92;
   letter-spacing:-.015em;
-  overflow-wrap:break-word;
+  overflow-wrap:normal;
+  word-break:keep-all;
+  hyphens:none;
 }
 .wrap{max-width:1320px;margin:0 auto;padding-inline:var(--pad);position:relative;z-index:2}
+.nb{white-space:nowrap}
 
 /* штамп-лейбл (моно) */
 .stamp{
@@ -135,7 +138,7 @@ header{
 
 h1{margin:0}
 h1 .l1{display:block;font-size:clamp(2.1rem,6.4vw,5.6rem);color:var(--ink)}
-h1 .l2{display:block;font-size:clamp(3.4rem,13vw,11rem);color:var(--red);line-height:.82;margin:.02em 0 .04em}
+h1 .l2{display:block;font-size:clamp(2.9rem,12vw,11rem);color:var(--red);line-height:.82;margin:.02em 0 .04em}
 h1 .l3{display:block;font-size:clamp(2.1rem,6.4vw,5.6rem);color:var(--ink)}
 h1 .sm{font-size:.42em;color:var(--ink);vertical-align:top}
 
@@ -190,10 +193,11 @@ h1 .sm{font-size:.42em;color:var(--ink);vertical-align:top}
   text-transform:uppercase;
 }
 .montage .big{
-  position:absolute;right:18px;bottom:14px;font-family:var(--display);font-weight:700;
-  font-size:clamp(3rem,8vw,6rem);color:var(--paper);line-height:.8;text-align:right;letter-spacing:-.02em;
+  position:absolute;right:clamp(20px,6%,40px);bottom:clamp(30px,9%,56px);left:clamp(16px,4%,28px);
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(2.6rem,7vw,5.4rem);color:var(--paper);line-height:.8;text-align:right;letter-spacing:-.02em;
 }
-.montage .big em{display:block;font-style:normal;font-size:.28em;letter-spacing:.18em;color:var(--paper);font-family:var(--mono);font-weight:500;margin-top:6px}
+.montage .big em{display:block;font-style:normal;font-size:clamp(.62rem,2vw,1rem);letter-spacing:.16em;color:var(--paper);font-family:var(--mono);font-weight:500;margin-top:8px;line-height:1.25;overflow-wrap:normal;word-break:keep-all}
 
 /* пруф-лента */
 .proof{
@@ -238,12 +242,12 @@ h1 .sm{font-size:.42em;color:var(--ink);vertical-align:top}
 /* ─────────── ДВА НАПРАВЛЕНИЯ (массы Лисицкого) ─────────── */
 .offer{position:relative;overflow:hidden}
 .offer .axis-line{transform:translateX(20vw) rotate(var(--axis));opacity:.8}
-.masses{display:grid;grid-template-columns:1.15fr .85fr;gap:0;position:relative;z-index:2}
+.masses{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:0;position:relative;z-index:2}
 .mass{padding:clamp(28px,3.5vw,56px);display:flex;flex-direction:column;min-width:0}
 .mass.ink{background:var(--ink);color:var(--paper)}
 .mass.red{background:var(--red);color:var(--paper)}
 .mass .mtag{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.2em;opacity:.78;margin-bottom:clamp(20px,2.5vw,36px)}
-.mass h3{font-size:clamp(2.6rem,6vw,5.4rem);line-height:.84;margin-bottom:18px}
+.mass h3{font-size:clamp(2.4rem,4.6vw,4.6rem);line-height:.84;margin-bottom:18px}
 .mass>p{font-family:var(--body);font-size:clamp(1rem,1.2vw,1.14rem);line-height:1.5;opacity:.92;margin-bottom:clamp(22px,2.5vw,36px);max-width:42ch}
 .mass ul{list-style:none;display:grid;gap:14px;margin-bottom:clamp(26px,3vw,40px)}
 .mass li{position:relative;padding-left:30px;font-family:var(--body);font-size:clamp(.95rem,1.1vw,1.06rem);line-height:1.4}
@@ -309,7 +313,7 @@ h1 .sm{font-size:.42em;color:var(--ink);vertical-align:top}
 .check{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
 .check .axis-line{transform:translateX(-26vw) rotate(var(--axis));opacity:.85}
 .check-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,72px);align-items:center;position:relative;z-index:2}
-.check h2{font-size:clamp(2rem,5vw,4rem);color:var(--paper);margin-bottom:18px}
+.check h2{font-size:clamp(1.7rem,5vw,4rem);color:var(--paper);margin-bottom:18px}
 .check h2 em{font-style:normal;color:var(--red)}
 .check>.check-grid>div>p{font-family:var(--body);color:color-mix(in srgb,var(--paper) 80%,transparent);max-width:48ch;line-height:1.55}
 .check .stamp{color:var(--red);display:block;margin-bottom:18px}
@@ -336,7 +340,7 @@ h1 .sm{font-size:.42em;color:var(--ink);vertical-align:top}
 .contacts a,.contacts div{padding:22px clamp(12px,1.8vw,28px);border-left:1px solid color-mix(in srgb,var(--paper) 40%,transparent)}
 .contacts >:first-child{border-left:none;padding-left:0}
 .contacts .ck{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.18em;color:color-mix(in srgb,var(--paper) 72%,transparent);margin-bottom:8px;display:block}
-.contacts .cv{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(1rem,1.6vw,1.35rem);line-height:1;word-break:break-word}
+.contacts .cv{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(.92rem,1.5vw,1.35rem);line-height:1.05;overflow-wrap:normal;word-break:keep-all}
 .contacts a{transition:background .15s,color .15s}
 .contacts a:hover{background:var(--ink);color:var(--paper)}
 .cta .btn-ink{background:var(--ink)}
@@ -352,17 +356,17 @@ footer{background:var(--ink);color:color-mix(in srgb,var(--paper) 70%,transparen
 /* ─────────── REVEAL (диагональные въезды) ─────────── */
 .rv{will-change:transform,opacity}
 html.js .rv{opacity:0;transform:translate(-28px,18px)}
+html.js .rv.from-r:not(.in){transform:translate(28px,18px)}
 html.js .rv.in{opacity:1;transform:none;transition:opacity .42s cubic-bezier(.7,0,.3,1),transform .46s cubic-bezier(.7,0,.3,1)}
-html.js .rv.from-r{transform:translate(28px,18px)}
 html.js .rule.rv{transform:scaleX(0)}
 html.js .rule.rv.in{transform:scaleX(1);transition:transform .55s cubic-bezier(.7,0,.3,1)}
 
 /* ─────────── АДАПТИВ ─────────── */
 @media(max-width:1080px){
   .nav{display:none}
-  .hero-grid{grid-template-columns:1fr}
-  .hero-r{max-width:440px;margin-top:8px}
-  .masses{grid-template-columns:1fr}
+  .hero-grid{grid-template-columns:minmax(0,1fr)}
+  .hero-r{max-width:440px;width:100%;margin-top:8px}
+  .masses{grid-template-columns:minmax(0,1fr)}
 }
 @media(max-width:860px){
   .track{grid-template-columns:1fr 1fr}
@@ -378,7 +382,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .55s cubic-bezier(.
 @media(max-width:640px){
   .head-call .cn{display:none}
   .head-call{padding-inline:16px}
-  h1 .l2{font-size:clamp(3rem,17vw,5rem)}
+  h1 .l2{font-size:clamp(2.5rem,12.5vw,5rem)}
   .proof{grid-template-columns:1fr 1fr}
   .proof div:nth-child(3){border-left:none;padding-left:0}
   .proof div{border-top:1px solid color-mix(in srgb,var(--ink) 22%,transparent)}
@@ -399,8 +403,14 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .55s cubic-bezier(.
   .track{grid-template-columns:1fr}
 }
 @media(max-width:380px){
-  .logo .name{font-size:1rem}
+  .logo{gap:10px}
+  .logo .glyph{width:38px;height:38px}
+  .logo .name{font-size:.92rem}
+  .logo .name span{font-size:.5rem;letter-spacing:.16em}
   .btn{padding:16px 22px}
+}
+@media(max-width:340px){
+  .logo .name{font-size:.84rem}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto}
@@ -449,7 +459,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .55s cubic-bezier(.
         <p class="hero-sub">Берём весь путь объекта на себя — <b>от полевой геодезии до выписки из ЕГРН.</b> Самострой, земля, споры по границам, отказы Росреестра. Юристы, кадастровые инженеры и геодезисты в одной команде.</p>
         <div class="cta-row">
           <a class="btn btn-red" href="#contacts">Оформить объект <span class="ar">→</span></a>
-          <a class="btn btn-ink" href="#check">Экспресс-проверка</a>
+          <a class="btn btn-ink" href="#check"><span class="nb">Экспресс-проверка</span></a>
         </div>
       </div>
 
@@ -541,9 +551,9 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .55s cubic-bezier(.
     </div>
     <div class="masses">
       <article class="mass ink rv">
-        <span class="mtag">[ инженерно-кадастровое производство ]</span>
+        <span class="mtag">[ <span class="nb">инженерно-кадастровое</span> производство ]</span>
         <h3>Оформить</h3>
-        <p>Полный цикл от полевых работ до записи в реестре. Собственное высокоточное GNSS-оборудование, без посредников.</p>
+        <p>Полный цикл от полевых работ до записи в реестре. Собственное высокоточное <span class="nb">GNSS-оборудование</span>, без посредников.</p>
         <ul>
           <li>Геодезия, межевание, техпланы и акты обследования</li>
           <li>Регистрация прав и постановка на кадастровый учёт</li>
@@ -588,7 +598,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .55s cubic-bezier(.
       </a>
       <a class="sol rv" href="#contacts">
         <span class="sno">03</span>
-        <div class="st"><div class="sn">Сопровождение сделок и проверка</div><div class="sd">Проверка юридической чистоты перед покупкой, безопасное сопровождение купли-продажи.</div></div>
+        <div class="st"><div class="sn">Сопровождение сделок и проверка</div><div class="sd">Проверка юридической чистоты перед покупкой, безопасное сопровождение <span class="nb">купли-продажи</span>.</div></div>
         <div class="sp"><small>от</small>25&nbsp;000&nbsp;₽</div>
       </a>
       <a class="sol rv" href="#contacts">
@@ -650,7 +660,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .55s cubic-bezier(.
   <div class="wrap">
     <div class="sec-head">
       <h2 class="rv">Пять шагов к <em>законной</em> недвижимости</h2>
-      <span class="meta rv">[ онлайн-контроль в ЛК ]</span>
+      <span class="meta rv">[ <span class="nb">онлайн-контроль</span> в ЛК ]</span>
     </div>
     <div class="track">
       <div class="tstep rv"><div class="tn">01</div><h3>Консультация и анализ</h3><p>Бесплатно изучаем задачу и документы, оцениваем риски объекта.</p></div>
@@ -669,7 +679,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .55s cubic-bezier(.
     <div class="check-grid">
       <div>
         <span class="stamp">[ 01 / Росреестр ]</span>
-        <h2 class="rv">Экспресс-<em>проверка</em> объекта</h2>
+        <h2 class="rv"><span class="nb">Экспресс-<em>проверка</em></span> объекта</h2>
         <p class="rv">Введите кадастровый номер или адрес — дадим предварительную оценку по публичным данным. Полная выписка из ЕГРН оформляется официальным запросом через нашего специалиста.</p>
       </div>
       <form class="form-box rv from-r" id="checkForm" novalidate>

@@ -161,7 +161,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
   border:1px solid var(--rule);padding:5px 9px;background:var(--paper);
 }
 .hero h1{
-  font-size:clamp(2.3rem,1.4rem + 3.4vw,4.1rem);
+  font-size:clamp(1.72rem,0.92rem + 3.4vw,4.1rem);
   font-weight:800;letter-spacing:-0.025em;
   margin-bottom:clamp(20px,2.4vw,30px);
   max-width:18ch;
@@ -262,7 +262,7 @@ section.reg{padding-block:var(--rhythm);scroll-margin-top:16px}
 .dirs-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--rule);background:var(--paper)}
 .dir{padding:clamp(26px,3vw,44px);border-right:1px solid var(--rule);background:var(--sheet);display:flex;flex-direction:column}
 .dir:last-child{border-right:none}
-.dir .dir-top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--rule)}
+.dir .dir-top{display:flex;align-items:center;justify-content:space-between;gap:10px 14px;flex-wrap:wrap;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--rule)}
 .dir .dir-code{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.06em;color:var(--ink-mute);text-transform:uppercase}
 .dir h3{font-size:clamp(1.5rem,1.1rem + 1.2vw,2.1rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:12px}
 .dir > p{color:var(--ink-2);margin-bottom:22px;font-size:0.98rem}
@@ -339,12 +339,13 @@ section.reg{padding-block:var(--rhythm);scroll-margin-top:16px}
 .req-left h2{font-size:clamp(1.5rem,1.1rem + 1.4vw,2.2rem);font-weight:800;letter-spacing:-0.02em;margin-bottom:16px}
 .req-left p{color:var(--ink-2);font-size:0.95rem;margin-bottom:24px;max-width:42ch}
 .req-track{border-top:1px solid var(--rule);display:grid}
-.req-track .tr{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--rule-soft)}
+.req-track .tr{display:grid;grid-template-columns:auto 1fr auto;gap:8px 12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--rule-soft)}
+.req-track .tr .ts{min-width:0}
 .req-track .tr:last-child{border-bottom:none}
 .req-track .tr .ti{font-family:var(--mono);font-size:0.72rem;color:var(--ink-mute)}
 .req-track .tr .ts{font-weight:600;font-size:0.92rem}
 .req-form{padding:clamp(28px,3.4vw,52px)}
-.req-form .form-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:16px;margin-bottom:22px;border-bottom:1px solid var(--rule)}
+.req-form .form-head{display:flex;align-items:center;justify-content:space-between;gap:8px 10px;flex-wrap:wrap;padding-bottom:16px;margin-bottom:22px;border-bottom:1px solid var(--rule)}
 .req-form .form-head .reg-no{font-family:var(--mono);font-size:0.66rem;color:var(--ink-mute);letter-spacing:0.04em}
 .field{margin-bottom:18px}
 .field label{display:block;font-family:var(--mono);font-size:0.66rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:8px}
@@ -397,10 +398,10 @@ html.js .rev.in{opacity:1;transform:none}
   .mast-r{grid-row:1;grid-column:2}
 }
 @media(max-width:920px){
-  .hero .wrap{grid-template-columns:1fr}
+  .hero .wrap{grid-template-columns:minmax(0,1fr)}
   .hero-doc{border-right:none;border-bottom:1px solid var(--rule)}
-  .cta .wrap{grid-template-columns:1fr}
-  .req-inner{grid-template-columns:1fr}
+  .cta .wrap{grid-template-columns:minmax(0,1fr)}
+  .req-inner{grid-template-columns:minmax(0,1fr)}
   .req-left{border-right:none;border-bottom:1px solid var(--rule)}
   .ledger .wrap{grid-template-columns:1fr 1fr}
   .ledger-cell:nth-child(2){border-right:none}
@@ -441,7 +442,16 @@ html.js .rev.in{opacity:1;transform:none}
   .ledger-cell{border-right:none;border-bottom:1px solid var(--rule-soft)}
   .ledger-cell:last-child{border-bottom:none}
   .crest .title-name{font-size:1.02rem}
-  .hero-cta .btn{flex:1;justify-content:center}
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .hero-cta .btn{width:100%;justify-content:center}
+
+  /* контактная карта: ключ над значением — длинный адрес не ужимается в строку */
+  .cta-card .cc-row{grid-template-columns:1fr;gap:5px}
+  .cta-card .cc-v{font-size:0.96rem}
+
+  /* маршрут заявки: бейдж переносится под текст, длинные слова не дробятся */
+  .req-track .tr{grid-template-columns:auto 1fr;row-gap:6px}
+  .req-track .tr .badge{grid-column:2;justify-self:start}
 }
 /* увеличенные тач-таргеты */
 @media(hover:none),(max-width:720px){
