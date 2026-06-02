@@ -9,3 +9,9 @@ dist
 # тяжёлые/референсные артефакты — остаются на диске, не в git
 legacy/
 _recon/
+
+# превью/скриншоты агентов
+.playwright-mcp/
+/*.png
+/*.jpeg
+landing/_probe.html
