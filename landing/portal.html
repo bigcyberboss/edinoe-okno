@@ -45,8 +45,9 @@
 html{scroll-behavior:smooth;overflow-x:clip}
 body{
   font-family:var(--font);font-size:var(--fs-body);line-height:1.5;
-  color:var(--ink);background:var(--white);-webkit-font-smoothing:antialiased;overflow-x:clip;
+  color:var(--ink);background:#F3F6FD;-webkit-font-smoothing:antialiased;overflow-x:clip;position:relative;
 }
+body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(38% 30% at 86% 15%,rgba(31,80,232,.08),transparent 70%),radial-gradient(42% 32% at 8% 50%,rgba(13,76,211,.06),transparent 72%),radial-gradient(46% 36% at 92% 85%,rgba(121,150,240,.09),transparent 70%)}
 h1,h2,h3,h4{line-height:1.14;letter-spacing:-0.01em;text-wrap:balance;overflow-wrap:normal;word-break:keep-all;hyphens:none}
 :lang(ru) h1,:lang(ru) h2,:lang(ru) h3{-webkit-hyphens:none;hyphens:none}
 p{text-wrap:pretty}
@@ -76,7 +77,7 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.9);-webkit
 .btn-login:active{transform:translateY(0);box-shadow:0 4px 12px rgba(13,76,211,.34)}
 
 /* ─────────── HERO ─────────── */
-.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#DCE8FD 0%,#E7EFFC 34%,#F2F7FE 66%,#fff 100%);padding-block:clamp(40px,5vw,76px) clamp(44px,6vw,88px)}
+.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#DCE8FD 0%,#E7EFFC 34%,#F2F7FE 66%,#F3F6FD 100%);padding-block:clamp(40px,5vw,76px) clamp(44px,6vw,88px)}
 .hero::before{content:'';position:absolute;inset:-25% -12% -6%;z-index:0;pointer-events:none;background:radial-gradient(42% 50% at 82% 14%,rgba(121,150,240,.46),transparent 70%),radial-gradient(38% 48% at 13% 6%,rgba(13,76,211,.27),transparent 66%),radial-gradient(58% 56% at 50% -8%,rgba(31,80,232,.23),transparent 62%);animation:heroDrift 19s var(--ease) infinite alternate;will-change:transform}
 @keyframes heroDrift{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(-3.5%,2.5%,0) scale(1.1)}}
 .hero-in{position:relative;z-index:1;max-width:880px;margin:0 auto;text-align:center;padding-inline:var(--pad-x)}
@@ -116,7 +117,9 @@ html.js .hero-in>.hero-stats{animation-delay:.50s}
 .block{padding-block:var(--sect-y)}
 .sec-head{max-width:680px;margin-bottom:clamp(28px,3vw,44px)}
 .sec-head.center{margin-inline:auto;text-align:center}
-.sec-head h2{font-size:var(--fs-h2);font-weight:800;color:var(--ink)}
+.sec-head h2{position:relative;padding-top:20px;font-size:var(--fs-h2);font-weight:800;color:var(--ink)}
+.sec-head h2::before{content:'';position:absolute;top:0;left:0;width:46px;height:4px;border-radius:2px;background:linear-gradient(90deg,#0D4CD3,#1F50E8)}
+.sec-head.center h2::before{left:50%;transform:translateX(-50%)}
 .sec-head p{margin-top:12px;color:var(--ink-soft);font-size:1.05rem;line-height:1.5}
 
 /* ─────────── ПЛИТКИ (с чем помогаем) ─────────── */
@@ -169,7 +172,7 @@ html.js .hero-in>.hero-stats{animation-delay:.50s}
 .svc-chev svg{width:20px;height:20px}
 
 /* ─────────── ЭТАПЫ ─────────── */
-.steps{background:var(--grey)}
+.steps{background:linear-gradient(180deg,#E9F0FB 0%,#F1F5FD 100%)}
 .steps-row{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(12px,1.4vw,18px)}
 .step{background:#fff;border:1px solid var(--line);border-radius:var(--r-tile);padding:clamp(18px,1.8vw,24px);display:flex;flex-direction:column;gap:11px}
 .step-n{width:36px;height:36px;flex:none;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;display:grid;place-items:center;font-size:1rem}
@@ -181,6 +184,9 @@ html.js .hero-in>.hero-stats{animation-delay:.50s}
 .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,2.4vw,30px)}
 .why{display:flex;flex-direction:column;gap:11px}
 .why-ic{width:48px;height:48px;border-radius:13px;background:var(--tint);color:var(--blue);display:grid;place-items:center}
+.why-ic.teal{background:#DCF3EE;color:var(--teal-d)}
+.why-ic.amber{background:var(--amber-tint);color:var(--amber-ink)}
+.why-ic.red{background:var(--red-tint);color:#c42b42}
 .why-ic svg{width:25px;height:25px}
 .why h3{font-size:1.08rem;font-weight:700;color:var(--ink)}
 .why p{font-size:.92rem;color:var(--ink-soft);line-height:1.5}
@@ -468,17 +474,17 @@ html.js .reveal.in{opacity:1;transform:none}
       <p>20+ лет на легализации самостроя и&nbsp;оспаривании отказов Росреестра.</p>
     </div>
     <div class="why reveal">
-      <span class="why-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.3 2.7-5 6-5s6 1.7 6 5"/><path d="M15 20c0-2.4 1-3.8 3-3.8s3 1.4 3 3.8"/></svg></span>
+      <span class="why-ic teal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20c0-3.3 2.7-5 6-5s6 1.7 6 5"/><path d="M15 20c0-2.4 1-3.8 3-3.8s3 1.4 3 3.8"/></svg></span>
       <h3>Все эксперты в&nbsp;одном месте</h3>
       <p>Юристы, кадастровые инженеры и&nbsp;геодезисты работают как единый механизм.</p>
     </div>
     <div class="why reveal">
-      <span class="why-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h10M4 19h16"/><path d="m17 10 3 2-3 2"/></svg></span>
+      <span class="why-ic amber" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h10M4 19h16"/><path d="m17 10 3 2-3 2"/></svg></span>
       <h3>Индивидуальная стратегия</h3>
       <p>Персональный план под объект, а&nbsp;не работа по шаблону. Прозрачность сроков и&nbsp;цены.</p>
     </div>
     <div class="why reveal">
-      <span class="why-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
+      <span class="why-ic red" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
       <h3>Конфиденциальность и&nbsp;поддержка</h3>
       <p>Сопровождение не заканчивается после регистрации — остаёмся вашей правовой опорой.</p>
     </div>
