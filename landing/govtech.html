@@ -214,7 +214,8 @@ html.js .seal-stamp.stamped{opacity:1;transform:scale(1) rotate(-1.5deg);transit
   border-right:1px solid var(--rule-soft);
 }
 .ledger-cell:last-child{border-right:none}
-.ledger-cell .n{font-family:var(--mono);font-weight:600;font-size:clamp(1.6rem,1.1rem + 1.5vw,2.5rem);letter-spacing:-0.02em;color:var(--seal-ink);font-variant-numeric:tabular-nums}
+.ledger-cell .n{font-family:var(--mono);font-weight:600;font-size:clamp(1.6rem,1.1rem + 1.5vw,2.5rem);letter-spacing:-0.02em;color:var(--seal-ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ledger-cell .n .u{font-size:0.46em;letter-spacing:0}
 .ledger-cell .t{font-size:0.84rem;color:var(--ink-mute);margin-top:6px;line-height:1.35}
 
 /* ─────────── СЕКЦИЯ — основа ─────────── */
@@ -568,10 +569,10 @@ html.js .rev.in{opacity:1;transform:none}
 <!-- ЗАВЕРЕННЫЕ ПОКАЗАТЕЛИ -->
 <div class="ledger" aria-label="Подтверждённые показатели">
   <div class="wrap">
-    <div class="ledger-cell"><div class="n" data-count="400" data-suffix="+">400+</div><div class="t">объектов внесено<br>в реестр</div></div>
-    <div class="ledger-cell"><div class="n" data-count="20" data-suffix="+">20+</div><div class="t">лет практики<br>по легализации</div></div>
-    <div class="ledger-cell"><div class="n" data-count="250" data-suffix="+">250+</div><div class="t">дел завершено<br>результатом</div></div>
-    <div class="ledger-cell"><div class="n" data-count="100" data-suffix="+ млн ₽">100+ млн ₽</div><div class="t">ущерба<br>возмещено</div></div>
+    <div class="ledger-cell"><div class="n"><span class="cnt" data-count="400" data-suffix="+">400+</span></div><div class="t">объектов внесено<br>в реестр</div></div>
+    <div class="ledger-cell"><div class="n"><span class="cnt" data-count="20" data-suffix="+">20+</span></div><div class="t">лет практики<br>по легализации</div></div>
+    <div class="ledger-cell"><div class="n"><span class="cnt" data-count="250" data-suffix="+">250+</span></div><div class="t">дел завершено<br>результатом</div></div>
+    <div class="ledger-cell"><div class="n"><span class="cnt" data-count="100" data-suffix="+">100+</span><span class="u"> млн ₽</span></div><div class="t">ущерба<br>возмещено</div></div>
   </div>
 </div>
 
@@ -972,7 +973,7 @@ html.js .rev.in{opacity:1;transform:none}
   }
 
   // счётчики в показателях — однократно при появлении
-  var nums = document.querySelectorAll('.ledger-cell .n[data-count]');
+  var nums = document.querySelectorAll('.ledger-cell .n .cnt[data-count]');
   function runCount(el){
     var target = parseInt(el.getAttribute('data-count'), 10);
     var suffix = el.getAttribute('data-suffix') || '';
