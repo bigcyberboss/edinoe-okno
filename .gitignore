@@ -15,3 +15,9 @@ _recon/
 /*.png
 /*.jpeg
 landing/_probe.html
+
+# рабочие материалы
+/*.jpeg
+new files/_mmap_extract/
+new files/*.mmap
+new files/Preview*.png
