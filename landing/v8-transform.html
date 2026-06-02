@@ -20,8 +20,8 @@
   --line-2:    oklch(0.62 0.07 256 / 0.30);
 
   /* холодная фаза «было» (десатурированная) */
-  --cold:      oklch(0.70 0.028 256);
-  --cold-deep: oklch(0.50 0.024 256);
+  --cold:      oklch(0.78 0.03 256);
+  --cold-deep: oklch(0.52 0.024 256);
 
   /* тёплый акцент «стало» — статус получен */
   --warm:      oklch(0.82 0.165 84);
@@ -31,14 +31,14 @@
   /* текст на тёмном */
   --ink:       oklch(0.95 0.01 256);
   --ink-soft:  oklch(0.90 0.014 256 / 0.92);
-  --ink-mute:  oklch(0.80 0.018 256 / 0.70);
+  --ink-mute:  oklch(0.86 0.018 256 / 0.85);
 
   /* типографика */
   --display: 'Geologica', sans-serif;
   --body: 'Onest', sans-serif;
   --mono: 'JetBrains Mono', monospace;
 
-  --fs-hero: clamp(2.7rem, 1.3rem + 5.4vw, 7rem);
+  --fs-hero: clamp(2.05rem, 0.9rem + 5.6vw, 7rem);
   --fs-h2:   clamp(2rem, 1.3rem + 2.8vw, 3.6rem);
   --fs-h3:   clamp(1.15rem, 1rem + 0.7vw, 1.5rem);
   --fs-body: clamp(1rem, 0.96rem + 0.2vw, 1.12rem);
@@ -64,7 +64,8 @@ body{
   -webkit-font-smoothing:antialiased;
   overflow-x:clip;
 }
-h1,h2,h3{line-height:1.04;letter-spacing:-0.02em;font-family:var(--display)}
+h1,h2,h3{line-height:1.04;letter-spacing:-0.02em;font-family:var(--display);text-wrap:balance;overflow-wrap:break-word}
+p{text-wrap:pretty}
 a{color:inherit;text-decoration:none}
 img,svg{display:block}
 :focus-visible{outline:2px solid var(--warm);outline-offset:3px;border-radius:2px}
@@ -109,7 +110,7 @@ nav a:hover{color:var(--ink)}
 #mobile-nav{display:none}
 
 /* ─────────── КНОПКИ ─────────── */
-.btn{display:inline-flex;align-items:center;gap:10px;padding:17px 32px;border-radius:var(--radius);font-family:var(--display);font-weight:600;font-size:0.95rem;letter-spacing:0.005em;cursor:pointer;border:none;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .25s var(--ease),color .25s var(--ease)}
+.btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;gap:10px;padding:17px clamp(20px,3vw,32px);border-radius:var(--radius);font-family:var(--display);font-weight:600;font-size:0.95rem;letter-spacing:0.005em;cursor:pointer;border:none;text-wrap:balance;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .25s var(--ease),color .25s var(--ease)}
 .btn-primary{background:var(--warm);color:var(--void);box-shadow:0 0 0 1px oklch(0.82 0.165 84 / .4), 0 18px 50px -16px oklch(0.82 0.165 84 / .7)}
 .btn-primary:hover{transform:translateY(-2px);background:var(--warm-2);box-shadow:0 0 0 1px oklch(0.82 0.165 84 / .5), 0 26px 60px -16px oklch(0.82 0.165 84 / .8)}
 .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line-2)}
@@ -119,15 +120,17 @@ nav a:hover{color:var(--ink)}
 .hero{
   position:relative;min-height:100svh;
   display:grid;place-items:center;
+  grid-template-columns:minmax(0,1fr);
   padding:clamp(90px,12vh,150px) var(--pad-x) clamp(60px,8vh,110px);
   text-align:center;overflow:hidden;
   scroll-margin-top:80px;
 }
 .hero .glow{width:min(70vw,640px);height:min(70vw,640px);top:18%;left:50%;transform:translateX(-50%);
   background:radial-gradient(circle, oklch(0.45 0.06 256 / .55), transparent 70%)}
-.hero-inner{position:relative;z-index:3;max-width:1000px;display:grid;gap:clamp(22px,3vh,40px);justify-items:center}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:12px;color:var(--cold)}
-.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:26px;height:1px;background:var(--line-2)}
+.hero-inner{position:relative;z-index:3;width:100%;max-width:1000px;display:grid;gap:clamp(22px,3vh,40px);justify-items:center}
+.hero-inner>*{max-width:100%;min-width:0}
+.hero-eyebrow{display:inline-flex;align-items:center;justify-content:center;gap:12px;color:var(--cold);max-width:100%;text-align:center;flex-wrap:wrap}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:clamp(14px,4vw,26px);height:1px;flex:none;background:var(--line-2)}
 
 /* герой-символ: контур окна/печати, собирается светом */
 .seal{position:relative;width:clamp(120px,16vw,190px);height:clamp(120px,16vw,190px);display:grid;place-items:center}
@@ -145,11 +148,12 @@ nav a:hover{color:var(--ink)}
 .seal-rot{transform-origin:center;animation:slowspin 60s linear infinite}
 @keyframes slowspin{to{transform:rotate(360deg)}}
 
-.hero h1{font-family:var(--display);font-weight:700;font-size:var(--fs-hero);color:var(--ink);max-width:14ch}
+.hero h1{font-family:var(--display);font-weight:700;font-size:var(--fs-hero);color:var(--ink);max-width:14ch;overflow-wrap:break-word;hyphens:auto}
 .hero h1 .em{color:var(--warm);display:block}
 .hero-sub{font-size:clamp(1.05rem,0.98rem+0.5vw,1.28rem);color:var(--ink-soft);max-width:56ch;line-height:1.55}
 .hero-cta{display:flex;flex-wrap:wrap;gap:var(--s-3);justify-content:center;margin-top:var(--s-2)}
-.hero-state{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-mute);margin-top:var(--s-3)}
+.hero-state{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 14px;font-family:var(--mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-mute);margin-top:var(--s-3);max-width:100%}
+.hero-state b{white-space:nowrap}
 .hero-state b{color:var(--cold)}
 .hero-state .arrow{color:var(--line-2)}
 .hero-state b.done{color:var(--warm)}
@@ -288,9 +292,10 @@ html.js .steps-pin.can-pin .steps-list{display:none}
   background:radial-gradient(circle, oklch(0.82 0.165 84 / .14), transparent 68%)}
 .trust .label{position:relative;z-index:2;color:var(--warm)}
 .trust h2{position:relative;z-index:2;font-size:var(--fs-h2);color:var(--ink);margin-top:var(--s-4);max-width:20ch;margin-inline:auto}
-.trust-grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-4);margin-top:var(--s-9)}
-.tstat{border:1px solid var(--line);border-radius:var(--radius);padding:clamp(24px,3vw,40px) var(--s-4);background:oklch(0.225 0.05 256 / .4)}
-.tstat .tn{font-family:var(--mono);font-weight:700;font-size:clamp(2.2rem,1.4rem+2.8vw,4rem);color:var(--warm);letter-spacing:-0.03em;line-height:1;font-variant-numeric:tabular-nums}
+.trust-grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-4);margin-top:var(--s-9)}
+.tstat{border:1px solid var(--line);border-radius:var(--radius);padding:clamp(20px,3vw,40px) clamp(10px,2.5vw,16px);background:oklch(0.225 0.05 256 / .4);min-width:0}
+.tstat .tn{overflow-wrap:break-word}
+.tstat .tn{font-family:var(--mono);font-weight:700;font-size:clamp(1.9rem,1.2rem+2.6vw,4rem);color:var(--warm);letter-spacing:-0.03em;line-height:1.04;font-variant-numeric:tabular-nums;text-wrap:balance}
 .tstat .tt{font-size:0.86rem;color:var(--ink-soft);margin-top:var(--s-3);line-height:1.4}
 
 /* ─────────── CTA + ЭКСПРЕСС-ПРОВЕРКА ─────────── */
@@ -300,8 +305,9 @@ html.js .steps-pin.can-pin .steps-list{display:none}
 .cta-grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:clamp(32px,5vw,90px);align-items:center}
 .cta h2{font-size:var(--fs-h2);color:var(--ink);max-width:16ch}
 .cta p{color:var(--ink-soft);margin-top:var(--s-5);max-width:50ch;font-size:1.06rem}
-.cta-contacts{display:grid;gap:var(--s-3);margin-top:var(--s-6);font-family:var(--mono);font-size:0.9rem}
-.cta-contacts a,.cta-contacts span{color:var(--ink-soft);display:inline-flex;gap:10px}
+.cta-contacts{display:grid;gap:var(--s-2);margin-top:var(--s-6);font-family:var(--mono);font-size:clamp(0.82rem,0.78rem+0.2vw,0.9rem)}
+.cta-contacts a,.cta-contacts span{color:var(--ink-soft);display:inline-flex;flex-wrap:wrap;gap:6px 10px;align-items:center;min-height:40px;overflow-wrap:anywhere}
+.cta-contacts b{white-space:nowrap}
 .cta-contacts b{color:var(--warm);font-weight:500}
 .cta-contacts a:hover b{color:var(--warm-2)}
 .cta-actions{display:flex;flex-wrap:wrap;gap:var(--s-3);margin-top:var(--s-7)}
@@ -364,9 +370,16 @@ html.js .reveal.in{opacity:1;transform:none}
   .steps-stage .step-render{display:none}
 }
 @media(max-width:600px){
-  .hero-cta .btn,.cta-actions .btn{flex:1;justify-content:center}
+  .hero-cta,.cta-actions{width:100%}
+  .hero-cta .btn,.cta-actions .btn{flex:1 1 100%;width:100%;justify-content:center}
   .cold-head .meta{text-align:left}
-  .trust-grid{grid-template-columns:1fr 1fr}
+  .trust-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* тач-таргеты: на сенсорных устройствах гарантируем ≥44px по высоте у текстовых CTA/ссылок */
+@media(hover:none) and (pointer:coarse){
+  .go,.feat-cta{min-height:44px}
+  .cta-contacts a,.cta-contacts span{min-height:44px}
+  footer .fl a{display:inline-flex;align-items:center;min-height:40px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -475,7 +488,7 @@ html.js .reveal.in{opacity:1;transform:none}
     <article class="pain feat reveal">
       <span class="idx">01 — Самострой</span>
       <h3>Построили без документов и боитесь сноса?</h3>
-      <p>Дом, гараж, пристройка или коммерческий объект без разрешений? Штрафы и угроза сноса — не приговор. Легализуем самовольные постройки и реконструкции в Ялте «под ключ», в том числе через суд.</p>
+      <p>Дом, гараж, пристройка или коммерческий объект без разрешений? Штрафы и угроза сноса — не приговор. Легализуем самовольные постройки и реконструкции в&nbsp;Ялте «под&nbsp;ключ», в том числе через суд.</p>
       <ul class="feat-list">
         <li>Жилые дома и пристройки без разрешения</li>
         <li>Реконструкция с изменением площади</li>
@@ -699,7 +712,7 @@ html.js .reveal.in{opacity:1;transform:none}
     <div class="tstat reveal"><div class="tn" data-to="400" data-suf="+">400+</div><div class="tt">объектов зарегистрировано</div></div>
     <div class="tstat reveal"><div class="tn" data-to="20" data-suf="+">20+</div><div class="tt">лет опыта</div></div>
     <div class="tstat reveal"><div class="tn" data-to="400" data-suf="+">400+</div><div class="tt">дел доведено до результата</div></div>
-    <div class="tstat reveal"><div class="tn" data-to="100" data-suf="+ млн ₽">100+ млн ₽</div><div class="tt">ущерба возмещено</div></div>
+    <div class="tstat reveal"><div class="tn" data-to="100" data-suf="+ млн ₽">100+&nbsp;млн&nbsp;₽</div><div class="tt">ущерба возмещено</div></div>
   </div>
 </section>
 
@@ -712,7 +725,7 @@ html.js .reveal.in{opacity:1;transform:none}
       <p>Доверьте задачу команде, которая специализируется на оформлении и защите недвижимости в Крыму. Первичная консультация — бесплатно.</p>
       <div class="cta-contacts">
         <a href="tel:+79790775777">Телефон: <b>+7 979 077 5 777</b></a>
-        <span>Офис: <b>Ялта, ул. Ленинградская, 34</b></span>
+        <span>Офис: <b>Ялта, ул.&nbsp;Ленинградская,&nbsp;34</b></span>
         <a href="https://t.me/makslegal777" target="_blank" rel="noopener">Telegram: <b>@makslegal777</b></a>
       </div>
       <div class="cta-actions">
@@ -758,8 +771,8 @@ html.js .reveal.in{opacity:1;transform:none}
     <div class="legal-doc" id="requisites">
       <h3>Реквизиты</h3>
       <dl>
-        <dt>Адрес</dt><dd>Ялта, ул. Ленинградская, 34</dd>
-        <dt>Телефон</dt><dd>+7 979 077 5 777</dd>
+        <dt>Адрес</dt><dd>Ялта, ул.&nbsp;Ленинградская,&nbsp;34</dd>
+        <dt>Телефон</dt><dd>+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</dd>
         <dt>Telegram</dt><dd>@makslegal777</dd>
         <dt>Сайт</dt><dd>одно-окно.рф</dd>
       </dl>
@@ -883,7 +896,7 @@ html.js .reveal.in{opacity:1;transform:none}
     {h:'Выполнение работ', d:'Инженеры и юристы готовят всё — от техпланов до исковых заявлений.', tag:true,
      c:[ {to:3,  suf:'',   lab:'специальности в команде'},    {to:1,  suf:'',   lab:'окно вместо подрядчиков'},     {to:24, suf:'/7', lab:'трекер статуса в ЛК'} ]},
     {h:'Госорганы', d:'Взаимодействие с Росреестром и администрацией Ялты и Крыма.', tag:false,
-     c:[ {to:400,suf:'+',  lab:'пройденных дел'},             {to:20, suf:'+', lab:'лет практики'},               {to:100,suf:'+ млн ₽', lab:'ущерба возмещено'} ]},
+     c:[ {to:400,suf:'+',  lab:'пройденных дел'},             {to:20, suf:'+', lab:'лет практики'},               {to:100,suf:'+ млн ₽', lab:'ущерба возмещено'} ]},
     {h:'Результат', d:'Выписка о регистрации права и дальнейшая поддержка.', tag:false,
      c:[ {to:400,suf:'+',  lab:'объектов в ЕГРН'},            {to:1,  suf:'',   lab:'право собственности'},        {to:100,suf:' %', lab:'статус закреплён'} ]}
   ];

@@ -25,7 +25,7 @@
   --line-2:    oklch(0.255 0.022 66 / 0.24);
   --clay:      oklch(0.545 0.105 52);    /* каменно-охристый акцент <10%, «из кадра» */
   --clay-deep: oklch(0.475 0.10 50);
-  --clay-on-dark: oklch(0.66 0.11 54);   /* осветлённый clay для лейблов на тёмном */
+  --clay-on-dark: oklch(0.73 0.115 56);  /* осветлённый clay для лейблов на тёмном (APCA-safe) */
   --clay-soft: oklch(0.545 0.105 52 / 0.14);
   --dark:      oklch(0.225 0.018 64);    /* тёмный разворот (CTA/footer) */
   --on-dark:   oklch(0.945 0.012 78);
@@ -36,7 +36,7 @@
   --mono: 'Martian Mono', ui-monospace, monospace;
 
   /* fluid тип-шкала — рычаг иерархии H1↔body максимальный */
-  --fs-hero:  clamp(2.4rem, 0.2rem + 8.4vw, 7.7rem);
+  --fs-hero:  clamp(2.4rem, 0.4rem + 7.8vw, 7.4rem);
   --fs-h2:    clamp(2.1rem, 1.2rem + 3.6vw, 4.4rem);
   --fs-kin:   clamp(1.9rem, 0.9rem + 4.2vw, 4.6rem);  /* kinetic-проза болей */
   --fs-num:   clamp(3.4rem, 1.4rem + 8vw, 8.4rem);    /* trust-числа в воздухе */
@@ -68,6 +68,9 @@ body{
 }
 a{color:inherit;text-decoration:none}
 img,svg{display:block;max-width:100%}
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
+.nb{white-space:nowrap}
 ::selection{background:var(--clay);color:var(--paper)}
 :focus-visible{outline:2px solid var(--clay);outline-offset:3px;border-radius:1px}
 
@@ -78,7 +81,7 @@ img,svg{display:block;max-width:100%}
   font-weight:500;
   letter-spacing:0.26em;
   text-transform:uppercase;
-  color:var(--ink-mute);
+  color:var(--ink-label);
 }
 .tag--clay{color:var(--clay-deep)}
 
@@ -146,7 +149,7 @@ img,svg{display:block;max-width:100%}
 .hero-plate .pl-cross svg{width:46px;height:46px;color:var(--ink-faint)}
 @media(max-width:860px){.hero-plate{display:none}}
 
-.hero-inner{position:relative;z-index:1;max-width:min(1080px,100%)}
+.hero-inner{position:relative;z-index:1;max-width:min(1240px,100%)}
 .hero-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:clamp(20px,4vh,42px)}
 .hero-eyebrow::before{content:'';width:46px;height:1px;background:var(--ink-mute)}
 .manifest{
@@ -156,16 +159,18 @@ img,svg{display:block;max-width:100%}
   letter-spacing:-0.015em;
   margin-bottom:clamp(28px,5vh,52px);
 }
-.manifest .l1{display:block;font-weight:500;font-style:italic;font-size:clamp(1.6rem,0.8rem+3.2vw,3.4rem);color:var(--ink-soft);letter-spacing:0;margin-bottom:0.12em}
-.manifest .l2{display:block;font-weight:900;font-size:var(--fs-hero);text-transform:uppercase;white-space:nowrap}
-@media(max-width:520px){.manifest .l2{white-space:normal;font-size:clamp(1.9rem,9vw,2.4rem);overflow-wrap:break-word;hyphens:auto}}
+.manifest .l1{display:block;font-weight:500;font-style:italic;font-size:clamp(1.6rem,0.8rem+3.2vw,3.4rem);color:var(--ink-soft);letter-spacing:0;margin-bottom:0.12em;text-wrap:balance}
+.manifest .l2{display:block;font-weight:900;font-size:var(--fs-hero);text-transform:uppercase;white-space:nowrap;overflow-wrap:break-word}
+@media(max-width:680px){.manifest .l2{white-space:normal;text-wrap:balance;font-size:clamp(1.9rem,7.6vw,3.4rem);overflow-wrap:break-word}}
+@media(max-width:520px){.manifest .l2{font-size:clamp(1.9rem,8.4vw,2.6rem);hyphens:auto}}
 .manifest .l2 em{font-style:normal;color:var(--clay)}
 .hero-foot{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--s-6)}
 .hero-lead{max-width:44ch;font-size:var(--fs-lead);font-weight:300;color:var(--ink-soft);line-height:1.46}
 .hero-acts{display:flex;flex-wrap:wrap;gap:var(--s-4);align-items:center}
 
 /* кнопки — сдержанные, ровно одна заполненная */
-.btn{display:inline-flex;align-items:center;gap:11px;font-family:var(--body);font-weight:500;font-size:0.94rem;letter-spacing:0.01em;cursor:pointer;border:none;transition:transform .35s var(--ease),background .3s var(--ease),color .3s var(--ease),box-shadow .35s var(--ease)}
+.btn{display:inline-flex;flex-wrap:nowrap;align-items:center;gap:11px;font-family:var(--body);font-weight:500;font-size:0.94rem;letter-spacing:0.01em;line-height:1.2;text-align:center;cursor:pointer;border:none;transition:transform .35s var(--ease),background .3s var(--ease),color .3s var(--ease),box-shadow .35s var(--ease)}
+.btn .ar{flex:0 0 auto}
 .btn--solid{padding:17px 30px;background:var(--ink);color:var(--paper);border-radius:var(--radius)}
 .btn--solid:hover{transform:translateY(-2px);background:var(--clay-deep);box-shadow:0 18px 36px -16px oklch(0.475 0.10 50 / 0.6)}
 .btn--line{padding:16px 0;color:var(--ink);border-bottom:1px solid var(--ink-mute);border-radius:0}
@@ -195,8 +200,9 @@ html.js .kline.lit em{font-style:italic;color:var(--clay)}
 .numbox{text-align:center}
 .numbox .n{font-family:var(--display);font-weight:800;font-size:var(--fs-num);line-height:0.86;color:var(--ink);letter-spacing:-0.02em}
 .numbox .n sup{font-size:0.34em;font-weight:600;color:var(--clay);vertical-align:super;margin-left:0.04em}
-.numbox .c{margin-top:var(--s-4);font-family:var(--mono);font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute);line-height:1.6}
-@media(max-width:760px){.num-grid{grid-template-columns:1fr 1fr;gap:clamp(40px,9vw,64px)}}
+.numbox .c{margin-top:var(--s-4);font-family:var(--mono);font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-label);line-height:1.6}
+@media(max-width:760px){.num-grid{grid-template-columns:1fr 1fr;gap:clamp(20px,6vw,56px)}}
+@media(max-width:420px){.num-grid{grid-template-columns:1fr;gap:clamp(28px,8vw,40px);text-align:left}.numbox{text-align:left}.numbox .n{font-size:clamp(3rem,18vw,4.6rem)}.numbox .c{margin-top:var(--s-2)}}
 
 /* ───────────────── ГЛАВЫ: Оформить / Защитить (editorial, перетекание) ── */
 .chapters{background:var(--paper)}
@@ -230,10 +236,11 @@ html.js .kline.lit em{font-style:italic;color:var(--clay)}
 
 /* ───────────────── ПРАЙС: типографическая таблица в моно (Noble Bank) ─── */
 .price{padding:clamp(80px,14vh,180px) var(--pad-x);background:var(--paper-2);border-block:1px solid var(--line)}
-.price-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:var(--s-5);margin-bottom:clamp(40px,7vh,80px);max-width:none}
-.price-head .ph-l{max-width:34ch}
+.price-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:var(--s-5) clamp(32px,5vw,80px);margin-bottom:clamp(40px,7vh,80px);max-width:none}
+.price-head .ph-l{flex:1 1 460px;min-width:0}
+.price-head h2{overflow-wrap:normal;word-break:keep-all}
 .price-head h2{font-family:var(--display);font-weight:800;font-size:var(--fs-h2);line-height:0.96;letter-spacing:-0.01em;color:var(--ink);margin-top:var(--s-4)}
-.price-head .ph-r{font-family:var(--mono);font-size:0.78rem;color:var(--ink-label);max-width:38ch;line-height:1.7;text-align:left}
+.price-head .ph-r{flex:0 1 360px;font-family:var(--mono);font-size:0.78rem;color:var(--ink-label);line-height:1.7;text-align:left}
 .ptable{border-top:1.5px solid var(--ink)}
 .prow{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(16px,4vw,64px);align-items:baseline;padding:clamp(22px,3.2vh,40px) 0;border-bottom:1px solid var(--line-2);transition:background .35s var(--ease),padding-left .35s var(--ease)}
 .prow:hover{background:linear-gradient(90deg, var(--clay-soft), transparent 70%);padding-left:14px}
@@ -263,7 +270,7 @@ html.js .kline.lit em{font-style:italic;color:var(--clay)}
 .verify-form input::placeholder{color:var(--ink-mute)}
 .verify-form input:focus{outline:none;border-color:var(--clay)}
 .verify-form .btn--solid{width:100%;justify-content:center;margin-top:var(--s-6)}
-.verify-form .note{margin-top:var(--s-4);font-size:0.78rem;color:var(--ink-mute);line-height:1.55}
+.verify-form .note{margin-top:var(--s-4);font-size:0.78rem;color:var(--ink-label);line-height:1.55}
 @media(max-width:840px){.verify{grid-template-columns:1fr;gap:var(--s-7)}}
 
 /* ───────────────── ПОЧЕМУ: проза-принципы (НЕ 2-кол грид) ──────────────── */
@@ -319,7 +326,7 @@ html.js .kline.lit em{font-style:italic;color:var(--clay)}
 .foot-links{display:flex;flex-wrap:wrap;gap:var(--s-3) var(--s-6);font-family:var(--mono);font-size:0.74rem;letter-spacing:0.04em}
 .foot-links a{transition:color .3s var(--ease)}
 .foot-links a:hover{color:var(--on-dark)}
-.foot-bottom{margin-top:var(--s-5);font-family:var(--mono);font-size:0.7rem;letter-spacing:0.03em;color:oklch(0.92 0.012 78 / 0.6)}
+.foot-bottom{margin-top:var(--s-5);font-family:var(--mono);font-size:0.7rem;letter-spacing:0.03em;color:oklch(0.92 0.012 78 / 0.82)}
 
 /* ───────────────── reveal (progressive enhancement) ─────────────────────── */
 .skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--ink);color:var(--paper);padding:12px 20px;font-family:var(--mono);font-size:0.8rem;letter-spacing:0.04em;border-radius:var(--radius)}
@@ -343,10 +350,18 @@ html.js .rv.in{opacity:1;transform:none}
   body.menu-open{overflow:hidden}
 }
 @media(max-width:560px){
-  .num-grid{grid-template-columns:1fr 1fr}
   .hero-acts{width:100%}
-  .hero-acts .btn--solid{flex:1;justify-content:center}
+  .hero-acts .btn--solid{flex:1 1 100%;justify-content:center}
   .price-head{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:480px){
+  .hero-acts{flex-direction:column;align-items:stretch}
+  .hero-acts .btn{width:100%;justify-content:center}
+  .hero-acts .btn--line{padding:14px 0}
+}
+@media(max-width:400px){
+  .btn--solid{padding:16px 18px;gap:9px}
+  .verify-form{padding:22px 18px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto}
@@ -387,7 +402,7 @@ html.js .rv.in{opacity:1;transform:none}
   <a href="#price">Стоимость</a>
   <a href="#principles">Почему мы</a>
   <a href="#contacts">Контакты</a>
-  <a class="mtel" href="tel:+79790775777">+7 979 077 5 777</a>
+  <a class="mtel" href="tel:+79790775777">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a>
 </nav>
 
 <main id="main">
@@ -437,10 +452,10 @@ html.js .rv.in{opacity:1;transform:none}
     <div class="hero-eyebrow"><span class="tag">Центр легализации недвижимости</span></div>
     <h1 class="manifest">
       <span class="l1">Мы не консультируем.</span>
-      <span class="l2">Мы&nbsp;<em>легализуем</em>.</span>
+      <span class="l2">Мы&nbsp;<span class="nb"><em>легализуем</em>.</span></span>
     </h1>
     <div class="hero-foot">
-      <p class="hero-lead">Берём на себя весь путь объекта — от полевой геодезии до выписки из ЕГРН. Юристы, кадастровые инженеры и геодезисты в одной команде.</p>
+      <p class="hero-lead">Берём на себя весь путь объекта — от полевой геодезии до выписки из&nbsp;ЕГРН. Юристы, кадастровые инженеры и геодезисты в&nbsp;одной команде.</p>
       <div class="hero-acts">
         <a class="btn btn--solid" href="#contacts">Оформить объект <span class="ar">→</span></a>
         <a class="btn btn--line" href="#verify">Экспресс-проверка</a>
@@ -453,12 +468,12 @@ html.js .rv.in{opacity:1;transform:none}
 <section class="creed" id="situations">
   <div class="creed-head">
     <span class="tag">Узнаёте свою ситуацию</span>
-    <p>Мы специализируемся именно на сложных случаях недвижимости в Ялте и по всему Крыму. Знаком хотя бы один из них — вы по адресу.</p>
+    <p>Мы специализируемся именно на сложных случаях недвижимости в&nbsp;Ялте и по всему Крыму. Знаком хотя бы один из них — вы по&nbsp;адресу.</p>
   </div>
   <div class="kinetic">
     <span class="kline">Построили <em>без документов</em><span class="small">Дом, гараж, пристройка или коммерческий объект без разрешений. Штрафы и угроза сноса — не приговор: легализуем самовольные постройки и реконструкции «под ключ», в том числе через суд.</span></span>
     <span class="kline">Не оформить <em>землю</em><span class="small">Не получается оформить, получить или выкупить участок у администрации? Земельный юрист находит законные решения.</span></span>
-    <span class="kline">Спор по <em>границам</em><span class="small">Забор соседа на вашей территории, наложение участков? Проведём межевание и защитим в суде.</span></span>
+    <span class="kline">Спор по <em>границам</em><span class="small">Забор соседа на вашей территории, наложение участков? Проведём межевание и защитим в&nbsp;суде.</span></span>
     <span class="kline">Отказ <em>Росреестра</em><span class="small">Приостановка или отказ в регистрации прав? Профессионально оспорим незаконное решение.</span></span>
     <span class="kline">Риск в <em>сделке</em><span class="small">Недвижимость — «кот в мешке»? Полная юридическая проверка и безопасное сопровождение купли-продажи.</span></span>
   </div>
@@ -467,12 +482,12 @@ html.js .rv.in{opacity:1;transform:none}
 
 <!-- TRUST-ЧИСЛА в воздухе -->
 <section class="numbers" aria-label="Результаты работы">
-  <span class="tag">Двадцать лет в правовом поле Крыма</span>
+  <span class="tag">Двадцать лет в&nbsp;правовом поле&nbsp;Крыма</span>
   <div class="num-grid">
     <div class="numbox rv"><div class="n">400<sup>+</sup></div><div class="c">объектов<br>зарегистрировано</div></div>
     <div class="numbox rv"><div class="n">20<sup>+</sup></div><div class="c">лет<br>опыта</div></div>
     <div class="numbox rv"><div class="n">250<sup>+</sup></div><div class="c">успешных<br>дел</div></div>
-    <div class="numbox rv"><div class="n">100<sup>+</sup></div><div class="c">млн ₽ ущерба<br>возмещено</div></div>
+    <div class="numbox rv"><div class="n">100<sup>+</sup></div><div class="c">млн&nbsp;₽ ущерба<br>возмещено</div></div>
   </div>
 </section>
 
@@ -544,7 +559,7 @@ html.js .rv.in{opacity:1;transform:none}
   <div class="price-head">
     <div class="ph-l">
       <span class="tag tag--clay">Стоимость · без скрытых платежей</span>
-      <h2>Прозрачная цена фиксируется в договоре</h2>
+      <h2>Прозрачная цена фиксируется в&nbsp;договоре</h2>
     </div>
     <p class="ph-r">Точная стоимость определяется после бесплатного анализа документов и сложности ситуации. Ниже — стартовые ориентиры по ключевым решениям.</p>
   </div>
@@ -552,22 +567,22 @@ html.js .rv.in{opacity:1;transform:none}
     <div class="prow">
       <span class="pi">01</span>
       <div><span class="pname">Оформление «под&nbsp;ключ»</span><span class="pdesc">Полное сопровождение от А до Я: все этапы до зарегистрированного права собственности.</span></div>
-      <span class="pp"><span class="from">от</span>20 000 ₽</span>
+      <span class="pp"><span class="from">от</span>20&nbsp;000&nbsp;₽</span>
     </div>
     <div class="prow">
       <span class="pi">02</span>
       <div><span class="pname">Легализация сложных объектов</span><span class="pdesc">Самострой, узаконивание реконструкций, нестандартные задачи. Превращаем проблемные объекты в ликвидные активы.</span></div>
-      <span class="pp"><span class="from">от</span>60 000 ₽</span>
+      <span class="pp"><span class="from">от</span>60&nbsp;000&nbsp;₽</span>
     </div>
     <div class="prow">
       <span class="pi">03</span>
       <div><span class="pname">Сопровождение сделок и проверка</span><span class="pdesc">Проверка юридической чистоты перед покупкой, безопасное сопровождение купли-продажи.</span></div>
-      <span class="pp"><span class="from">от</span>25 000 ₽</span>
+      <span class="pp"><span class="from">от</span>25&nbsp;000&nbsp;₽</span>
     </div>
     <div class="prow">
       <span class="pi">04</span>
       <div><span class="pname">Защита прав в суде</span><span class="pdesc">Земельные споры, оспаривание границ, признание права собственности, обжалование отказов Росреестра.</span></div>
-      <span class="pp"><span class="from">от</span>50 000 ₽</span>
+      <span class="pp"><span class="from">от</span>50&nbsp;000&nbsp;₽</span>
     </div>
   </div>
   <p class="price-note">// Первичная консультация и анализ документов — бесплатно. Стоимость фиксируется до начала работ.</p>
@@ -577,7 +592,7 @@ html.js .rv.in{opacity:1;transform:none}
 <section class="verify" id="verify">
   <div class="verify-l">
     <span class="tag tag--clay">Экспресс-проверка объекта</span>
-    <h2>Узнайте статус объекта до встречи</h2>
+    <h2>Узнайте статус объекта до&nbsp;встречи</h2>
     <p>Предварительная оценка по кадастровому номеру или адресу. Это первый шаг — полная картина формируется на бесплатной консультации.</p>
   </div>
   <form class="verify-form framed" id="checkForm" novalidate>
@@ -661,8 +676,8 @@ html.js .rv.in{opacity:1;transform:none}
   <p>Доверьте задачу команде, которая специализируется на оформлении и защите недвижимости в Крыму.</p>
   <a class="btn btn--solid" href="tel:+79790775777">Заказать звонок <span class="ar">→</span></a>
   <div class="cta-meta">
-    <span>Телефон <a href="tel:+79790775777">+7 979 077 5 777</a></span>
-    <span>Офис <b>Ялта, ул. Ленинградская, 34</b></span>
+    <span>Телефон <a href="tel:+79790775777">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a></span>
+    <span>Офис <b>Ялта,&nbsp;ул.&nbsp;Ленинградская,&nbsp;34</b></span>
     <span>Telegram <a href="https://t.me/makslegal777" rel="noopener">@makslegal777</a></span>
   </div>
 </section>
