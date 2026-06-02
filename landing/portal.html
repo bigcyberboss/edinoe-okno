@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');try{var _t=localStorage.getItem('oo-theme');if(_t==='dark'||(!_t&&window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark');}catch(e){}</script>
 <title>ЕДИНОЕ ОКНО — оформление и защита недвижимости в Ялте и Крыму</title>
 <meta name="description" content="Единое окно по недвижимости в Ялте и Крыму: легализация самостроя, земля и участки, споры по границам, отказы Росреестра, проверка сделок. Геодезия, кадастр, суд и ЕГРН в одной команде.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,9 +45,9 @@
 html{scroll-behavior:smooth;overflow-x:clip}
 body{
   font-family:var(--font);font-size:var(--fs-body);line-height:1.5;
-  color:var(--ink);background:#F3F6FD;-webkit-font-smoothing:antialiased;overflow-x:clip;position:relative;
+  color:var(--ink);background:#ECF1FC;-webkit-font-smoothing:antialiased;overflow-x:clip;position:relative;
 }
-body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(38% 30% at 86% 15%,rgba(31,80,232,.08),transparent 70%),radial-gradient(42% 32% at 8% 50%,rgba(13,76,211,.06),transparent 72%),radial-gradient(46% 36% at 92% 85%,rgba(121,150,240,.09),transparent 70%)}
+body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(40% 32% at 86% 14%,rgba(31,80,232,.13),transparent 70%),radial-gradient(44% 34% at 6% 48%,rgba(13,76,211,.10),transparent 72%),radial-gradient(48% 38% at 94% 84%,rgba(121,150,240,.14),transparent 70%)}
 h1,h2,h3,h4{line-height:1.14;letter-spacing:-0.01em;text-wrap:balance;overflow-wrap:normal;word-break:keep-all;hyphens:none}
 :lang(ru) h1,:lang(ru) h2,:lang(ru) h3{-webkit-hyphens:none;hyphens:none}
 p{text-wrap:pretty}
@@ -70,15 +70,25 @@ header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.9);-webkit
 .hr{display:flex;align-items:center;gap:16px;flex:none}
 .hphone{font-weight:600;font-size:.95rem;color:var(--ink);white-space:nowrap}
 .hphone:hover{color:var(--blue)}
-.btn-login{position:relative;overflow:hidden;display:inline-flex;align-items:center;height:44px;padding:0 22px;border-radius:var(--r-chip);background:linear-gradient(135deg,#0D4CD3,#1F50E8);color:#fff;font-weight:600;font-size:.95rem;white-space:nowrap;box-shadow:0 6px 18px rgba(13,76,211,.32);transition:transform .2s var(--ease),box-shadow .2s var(--ease),filter .2s var(--ease)}
-.btn-login::after{content:'';position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-18deg);transition:left .6s var(--ease)}
-.btn-login:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(13,76,211,.46);filter:brightness(1.05)}
-.btn-login:hover::after{left:150%}
-.btn-login:active{transform:translateY(0);box-shadow:0 4px 12px rgba(13,76,211,.34)}
+.btn-enter{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:var(--r-chip);background:linear-gradient(135deg,#0D4CD3,#1F50E8);color:#fff;font-weight:600;font-size:.95rem;white-space:nowrap;box-shadow:0 6px 18px rgba(13,76,211,.32);transition:transform .2s var(--ease),box-shadow .2s var(--ease),filter .2s var(--ease)}
+.btn-enter svg{width:18px;height:18px}
+.btn-enter::after{content:'';position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-18deg);transition:left .6s var(--ease)}
+.btn-enter:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(13,76,211,.46);filter:brightness(1.05)}
+.btn-enter:hover::after{left:150%}
+.btn-enter:active{transform:translateY(0);box-shadow:0 4px 12px rgba(13,76,211,.34)}
+.btn-login{display:inline-flex;align-items:center;height:44px;padding:0 20px;border-radius:var(--r-chip);background:var(--tint);color:var(--blue);font-weight:600;font-size:.95rem;white-space:nowrap;transition:background .15s var(--ease),transform .2s var(--ease)}
+.btn-login:hover{background:#DCE8FD;transform:translateY(-1px)}
+.btn-login:active{transform:translateY(0)}
+.theme-toggle{width:44px;height:44px;flex:none;border:1px solid var(--line);background:#fff;border-radius:50%;color:var(--ink-soft);cursor:pointer;display:grid;place-items:center;transition:background .15s var(--ease),color .15s var(--ease),border-color .15s var(--ease),transform .2s var(--ease)}
+.theme-toggle:hover{color:var(--blue);border-color:var(--blue-light);background:var(--tint);transform:translateY(-1px)}
+.theme-toggle svg{width:20px;height:20px}
+.theme-toggle .ic-sun{display:none}
+html.dark .theme-toggle .ic-moon{display:none}
+html.dark .theme-toggle .ic-sun{display:block}
 
 /* ─────────── HERO ─────────── */
-.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#DCE8FD 0%,#E7EFFC 34%,#F2F7FE 66%,#F3F6FD 100%);padding-block:clamp(40px,5vw,76px) clamp(44px,6vw,88px)}
-.hero::before{content:'';position:absolute;inset:-25% -12% -6%;z-index:0;pointer-events:none;background:radial-gradient(42% 50% at 82% 14%,rgba(121,150,240,.46),transparent 70%),radial-gradient(38% 48% at 13% 6%,rgba(13,76,211,.27),transparent 66%),radial-gradient(58% 56% at 50% -8%,rgba(31,80,232,.23),transparent 62%);animation:heroDrift 19s var(--ease) infinite alternate;will-change:transform}
+.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#BAD2FB 0%,#CFE0FC 30%,#E4EEFD 62%,#ECF1FC 100%);padding-block:clamp(40px,5vw,76px) clamp(44px,6vw,88px)}
+.hero::before{content:'';position:absolute;inset:-25% -12% -6%;z-index:0;pointer-events:none;background:radial-gradient(44% 52% at 82% 14%,rgba(121,150,240,.62),transparent 70%),radial-gradient(40% 50% at 13% 6%,rgba(13,76,211,.36),transparent 66%),radial-gradient(58% 56% at 50% -8%,rgba(31,80,232,.32),transparent 62%);animation:heroDrift 19s var(--ease) infinite alternate;will-change:transform}
 @keyframes heroDrift{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(-3.5%,2.5%,0) scale(1.1)}}
 .hero-in{position:relative;z-index:1;max-width:880px;margin:0 auto;text-align:center;padding-inline:var(--pad-x)}
 @keyframes heroIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
@@ -251,6 +261,9 @@ html.js .reveal.in{opacity:1;transform:none}
   .fwrap{grid-template-columns:1fr 1fr}
   .brand-tx{gap:10px}
 }
+@media(max-width:620px){.btn-login{display:none}}
+@media(max-width:520px){.city{display:none}}
+@media(max-width:440px){.btn-enter .btn-tx{display:none}.btn-enter{width:44px;padding:0;gap:0;justify-content:center}}
 @media(max-width:400px){
   .brand-name{font-size:.98rem}
   .city{display:none}
@@ -262,6 +275,45 @@ html.js .reveal.in{opacity:1;transform:none}
   .fcol a{padding-block:4px}
   .cta-contacts a{display:inline-block;padding-block:4px}
 }
+/* ─────────── ТЁМНАЯ ТЕМА ─────────── */
+html.dark{
+  --ink:#EAF1FC; --ink-soft:#9DABC6; --ink-mute:#74819c;
+  --line:#28344E; --line-2:#3A4A6B;
+  --tint:rgba(94,144,242,.16); --tint-2:rgba(94,144,242,.34);
+  --blue:#5E90F2; --blue-light:#3A4E78;
+  --grey:#101C32; --grey-2:#0B1424;
+}
+html.dark body{background:#0A1326}
+html.dark body::before{background:radial-gradient(42% 34% at 86% 14%,rgba(46,107,255,.24),transparent 70%),radial-gradient(46% 36% at 6% 48%,rgba(31,80,232,.18),transparent 72%),radial-gradient(50% 40% at 94% 84%,rgba(94,144,242,.18),transparent 70%)}
+html.dark header{background:rgba(10,19,38,.82);border-bottom-color:var(--line)}
+html.dark .hphone{color:var(--ink)}
+html.dark .theme-toggle{background:#141F39;border-color:#2A3858}
+html.dark .hero{background:linear-gradient(180deg,#0F1D3C 0%,#0C1731 40%,#0A1428 72%,#0A1326 100%)}
+html.dark .hero::before{background:radial-gradient(46% 54% at 82% 14%,rgba(46,107,255,.5),transparent 70%),radial-gradient(42% 50% at 13% 6%,rgba(31,80,232,.42),transparent 66%),radial-gradient(60% 56% at 50% -8%,rgba(94,144,242,.32),transparent 62%)}
+html.dark .hero-eyebrow{background:rgba(94,144,242,.12);border-color:rgba(94,144,242,.34);color:#9FC2FF;box-shadow:none}
+html.dark .hero-tagline b{color:var(--ink)}
+html.dark .searchbar{background:#131F3A;border-color:#2A3858;box-shadow:0 1px 4px rgba(0,0,0,.3),0 16px 34px rgba(0,0,0,.42)}
+html.dark .searchbar:focus-within{border-color:var(--blue);box-shadow:0 0 0 4px rgba(94,144,242,.18)}
+html.dark .searchbar input{color:var(--ink)}
+html.dark .searchbar input::placeholder{color:#6E7C98}
+html.dark .chip{background:#141F39;border-color:#2A3858;color:#D7E0F2;box-shadow:none}
+html.dark .chip:hover{background:rgba(94,144,242,.18);border-color:var(--blue);color:#AFC6FF}
+html.dark .tile,html.dark .svc-list,html.dark .step{background:#121E38;border-color:#27334D}
+html.dark .svc-list{box-shadow:0 12px 30px rgba(0,0,0,.38)}
+html.dark .tile:hover{border-color:rgba(94,144,242,.5);box-shadow:0 16px 34px rgba(0,0,0,.5)}
+html.dark .svc:hover{background:rgba(94,144,242,.08)}
+html.dark .steps{background:linear-gradient(180deg,#0E1B35,#0A1428)}
+html.dark .tile-ic.blue,html.dark .svc-ic,html.dark .why-ic{background:rgba(94,144,242,.16);color:#86ACFF}
+html.dark .tile-ic.teal,html.dark .why-ic.teal{background:rgba(22,160,134,.18);color:#4FD9BB}
+html.dark .tile-ic.amber,html.dark .why-ic.amber{background:rgba(254,200,38,.16);color:#F4C752}
+html.dark .tile-ic.red,html.dark .why-ic.red{background:rgba(238,63,88,.16);color:#FF8497}
+html.dark .step-n{background:linear-gradient(135deg,#2E6BFF,#1F50E8)}
+html.dark .step .tag{background:rgba(94,144,242,.16);color:#9FC2FF}
+html.dark .svc-price{color:#86ACFF}
+html.dark .btn-login:hover{background:rgba(94,144,242,.26)}
+html.dark footer{background:#0A1326;border-top-color:var(--line)}
+html.dark .fcol h4{color:var(--ink-mute)}
+
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto}
   .reveal,.hero-in>*{opacity:1!important;transform:none!important}
@@ -289,7 +341,15 @@ html.js .reveal.in{opacity:1;transform:none}
     </a>
     <div class="hr">
       <a class="hphone" href="tel:+79790775777">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Переключить тёмную тему" title="Светлая / тёмная тема">
+        <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+        <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2 5.9 5.9M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8 5.9 18.1M18.1 5.9l1.7-1.7"/></svg>
+      </button>
       <a class="btn-login" href="#cta">Оставить заявку</a>
+      <a class="btn-enter" href="#top" aria-label="Войти в личный кабинет">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-3.4 4.1-5 7.5-5s6.3 1.6 7.5 5"/></svg>
+        <span class="btn-tx">Войти</span>
+      </a>
     </div>
   </div>
 </header>
@@ -594,6 +654,16 @@ html.js .reveal.in{opacity:1;transform:none}
       es.forEach(function(en){ if(en.isIntersecting){ run(); io.disconnect(); } });
     },{threshold:0.4});
     io.observe(stats);
+  })();
+  // переключатель светлой/тёмной темы (инициализация — в <head>, без мигания)
+  (function(){
+    var root = document.documentElement, btn = document.getElementById('themeToggle');
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      var dark = !root.classList.contains('dark');
+      root.classList.toggle('dark', dark);
+      try{ localStorage.setItem('oo-theme', dark ? 'dark' : 'light'); }catch(e){}
+    });
   })();
 </script>
 <!--VSWITCH--><!-- превью-переключатель вариантов (dev, убрать в проде) -->
