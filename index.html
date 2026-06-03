@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=1">
 </head>
 <body>
 <!-- ШАПКА -->
@@ -83,6 +83,27 @@
       <div><b><span class="cnt" data-to="20">20</span>+</b><span>лет<br>опыта</span></div>
       <div><b><span class="cnt" data-to="250">250</span>+</b><span>успешных<br>дел</span></div>
       <div><b><span class="cnt" data-to="100">100</span>+&nbsp;млн&nbsp;₽</b><span>ущерба<br>возмещено</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ЭКСПРЕСС-АУДИТ -->
+<section class="audit-band">
+  <div class="wrap">
+    <div class="audit-in reveal">
+      <span class="audit-eyebrow">Экспресс-аудит</span>
+      <h2>Проверьте риски вашего объекта за&nbsp;60&nbsp;минут</h2>
+      <p>Введите кадастровый номер или&nbsp;адрес — проверим объект по&nbsp;открытым базам и&nbsp;нашему Telegram-боту с&nbsp;API&nbsp;Росреестра.</p>
+      <form class="searchbar audit-search" id="auditForm" role="search">
+        <span class="search-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        </span>
+        <input id="auditKad" type="text" placeholder="Кадастровый номер или адрес объекта" autocomplete="off" aria-label="Кадастровый номер или адрес объекта">
+        <button class="search-go" type="submit" aria-label="Запустить аудит">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </form>
+      <p class="audit-note">Это предварительная проверка. Точный аудит и&nbsp;официальный запрос проводит специалист.</p>
     </div>
   </div>
 </section>
@@ -310,7 +331,7 @@
   </div>
 </footer>
 
-<script src="assets/app.js"></script>
+<script src="assets/app.js?v=1"></script>
 <script>
 (function(){var b=document.getElementById('burger'),m=document.getElementById('mobnav'),bk=document.getElementById('mobnavBack'),c=document.getElementById('mobnavClose');if(!b)return;function open(){m.classList.add('open');bk.classList.add('open');b.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}function close(){m.classList.remove('open');bk.classList.remove('open');b.setAttribute('aria-expanded','false');document.body.style.overflow='';}b.addEventListener('click',open);c.addEventListener('click',close);bk.addEventListener('click',close);})();
 </script>

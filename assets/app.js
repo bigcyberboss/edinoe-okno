@@ -1,9 +1,16 @@
 // экспресс-проверка — заглушка (бэкенд позже, легальный путь через специалиста)
-  document.getElementById('checkForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    var v = document.getElementById('kad').value.trim();
-    alert(v ? 'Заявка по объекту «'+v+'» принята. Наш специалист свяжется с вами для уточнения и официального запроса.' : 'Введите кадастровый номер, адрес объекта или ваш вопрос.');
-  });
+  (function(){
+    ['checkForm','auditForm'].forEach(function(id){
+      var f = document.getElementById(id);
+      if(!f) return;
+      f.addEventListener('submit', function(e){
+        e.preventDefault();
+        var inp = f.querySelector('input');
+        var v = inp ? inp.value.trim() : '';
+        alert(v ? 'Заявка по объекту «'+v+'» принята. Наш специалист свяжется с вами для уточнения и официального запроса.' : 'Введите кадастровый номер, адрес объекта или ваш вопрос.');
+      });
+    });
+  })();
   // плавное появление секций (фолбэк: нет IO / reduced-motion → показать всё)
   (function(){
     var els = document.querySelectorAll('.reveal');

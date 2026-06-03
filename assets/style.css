@@ -434,3 +434,20 @@ html.dark .contact-card{background:#121E38;border-color:#27334D}
 .contact-card h4{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-mute);margin-bottom:4px}
 .contact-card a,.contact-card span{font-size:1.04rem;font-weight:600;color:var(--ink)}
 .contact-card a:hover{color:var(--blue)}
+
+/* — под-хабы внутри крыла услуг — */
+.subhub{margin-top:clamp(22px,2.6vw,34px);padding-top:clamp(18px,2vw,26px);border-top:1px dashed var(--line-2)}
+.subhub:first-of-type{border-top:none;padding-top:4px;margin-top:14px}
+.subhub-title{font-size:1.2rem;font-weight:800;color:var(--ink);margin-bottom:5px;letter-spacing:-.01em}
+.subhub-lead{font-size:.95rem;color:var(--ink-soft);line-height:1.55;max-width:74ch;margin-bottom:18px}
+
+/* — секция экспресс-аудита (главная) — */
+.audit-band{background:linear-gradient(135deg,#0D4CD3,#1F50E8);position:relative;overflow:hidden}
+html.dark .audit-band{background:linear-gradient(135deg,#0E1B3C,#13245A)}
+.audit-band::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(40% 70% at 88% 10%,rgba(255,255,255,.16),transparent 70%),radial-gradient(36% 64% at 6% 96%,rgba(255,255,255,.10),transparent 72%)}
+.audit-in{position:relative;z-index:1;max-width:760px;margin:0 auto;text-align:center;padding-block:clamp(40px,5vw,68px)}
+.audit-eyebrow{display:inline-block;font-weight:600;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;color:#fff;background:rgba(255,255,255,.16);padding:6px 15px;border-radius:var(--r-chip);margin-bottom:18px}
+.audit-in h2{font-size:var(--fs-h2);font-weight:800;color:#fff;letter-spacing:-.01em;margin-bottom:12px}
+.audit-in>p{color:rgba(255,255,255,.9);font-size:1.04rem;line-height:1.5;max-width:54ch;margin:0 auto 26px}
+.audit-search{margin-bottom:14px!important}
+.audit-note{font-size:.84rem!important;color:rgba(255,255,255,.72)!important;margin:0 auto!important;max-width:46ch}
