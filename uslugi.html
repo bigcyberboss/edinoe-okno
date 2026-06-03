@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add('js');try{var _t=localStorage.getItem('oo-theme');if(_t==='dark'||(!_t&&window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark');}catch(e){}</script>
+<title>Все услуги по недвижимости в Ялте и Крыму — ЕДИНОЕ ОКНО</title>
+<meta name="description" content="Полный спектр услуг: легализация самостроя, земля, кадастр и геодезия, суды, сопровождение сделок. Два направления — Оформить и Защитить.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- ШАПКА -->
+<header>
+  <div class="wrap hwrap">
+    <a class="brand" href="index.html" aria-label="Единое окно">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M12 3v18M3 12h18"/></svg>
+      </span>
+      <span class="brand-tx"><span class="brand-name">ЕДИНОЕ ОКНО</span></span>
+    </a>
+    <nav class="mainnav" aria-label="Основное меню">
+      <a href="uslugi.html">Услуги</a>
+      <a href="o-kompanii.html">О компании</a>
+      <a href="keysy.html">Кейсы</a>
+      <a href="yuristam.html">Юрлицам</a>
+      <a href="kontakty.html">Контакты</a>
+    </nav>
+    <div class="hr">
+      <a class="hphone" href="tel:+79790775777">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Переключить тёмную тему" title="Светлая / тёмная тема">
+        <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+        <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2 5.9 5.9M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8 5.9 18.1M18.1 5.9l1.7-1.7"/></svg>
+      </button>
+      <a class="btn-enter" href="kontakty.html" aria-label="Личный кабинет">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-3.4 4.1-5 7.5-5s6.3 1.6 7.5 5"/></svg>
+        <span class="btn-tx">Войти</span>
+      </a>
+      <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="mobnav-back" id="mobnavBack"></div>
+<aside class="mobnav" id="mobnav" aria-label="Мобильное меню">
+  <div class="mobnav-top"><button class="mobnav-close" id="mobnavClose" type="button" aria-label="Закрыть меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+      <a href="uslugi.html">Услуги</a>
+      <a href="o-kompanii.html">О компании</a>
+      <a href="keysy.html">Кейсы</a>
+      <a href="yuristam.html">Юрлицам</a>
+      <a href="kontakty.html">Контакты</a>
+  <a href="index.html">Главная</a>
+</aside>
+
+
+<!-- SUBHERO -->
+<section class="subhero">
+  <div class="wrap subhero-in">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <a href="index.html">Главная</a>
+      <span class="sep">/</span>
+      <span class="here">Услуги</span>
+    </nav>
+    <span class="tag-aud">Для частных домов</span>
+    <span class="tag-aud biz">Для застройщиков и бизнеса</span>
+    <h1>Все услуги</h1>
+    <p class="lead">Полный спектр работ с недвижимостью в Ялте и по всему Крыму — от поля до записи в ЕГРН и защиты прав в суде. Два направления: <b>Оформить</b> — провести объект через кадастр, градостроительство и регистрацию, и <b>Защитить</b> — отстоять интересы в спорах и провести сделку без рисков.</p>
+  </div>
+</section>
+
+<!-- ОФОРМИТЬ -->
+<div class="block" id="oformit">
+  <div class="wrap">
+    <div class="usl-wing reveal">
+      <div class="usl-wing-head">
+        <span class="usl-wing-badge blue" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M9.5 20v-6h5v6"/></svg>
+        </span>
+        <h2>Оформить</h2>
+        <p>Инженерно-кадастровое производство: ведём объект от поля до ЕГРН.</p>
+      </div>
+
+      <p class="usl-sub">Оформление прав «под ключ»</p>
+      <div class="usl-grid">
+        <a class="usl-card" href="uslugi/legalizaciya-samovolnyh-postroek-samostroev-i-re.html">
+          <h3>Легализация самовольных построек («самостроев») и реконструкций</h3>
+          <p>Ввод в правовое поле жилых домов, коммерческих объектов и пристроек, возведённых без уведомления о начале строительства или с отступлениями.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/dachnaya-i-garazhnaya-amnistiya.html">
+          <h3>Дачная и Гаражная амнистия</h3>
+          <p>Сопровождение упрощённого оформления прав на жилые/садовые дома и гаражи в Ялте и по Крыму. Полный комплекс кадастровых и регистрационных работ.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/pereraspredelenie-zemelnyh-uchastkov.html">
+          <h3>Перераспределение земельных участков</h3>
+          <p>Сопровождение перераспределения и законной «прирезки» участков к госземлям или соседним владениям. Инженерно-кадастровые работы под ключ.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/obrazovanie-uchastka-pod-mkd.html">
+          <h3>Образование участка под МКД</h3>
+          <p>Сопровождение образования и постановки на кадастровый учёт придомовой территории многоквартирных домов в Ялте.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/vykup-zemelnyh-uchastkov-iz-gossobstvennosti.html">
+          <h3>Выкуп земельных участков из госсобственности</h3>
+          <p>Юридическое сопровождение выкупа участков из государственной и муниципальной собственности. Оформление земли под зданиями.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/perevod-pomeschenij-zhiloe-nezhiloe.html">
+          <h3>Перевод помещений (жилое / нежилое)</h3>
+          <p>Сопровождение изменения статуса и перевода квартир и апартаментов в жилой или коммерческий фонд. Согласование проектов.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/uzakonivanie-pereplanirovok.html">
+          <h3>Узаконивание перепланировок</h3>
+          <p>Официальное согласование планируемых или узаконивание выполненных перепланировок квартир и нежилых помещений. Технические и кадастровые работы.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/socialno-pravovaya-podderzhka-uchastnikov-svo-i.html">
+          <h3>Социально-правовая поддержка участников СВО и их семей</h3>
+          <p>Сопровождение оформления прав на недвижимость для участников СВО и их семей в Ялте и по Крыму.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+      </div>
+
+      <p class="usl-sub">Градостроительная документация</p>
+      <div class="usl-grid">
+        <a class="usl-card" href="uslugi/poluchenie-gradostroitelnogo-plana-zemelnogo-uch.html">
+          <h3>Получение Градостроительного плана земельного участка (ГПЗУ)</h3>
+          <p>Оперативное получение ГПЗУ в Ялте и по Крыму. Полный комплекс услуг — от анализа документов до готового плана.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/poluchenie-razresheniya-na-otklonenie-ot-predeln.html">
+          <h3>Получение разрешения на отклонение от предельных параметров</h3>
+          <p>Сопровождение получения разрешения на изменение отступов, этажности и процента застройки. Защита интересов застройщика на публичных слушаниях.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/izmenenie-vida-razreshennogo-ispolzovaniya-vri.html">
+          <h3>Изменение вида разрешённого использования (ВРИ)</h3>
+          <p>Юридическое сопровождение изменения ВРИ и назначения земли. Полный комплекс кадастровых и градостроительных процедур под ключ.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/poluchenie-uvedomlenij-o-stroitelstve-dlya-izhs.html">
+          <h3>Получение уведомлений о строительстве (для ИЖС)</h3>
+          <p>Сопровождение подачи уведомлений о начале и окончании строительства или реконструкции частных и садовых домов. Оформление под ключ.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/razrabotka-dokumentacii-po-planirovke-territorii.html">
+          <h3>Разработка документации по планировке территории (ППТ, ПМТ)</h3>
+          <p>Профессиональная разработка и сопровождение утверждения ППТ и ПМТ в Ялте и по всему Крыму. Для застройщиков и бизнеса.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/vnesenie-izmenenij-v-pzz-i-genplan.html">
+          <h3>Внесение изменений в ПЗЗ и Генплан</h3>
+          <p>Юридическое сопровождение изменения территориальных зон и параметров ПЗЗ / Генплана. Полный комплекс градостроительных услуг.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/poluchenie-razreshenij-na-stroitelstvo-rns-i-vvo.html">
+          <h3>Разрешения на строительство (РНС) и ввод в эксплуатацию (для МКД и коммерции)</h3>
+          <p>Оформление РНС и РНВ для коммерческих объектов, гостиниц и МКД. Полное сопровождение в Министерстве жилищной политики Крыма.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+      </div>
+
+      <p class="usl-sub">Кадастровые работы и техдокументация</p>
+      <div class="usl-grid">
+        <a class="usl-card" href="uslugi/mezhevye-plany-na-zemelnye-uchastki-dlya-obrazov.html">
+          <h3>Межевые планы на земельные участки</h3>
+          <p>Подготовка межевого плана в Ялте: уточнение границ, раздел, объединение, выдел и перераспределение аттестованными кадастровыми инженерами.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/situacionnyj-plan-zemelnogo-uchastka.html">
+          <h3>Ситуационный план земельного участка</h3>
+          <p>Оперативная подготовка ситуационного плана. Схема для газификации («Крымгазсети»), подключения электричества и других коммуникаций.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/shema-raspolozheniya-zemelnogo-uchastka-na-kadas.html">
+          <h3>Схема расположения участка на КПТ</h3>
+          <p>Подготовка схемы расположения земельного участка на кадастровом плане территории. Проектирование границ под выкуп и образование.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/tehnicheskie-plany-na-obekty-kapitalnogo-stroite.html">
+          <h3>Технические планы на объекты капитального строительства</h3>
+          <p>Подготовка технических планов на жилые дома, квартиры и коммерческие здания. Услуги штатных кадастровых инженеров.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/akty-obsledovaniya-dlya-snyatiya-obektov-s-kadas.html">
+          <h3>Акты обследования (снятие с кадастрового учёта)</h3>
+          <p>Подготовка акта обследования в Ялте. Снятие с кадастрового учёта Росреестра прекративших существование домов и зданий.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/poyasnenie-kadastrovogo-inzhenera-ekspertnoe-mne.html">
+          <h3>Пояснение кадастрового инженера</h3>
+          <p>Независимая экспертиза и заключение кадастрового инженера для судов и досудебных споров. Профессионально, с выездом на объект.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+      </div>
+
+      <p class="usl-sub">Геодезические изыскания и обмеры</p>
+      <div class="usl-grid">
+        <a class="usl-card" href="uslugi/kadastrovaya-semka-dlya-podgotovki-mezhevyh-i-te.html">
+          <h3>Кадастровая съёмка</h3>
+          <p>Кадастровая съёмка земельных участков и объектов капстроительства. Высокоточные геодезические измерения для межевых и технических планов.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/topograficheskaya-semka-dlya-proektirovaniya-pol.html">
+          <h3>Топографическая съёмка</h3>
+          <p>Топосъёмка земельных участков в Ялте. Геоподоснова для ГПЗУ, проектирования и подключения к коммуникациям.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/vynos-granic-zemelnogo-uchastka-v-naturu-dlya-op.html">
+          <h3>Вынос границ участка в натуру</h3>
+          <p>Точное восстановление и закрепление поворотных точек межевыми знаками. Определение местоположения участка на местности.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/obmery-zdanij-pomeschenij-kvartir-dlya-podgotovk.html">
+          <h3>Обмеры зданий, помещений, квартир</h3>
+          <p>Обмерные работы в Ялте. Точные поэтажные планы, чертежи и экспликации для проектирования, ремонта и сделок.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ЗАЩИТИТЬ -->
+<div class="block" id="zashchitit">
+  <div class="wrap">
+    <div class="usl-wing reveal">
+      <div class="usl-wing-head">
+        <span class="usl-wing-badge teal" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+        </span>
+        <h2>Защитить</h2>
+        <p>Судебные споры, экспертиза и безопасные сделки: отстаиваем права и проводим сделку без рисков.</p>
+      </div>
+
+      <p class="usl-sub">Судебные споры и защита прав</p>
+      <div class="usl-grid">
+        <a class="usl-card" href="uslugi/legalizaciya-samovolnyh-postroek-samostroev-v-su.html">
+          <h3>Легализация самостроев в судебном порядке</h3>
+          <p>Признание права собственности на самовольные постройки в Ялте и Крыму. Судебная легализация коммерческих объектов и домов под ключ.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/predstavitelstvo-interesov-v-sudah-po-zemelnym-i.html">
+          <h3>Представительство в судах по земельным и имущественным спорам</h3>
+          <p>Защита интересов в судах Крыма по сложным земельным спорам, оспариванию границ, разделу имущества и признанию прав собственности.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/dosudebnoe-uregulirovanie-i-mediaciya.html">
+          <h3>Досудебное урегулирование и медиация</h3>
+          <p>Претензионная работа, медиация и ведение сложных переговоров по земельным и строительным спорам. Разрешение конфликтов без суда.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/provedenie-zemleustroitelnoj-ekspertizy-dlya-sud.html">
+          <h3>Землеустроительная экспертиза</h3>
+          <p>Досудебная и судебная землеустроительная экспертиза. Профессиональное заключение эксперта по спорам о границах.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/oformlenie-i-ustanovlenie-servituta.html">
+          <h3>Оформление и установление сервитута</h3>
+          <p>Оформление права прохода, проезда и прокладки коммуникаций через чужую землю. Судебный и досудебный порядок под ключ.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/vydelenie-doli-v-nature.html">
+          <h3>Выделение доли в натуре</h3>
+          <p>Поможем выделить долю в частном доме или коммерческом здании в Ялте — через суд или по соглашению. Юридические и кадастровые услуги.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/snizhenie-kadastrovoj-stoimosti-obektov.html">
+          <h3>Снижение кадастровой стоимости объектов</h3>
+          <p>Оптимизация налога на имущество и землю через комиссию МИЗО и суд. Снижение кадастровой стоимости коммерческой и жилой недвижимости.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/soprovozhdenie-v-administrativnyh-organah-rosree.html">
+          <h3>Сопровождение в административных органах</h3>
+          <p>Представление интересов в Росреестре, Администрации Ялты, БТИ и Госкомрегистре Крыма. Оформление документов и получение результата.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+      </div>
+
+      <p class="usl-sub">Безопасные сделки и Due Diligence</p>
+      <div class="usl-grid">
+        <a class="usl-card" href="uslugi/pravovaya-ekspertiza-obekta-pered-pokupkoj-due-d.html">
+          <h3>Правовая экспертиза объекта перед покупкой (Due Diligence)</h3>
+          <p>Проверка юридической чистоты квартир, домов, участков и коммерции перед покупкой. Полный аудит рисков, арестов, ЗОУИТ и банкротств.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/polnoe-yuridicheskoe-soprovozhdenie-sdelok-kupli.html">
+          <h3>Сопровождение сделок купли-продажи и аренды</h3>
+          <p>Безопасное сопровождение сделок купли-продажи, дарения, мены и долгосрочной аренды недвижимости. Разработка договоров, контроль расчётов.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/soprovozhdenie-i-registraciya-ipotechnyh-sdelok.html">
+          <h3>Сопровождение и регистрация ипотечных сделок</h3>
+          <p>Полное сопровождение ипотечных сделок: экспертиза кредитных договоров, верификация объекта для банков, взаимодействие с Росреестром.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+        <a class="usl-card" href="uslugi/soprovozhdenie-investicionnyh-proektov-v-stroite.html">
+          <h3>Сопровождение инвестиционных проектов в строительстве</h3>
+          <p>Комплексное сопровождение девелоперских и строительных проектов в Ялте и Крыму. От Due Diligence участка до ввода в эксплуатацию.</p>
+          <span class="usl-go">Подробнее →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta wrap">
+  <div class="cta-card reveal">
+    <h2>Не нашли свою задачу?</h2>
+    <p>Перечень шире, чем эта страница. Опишите ситуацию с объектом или участком — подберём маршрут оформления или защиты под ваш случай.</p>
+    <a class="btn-primary" href="kontakty.html">Получить консультацию →</a>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="fwrap">
+      <div class="fcol fbrand">
+        <div class="fbrand-row">
+          <span class="brand-mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M12 3v18M3 12h18"/></svg></span>
+          <span class="brand-name">ЕДИНОЕ ОКНО</span>
+        </div>
+        <p>Центр оформления и&nbsp;защиты недвижимости в&nbsp;Ялте и&nbsp;по&nbsp;всему Крыму.</p>
+      </div>
+      <div class="fcol">
+        <h4>Услуги</h4>
+        <a href="uslugi.html">Все услуги</a>
+        <a href="uslugi.html#oformit">Оформить</a>
+        <a href="uslugi.html#zashchitit">Защитить</a>
+        <a href="yuristam.html">Юридическим лицам</a>
+      </div>
+      <div class="fcol">
+        <h4>Компания</h4>
+        <a href="o-kompanii.html">О нас</a>
+        <a href="keysy.html">Кейсы и практика</a>
+        <a href="kontakty.html">Контакты</a>
+      </div>
+      <div class="fcol">
+        <h4>Документы</h4>
+        <a href="#privacy">Политика конфиденциальности</a>
+        <a href="#terms">Согласие на обработку ПД</a>
+        <a href="#requisites">Реквизиты</a>
+      </div>
+      <div class="fcol">
+        <h4>Контакты</h4>
+        <a href="tel:+79790775777">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a>
+        <span class="fitem">Ялта, ул.&nbsp;Ленинградская,&nbsp;34</span>
+        <a href="https://t.me/makslegal777" target="_blank" rel="noopener">@makslegal777</a>
+      </div>
+    </div>
+    <div class="fbottom">
+      <span class="copy">© 2026 ЕДИНОЕ ОКНО · одно-окно.рф</span>
+      <span class="disclaimer">ЕДИНОЕ ОКНО — частная юридическая компания. Не является государственным органом и&nbsp;не связана с&nbsp;порталом «Госуслуги».</span>
+    </div>
+  </div>
+</footer>
+<script src="assets/app.js"></script>
+<script>
+(function(){var b=document.getElementById('burger'),m=document.getElementById('mobnav'),bk=document.getElementById('mobnavBack'),c=document.getElementById('mobnavClose');if(!b)return;function open(){m.classList.add('open');bk.classList.add('open');b.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}function close(){m.classList.remove('open');bk.classList.remove('open');b.setAttribute('aria-expanded','false');document.body.style.overflow='';}b.addEventListener('click',open);c.addEventListener('click',close);bk.addEventListener('click',close);})();
+</script>
+<script>(function(){var f=(location.pathname.split('/').pop()||'index.html');var u=location.pathname.indexOf('/uslugi/')>-1;document.querySelectorAll('.mainnav a,.mobnav a').forEach(function(a){var h=(a.getAttribute('href')||'').split('/').pop();if(h===f||(u&&h==='uslugi.html'))a.classList.add('cur');});})();</script>
+</body>
+</html>
