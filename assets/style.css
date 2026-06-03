@@ -311,10 +311,11 @@ html.dark .fcol h4{color:var(--ink-mute)}
 
 /* — навигация в шапке — */
 .mainnav{display:flex;align-items:center;gap:4px}
-.mainnav a{position:relative;padding:9px 13px;border-radius:9px;font-size:.95rem;font-weight:500;color:var(--ink-soft);white-space:nowrap;transition:color .15s var(--ease),background .15s var(--ease)}
+.mainnav a{position:relative;padding:9px 13px;border-radius:9px;font-size:.95rem;font-weight:600;color:var(--ink);white-space:nowrap;transition:color .15s var(--ease),background .15s var(--ease)}
+.mainnav a::after{content:'';position:absolute;left:13px;right:13px;bottom:5px;height:2px;border-radius:2px;background:var(--blue);transform:scaleX(0);transform-origin:center;transition:transform .2s var(--ease)}
 .mainnav a:hover{color:var(--blue);background:var(--tint)}
-.mainnav a.cur{color:var(--blue);font-weight:600}
-.mainnav a.cur::after{content:'';position:absolute;left:13px;right:13px;bottom:2px;height:2px;border-radius:2px;background:var(--blue)}
+.mainnav a:hover::after,.mainnav a.cur::after{transform:scaleX(1)}
+.mainnav a.cur{color:var(--blue)}
 .burger{display:none;width:44px;height:44px;flex:none;border:1px solid var(--line);background:#fff;border-radius:11px;color:var(--ink);cursor:pointer;place-items:center}
 .burger svg{width:22px;height:22px}
 html.dark .burger{background:#141F39;border-color:#2A3858}
