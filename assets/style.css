@@ -387,7 +387,7 @@ html.dark .usl-card{background:#121E38;border-color:#27334D}
 .usl-sub{font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-mute);margin:6px 0 10px}
 
 /* — тарифные планы (юрлица) — */
-.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.4vw,16px);align-items:start}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.4vw,16px);align-items:stretch}
 .plan{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--r-card);padding:clamp(20px,2vw,26px);transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s var(--ease)}
 html.dark .plan{background:#121E38;border-color:#27334D}
 .plan:hover{transform:translateY(-3px);box-shadow:var(--sh-hover)}
@@ -451,3 +451,8 @@ html.dark .audit-band{background:linear-gradient(135deg,#0E1B3C,#13245A)}
 .audit-in>p{color:rgba(255,255,255,.9);font-size:1.04rem;line-height:1.5;max-width:54ch;margin:0 auto 26px}
 .audit-search{margin-bottom:14px!important}
 .audit-note{font-size:.84rem!important;color:rgba(255,255,255,.72)!important;margin:0 auto!important;max-width:46ch}
+
+/* — тариф: метка над значением, без уродливых переносов — */
+.plan-feats li{line-height:1.4}
+.plan-feats li .pf-l{display:block;color:var(--ink-soft);font-size:.86rem}
+.plan-feats li b{display:block;margin-top:1px;color:var(--ink);font-weight:700;font-size:.92rem;text-wrap:pretty;overflow-wrap:break-word}
