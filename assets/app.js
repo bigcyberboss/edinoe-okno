@@ -55,6 +55,12 @@
     btn.addEventListener('click', function(){
       var dark = !root.classList.contains('dark');
       root.classList.toggle('dark', dark);
+      root.style.colorScheme = dark ? 'dark' : 'light';
       try{ localStorage.setItem('oo-theme', dark ? 'dark' : 'light'); }catch(e){}
+      // Safari: принудительная перерисовка fixed/композитных слоёв (фон «застревал» в старой теме)
+      var b = document.body, prev = b.style.display;
+      b.style.display = 'none';
+      void b.offsetHeight;
+      b.style.display = prev;
     });
   })();

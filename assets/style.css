@@ -1,4 +1,4 @@
-:root{
+:root{color-scheme:light;
   --blue:#0D4CD3; --blue-hover:#0A39CA; --blue-press:#0E38BA;
   --blue-2:#1F50E8; --blue-light:#7996F0;
   --tint:#EBF2FC; --tint-2:#E4ECFD;
@@ -264,7 +264,7 @@ html.js .reveal.in{opacity:1;transform:none}
   .cta-contacts a{display:inline-block;padding-block:4px}
 }
 /* ─────────── ТЁМНАЯ ТЕМА ─────────── */
-html.dark{
+html.dark{color-scheme:dark;
   --ink:#EAF1FC; --ink-soft:#9DABC6; --ink-mute:#74819c;
   --line:#28344E; --line-2:#3A4A6B;
   --tint:rgba(94,144,242,.16); --tint-2:rgba(94,144,242,.34);
