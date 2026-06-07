@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=PT+Root+UI:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/pages.css?v=3">
+<link rel="stylesheet" href="assets/pages.css?v=4">
 </head>
 <body>
 
@@ -81,10 +81,22 @@
         <span class="stamp on-dark">Заявка</span>
         <h2>Экспресс-анализ объекта</h2>
         <form class="oo-ajax-form" id="checkForm">
-          <div class="oo-form-group"><input type="text" name="oo-name" placeholder="Ваше имя / организация" required></div>
-          <div class="oo-form-group"><input type="tel" name="oo-phone" placeholder="+7 (___) ___-__-__" required></div>
-          <div class="oo-form-group"><input type="text" name="oo-cadastre" placeholder="Кадастровый номер или адрес объекта (при наличии)"></div>
-          <div class="oo-form-group"><textarea name="oo-message" placeholder="Кратко опишите задачу — легализовать пристройку, топосъёмка под газ, межевой план…"></textarea></div>
+          <div class="oo-form-group">
+            <label for="f-name">Ваше имя или организация <span class="req">*</span></label>
+            <input id="f-name" type="text" name="oo-name" placeholder="Иван Петров / ООО «Ромашка»" required>
+          </div>
+          <div class="oo-form-group">
+            <label for="f-phone">Телефон для связи <span class="req">*</span></label>
+            <input id="f-phone" type="tel" name="oo-phone" placeholder="+7 (___) ___-__-__" required>
+          </div>
+          <div class="oo-form-group">
+            <label for="f-cad">Кадастровый номер или адрес <span>(если есть)</span></label>
+            <input id="f-cad" type="text" name="oo-cadastre" placeholder="90:25:010101:123 или Ялта, ул.…">
+          </div>
+          <div class="oo-form-group">
+            <label for="f-msg">Опишите задачу</label>
+            <textarea id="f-msg" name="oo-message" placeholder="Легализовать пристройку, топосъёмка под газ, межевой план…"></textarea>
+          </div>
           <button type="submit" class="oo-btn-submit">Отправить на экспресс-анализ</button>
           <p class="contact-note">Нажимая кнопку, вы&nbsp;соглашаетесь на&nbsp;обработку персональных данных.</p>
         </form>
@@ -92,6 +104,7 @@
     </div>
   </div>
 </section>
+
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
