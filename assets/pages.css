@@ -10,7 +10,7 @@
   --axis:-7deg; --pad:clamp(20px,5.5vw,96px); --rule:6px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip;scroll-padding-top:96px}
 body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.55;overflow-x:clip;position:relative;-webkit-font-smoothing:antialiased}
 body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");mix-blend-mode:multiply}
 img,svg{display:block}
@@ -22,7 +22,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:700;text-transform:uppercase;
 .axis-line{position:absolute;top:0;bottom:0;left:50%;width:clamp(28px,3.4vw,52px);background:var(--red);transform:translateX(40vw) rotate(var(--axis));transform-origin:top center;z-index:0;mix-blend-mode:multiply;opacity:.9;pointer-events:none}
 
 /* ───── ШАПКА ───── */
-header{position:relative;z-index:30;border-bottom:var(--rule) solid var(--ink);background:var(--paper)}
+header{position:sticky;top:0;z-index:30;border-bottom:var(--rule) solid var(--ink);background:var(--paper)}
 .hwrap{display:flex;align-items:stretch;justify-content:space-between;gap:12px}
 .brand{display:flex;align-items:center;gap:13px;padding:14px 0;min-width:0}
 .brand-mark{width:46px;height:46px;flex:none;display:flex;align-items:center;justify-content:center}

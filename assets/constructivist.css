@@ -17,7 +17,7 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip;scroll-padding-top:96px}
 body{
   font-family:var(--body);
   background:var(--paper);
@@ -74,7 +74,7 @@ h1,h2,h3{
 
 /* ─────────── ХЕДЕР ─────────── */
 header{
-  position:relative;z-index:30;
+  position:sticky;top:0;z-index:30;
   border-bottom:var(--rule) solid var(--ink);
   background:var(--paper);
 }
