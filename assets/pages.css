@@ -189,10 +189,11 @@ a.contact-row.phone:hover .cv{color:var(--red-deep)}
 .contact-formbox label{display:block;font-family:var(--mono);font-weight:500;font-size:.64rem;text-transform:uppercase;letter-spacing:.15em;color:color-mix(in srgb,var(--paper) 70%,transparent);margin-bottom:8px}
 .contact-formbox label span{color:color-mix(in srgb,var(--paper) 42%,transparent)}
 .contact-formbox label .req{color:var(--red)}
-.contact-formbox input,.contact-formbox textarea{width:100%;background:color-mix(in srgb,var(--paper) 7%,transparent);border:1.5px solid color-mix(in srgb,var(--paper) 28%,transparent);color:var(--paper);font-family:var(--mono);font-weight:500;font-size:clamp(.95rem,1.3vw,1.05rem);padding:13px 14px;letter-spacing:.02em;transition:border-color .15s,background .15s}
+.contact-formbox input,.contact-formbox textarea{width:100%;background:color-mix(in srgb,var(--paper) 11%,transparent);border:1.5px solid color-mix(in srgb,var(--paper) 26%,transparent);border-left:4px solid var(--red);color:var(--paper);font-family:var(--mono);font-weight:500;font-size:clamp(.95rem,1.3vw,1.05rem);padding:14px 16px;letter-spacing:.02em;transition:border-color .15s,background .15s,box-shadow .15s}
 .contact-formbox textarea{min-height:104px;font-family:var(--body);font-weight:400;resize:vertical}
-.contact-formbox input::placeholder,.contact-formbox textarea::placeholder{color:color-mix(in srgb,var(--paper) 38%,transparent)}
-.contact-formbox input:focus,.contact-formbox textarea:focus{outline:none;border-color:var(--red);background:color-mix(in srgb,var(--paper) 12%,transparent)}
+.contact-formbox input::placeholder,.contact-formbox textarea::placeholder{color:color-mix(in srgb,var(--paper) 52%,transparent)}
+.contact-formbox input:hover,.contact-formbox textarea:hover{background:color-mix(in srgb,var(--paper) 15%,transparent);border-color:color-mix(in srgb,var(--paper) 40%,transparent);border-left-color:var(--red)}
+.contact-formbox input:focus,.contact-formbox textarea:focus{outline:none;border-color:var(--red);background:color-mix(in srgb,var(--paper) 18%,transparent);box-shadow:inset 0 0 0 1px var(--red)}
 .contact-formbox .oo-btn-submit{width:100%;justify-content:center;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(.95rem,1.2vw,1.1rem);padding:18px 28px;margin-top:8px;background:var(--red);color:var(--paper);border:none;cursor:pointer;transition:background .15s,transform .12s}
 .contact-formbox .oo-btn-submit:hover{background:var(--paper);color:var(--ink);transform:translateY(-2px)}
 .contact-note{font-family:var(--body);font-size:.84rem;color:color-mix(in srgb,var(--paper) 60%,transparent);margin-top:16px;line-height:1.45}
