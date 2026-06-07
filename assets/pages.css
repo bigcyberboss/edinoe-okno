@@ -23,6 +23,13 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:700;text-transform:uppercase;
 
 /* ───── ШАПКА ───── */
 header{position:sticky;top:0;z-index:30;border-bottom:var(--rule) solid var(--ink);background:var(--paper)}
+/* полоса прогресса прокрутки — растёт по нижней кромке шапки */
+.scroll-prog{position:absolute;left:0;bottom:-6px;height:6px;width:0;background:var(--red);z-index:5;transition:width .08s linear;pointer-events:none}
+/* кнопка «наверх» */
+.to-top{position:fixed;right:clamp(16px,2.4vw,32px);bottom:clamp(16px,2.4vw,32px);width:52px;height:52px;background:var(--ink);color:var(--paper);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:45;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .2s,transform .2s,background .15s}
+.to-top.show{opacity:1;visibility:visible;transform:none}
+.to-top:hover{background:var(--red);transform:translateY(-3px)}
+.to-top svg{width:24px;height:24px}
 .hwrap{display:flex;align-items:stretch;justify-content:space-between;gap:12px}
 .brand{display:flex;align-items:center;gap:13px;padding:14px 0;min-width:0}
 .brand-mark{width:46px;height:46px;flex:none;display:flex;align-items:center;justify-content:center}
@@ -160,12 +167,33 @@ header{position:sticky;top:0;z-index:30;border-bottom:var(--rule) solid var(--in
 .step p{font-family:var(--body);font-size:.9rem;color:var(--ink-soft);line-height:1.45}
 
 /* ───── КОНТАКТЫ (форма) ───── */
-.formwrap,.oo-contact-form-holder{border:var(--rule) solid var(--ink);padding:clamp(22px,2.8vw,40px);background:var(--paper-2)}
-.contact-card{display:flex;align-items:center;gap:16px;padding:clamp(16px,2vw,24px) 0;border-bottom:1px solid color-mix(in srgb,var(--ink) 22%,transparent)}
-.ci{width:46px;height:46px;flex:none;color:var(--red);display:flex;align-items:center;justify-content:center}
-.ci svg{width:100%;height:100%}
-.contact-card .ck{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.16em;color:var(--ink-soft);display:block;margin-bottom:3px}
-.contact-card .cv,.contact-card b{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(1rem,1.5vw,1.3rem);color:var(--ink);line-height:1.05}
+.stamp{font-family:var(--mono);font-weight:500;font-size:.7rem;text-transform:uppercase;letter-spacing:.28em;color:var(--red-deep);display:block}
+.stamp.on-dark{color:var(--red)}
+/* двухколоночная секция контактов: реквизиты | форма на тёмном */
+.contact-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:0;border-top:var(--rule) solid var(--ink)}
+.contact-info{padding:clamp(28px,3.4vw,56px) clamp(28px,3.4vw,64px) clamp(28px,3.4vw,56px) 0}
+.contact-info .stamp{margin-bottom:clamp(20px,2.4vw,32px)}
+.contact-row{display:block;padding:clamp(16px,2vw,26px) 0;border-bottom:1px solid color-mix(in srgb,var(--ink) 22%,transparent);transition:padding-left .15s,background .15s}
+.contact-row:first-of-type{border-top:1px solid color-mix(in srgb,var(--ink) 22%,transparent)}
+a.contact-row:hover{padding-left:14px}
+.contact-row .ck{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.18em;color:var(--ink-soft);display:block;margin-bottom:6px}
+.contact-row .cv{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(1.1rem,1.8vw,1.5rem);color:var(--ink);line-height:1.02;display:block}
+.contact-row.phone .cv{font-size:clamp(1.9rem,3.6vw,3rem);color:var(--red);letter-spacing:-.01em}
+a.contact-row:hover .cv{color:var(--red)}
+a.contact-row.phone:hover .cv{color:var(--red-deep)}
+/* форма на тёмном (как экспресс-проверка на главной) */
+.contact-formbox{background:var(--ink);color:var(--paper);padding:clamp(26px,3.2vw,52px);position:relative}
+.contact-formbox .stamp{margin-bottom:14px}
+.contact-formbox h2,.contact-formbox .oo-form-h4{font-family:var(--display);font-weight:700;text-transform:uppercase;color:var(--paper);font-size:clamp(1.5rem,2.8vw,2.4rem);line-height:.96;margin-bottom:clamp(20px,2.4vw,32px);letter-spacing:-.01em}
+.contact-formbox .oo-form-group{margin-bottom:clamp(16px,2vw,24px)}
+.contact-formbox input,.contact-formbox textarea{width:100%;background:transparent;border:none;border-bottom:2px solid color-mix(in srgb,var(--paper) 55%,transparent);color:var(--paper);font-family:var(--mono);font-weight:500;font-size:clamp(.96rem,1.4vw,1.1rem);padding:10px 0 12px;letter-spacing:.02em}
+.contact-formbox textarea{border:2px solid color-mix(in srgb,var(--paper) 40%,transparent);padding:12px;min-height:120px;font-family:var(--body);font-weight:400;resize:vertical}
+.contact-formbox input::placeholder,.contact-formbox textarea::placeholder{color:color-mix(in srgb,var(--paper) 42%,transparent)}
+.contact-formbox input:focus,.contact-formbox textarea:focus{outline:none;border-color:var(--red)}
+.contact-formbox .oo-btn-submit{width:100%;justify-content:center;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(.95rem,1.2vw,1.1rem);padding:18px 28px;margin-top:8px;background:var(--red);color:var(--paper);border:none;cursor:pointer;transition:background .15s,transform .12s}
+.contact-formbox .oo-btn-submit:hover{background:var(--paper);color:var(--ink);transform:translateY(-2px)}
+.contact-note{font-family:var(--body);font-size:.84rem;color:color-mix(in srgb,var(--paper) 60%,transparent);margin-top:16px;line-height:1.45}
+@media(max-width:860px){.contact-split{grid-template-columns:1fr}.contact-info{padding-right:0;padding-bottom:8px}}
 .oo-form-group{margin-bottom:18px}
 .oo-form-h4,.formwrap label,.oo-form-group label{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.16em;color:var(--ink-soft);display:block;margin-bottom:8px}
 .formwrap input,.formwrap textarea,.oo-form-group input,.oo-form-group textarea,.oo-form-group select{width:100%;background:transparent;border:none;border-bottom:3px solid var(--ink);color:var(--ink);font-family:var(--mono);font-weight:700;font-size:clamp(1rem,1.6vw,1.25rem);padding:8px 0 12px}

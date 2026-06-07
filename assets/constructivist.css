@@ -78,6 +78,11 @@ header{
   border-bottom:var(--rule) solid var(--ink);
   background:var(--paper);
 }
+.scroll-prog{position:absolute;left:0;bottom:-6px;height:6px;width:0;background:var(--red);z-index:5;transition:width .08s linear;pointer-events:none}
+.to-top{position:fixed;right:clamp(16px,2.4vw,32px);bottom:clamp(16px,2.4vw,32px);width:52px;height:52px;background:var(--ink);color:var(--paper);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:45;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .2s,transform .2s,background .15s}
+.to-top.show{opacity:1;visibility:visible;transform:none}
+.to-top:hover{background:var(--red);transform:translateY(-3px)}
+.to-top svg{width:24px;height:24px}
 .bar{display:flex;align-items:stretch;justify-content:space-between;gap:12px}
 .logo{
   display:flex;align-items:center;gap:14px;padding:16px 0;min-width:0;
