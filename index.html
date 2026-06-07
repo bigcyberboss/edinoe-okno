@@ -391,5 +391,45 @@
 </script>
 <button class="to-top" id="toTop" type="button" aria-label="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <script>(function(){var p=document.getElementById('scrollProg'),t=document.getElementById('toTop'),h=document.documentElement;function u(){var st=h.scrollTop||document.body.scrollTop,sh=h.scrollHeight-h.clientHeight,pc=sh>0?(st/sh*100):0;if(p)p.style.width=pc+'%';if(t)t.classList.toggle('show',st>400);}window.addEventListener('scroll',u,{passive:true});window.addEventListener('resize',u);u();if(t)t.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script>
+<!--VSWITCH-->
+<div id="vswitch" aria-label="Переключатель вариантов дизайна">
+  <button id="vswitch-t" type="button" aria-expanded="true" title="Свернуть/развернуть">варианты</button>
+  <div id="vswitch-list">
+      <a href="index.html" data-m="construct" style="background:#16a34a;color:#fff;font-weight:800">★ Конструктивизм</a>
+      <a href="landing/index.html" data-m="index">01 · Индустриальный</a>
+      <a href="landing/govtech.html" data-m="govtech">08 · Gov-tech</a>
+      <a href="landing/hybrid.html" data-m="hybrid">10 · Гибрид · госреестр</a>
+      <a href="landing/_archive/swiss.html" data-m="swiss">Swiss</a>
+      <a href="landing/_archive/broadsheet.html" data-m="broadsheet">Broadsheet</a>
+      <a href="landing/_archive/brutalist.html" data-m="brutalist">Brutalist</a>
+      <a href="landing/_archive/cinematic.html" data-m="cinematic">Cinematic</a>
+      <a href="landing/_archive/ma.html" data-m="ma">Ma</a>
+      <a href="landing/_archive/v2-command.html" data-m="v2-command">v2 · Command</a>
+      <a href="landing/_archive/v3-geo.html" data-m="v3-geo">v3 · Geo</a>
+      <a href="landing/_archive/v4-dossier.html" data-m="v4-dossier">v4 · Dossier</a>
+      <a href="landing/_archive/v5-crimea.html" data-m="v5-crimea">v5 · Crimea</a>
+      <a href="landing/_archive/v6-registry.html" data-m="v6-registry">v6 · Registry</a>
+      <a href="landing/_archive/v7-manifest.html" data-m="v7-manifest">v7 · Manifest</a>
+      <a href="landing/_archive/v8-transform.html" data-m="v8-transform">v8 · Transform</a>
+  </div>
+</div>
+<style>
+#vswitch{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:2147483000;display:flex;align-items:center;gap:6px;max-width:96vw;font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(9,13,20,.92);color:#e8edf4;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 8px;box-shadow:0 10px 34px -10px rgba(0,0,0,.65)}
+#vswitch *{box-sizing:border-box}
+#vswitch-t{all:unset;cursor:pointer;padding:7px 11px;border-radius:999px;color:#9aa6b4;white-space:nowrap;letter-spacing:.04em;text-transform:uppercase;font-size:11px}
+#vswitch-t:hover{color:#fff}
+#vswitch-list{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+#vswitch-list::-webkit-scrollbar{display:none}
+#vswitch a{all:unset;cursor:pointer;padding:7px 12px;border-radius:999px;white-space:nowrap;color:#cdd6e0;transition:background .15s,color .15s}
+#vswitch a:hover{background:rgba(255,255,255,.1);color:#fff}
+#vswitch a.cur{background:#cf2417;color:#fff;font-weight:800}
+#vswitch.collapsed #vswitch-list{display:none}
+@media(max-width:640px){#vswitch{bottom:10px;font-size:11px;padding:5px 6px}#vswitch a{padding:6px 9px}}
+@media print{#vswitch{display:none}}
+</style>
+<script>
+(function(){var w=document.getElementById('vswitch');if(!w)return;var p=location.pathname;var f=(p.split('/').pop()||'index.html').replace('.html','');var cur=p.indexOf('/landing/')<0?'construct':f;var a=w.querySelectorAll('a[data-m]');for(var i=0;i<a.length;i++){if(a[i].getAttribute('data-m')===cur)a[i].classList.add('cur');}var t=document.getElementById('vswitch-t');try{if(localStorage.getItem('vswitch-collapsed')==='1')w.classList.add('collapsed');}catch(e){}t.addEventListener('click',function(){w.classList.toggle('collapsed');var c=w.classList.contains('collapsed');t.setAttribute('aria-expanded',String(!c));try{localStorage.setItem('vswitch-collapsed',c?'1':'0');}catch(e){}});})();
+</script>
+<!--/VSWITCH-->
 </body>
 </html>

@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ЕДИНОЕ ОКНО — легализация недвижимости. Ялта, Крым</title>
+<meta name="description" content="Мы не консультируем. Мы легализуем. Оформление и судебная защита недвижимости в Ялте и Крыму: самострой, земля, границы, отказы Росреестра. Юристы, кадастровые инженеры, геодезисты.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@200;300;400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:      oklch(0.972 0.006 85);
+  --paper-deep: oklch(0.955 0.007 84);
+  --stone:      oklch(0.30 0.012 60);
+  --stone-soft: oklch(0.46 0.012 68);
+  --stone-mute: oklch(0.58 0.010 72);
+  --hair:       oklch(0.875 0.006 80);
+  --hair-soft:  oklch(0.915 0.005 82);
+  --indigo:     oklch(0.45 0.072 265);
+
+  --sans: 'Onest', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+
+  --margin: clamp(22px, 9vw, 168px);
+  --rhythm: clamp(120px, 22vh, 240px);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:clamp(0.875rem, 0.83rem + 0.18vw, 0.98rem);
+  line-height:1.85;
+  letter-spacing:0.005em;
+  color:var(--stone);
+  background:var(--paper);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+::selection{background:oklch(0.45 0.072 265 / 0.14);color:var(--stone)}
+a{color:inherit;text-decoration:none}
+svg{display:block}
+
+/* ── техническая подпись пустоты: моно-метки ── */
+.tag{
+  font-family:var(--mono);
+  font-weight:400;
+  font-size:0.66rem;
+  text-transform:uppercase;
+  letter-spacing:0.22em;
+  color:var(--stone-mute);
+  font-feature-settings:"tnum";
+}
+.kanji{
+  font-family:var(--sans);
+  font-weight:200;
+  color:var(--indigo);
+  font-feature-settings:normal;
+}
+
+/* ── сквозная вертикальная линия-поле, «край листа» ── */
+.spine{
+  position:fixed;
+  top:0;bottom:0;
+  left:var(--margin);
+  width:1px;
+  background:var(--hair);
+  z-index:1;
+  transform:translateX(-0.5px);
+  pointer-events:none;
+}
+.spine::before{
+  content:"間";
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:var(--sans);
+  font-weight:200;
+  font-size:0.9rem;
+  color:var(--indigo);
+  background:var(--paper);
+  padding:14px 0;
+  opacity:0.55;
+}
+@media(max-width:760px){.spine{display:none}}
+
+/* ── общий контейнер: контент живёт правее линии-поля ── */
+.pad{padding-left:var(--margin);padding-right:var(--margin)}
+.content{max-width:1180px}
+
+/* горизонтальный волосок-разделитель секции */
+.divline{
+  height:1px;
+  background:var(--hair);
+  transform-origin:left center;
+  margin-left:var(--margin);
+  margin-right:var(--margin);
+}
+
+/* ── ШАПКА: не sticky-бар, а тихая строка-колонтитул ── */
+.masthead{
+  position:relative;z-index:3;
+  display:flex;align-items:baseline;justify-content:space-between;
+  gap:24px;
+  padding:clamp(28px,4vh,52px) var(--margin) clamp(20px,3vh,30px);
+  flex-wrap:wrap;
+}
+.masthead .lockup{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
+.wordmark{
+  font-family:var(--sans);font-weight:300;
+  font-size:clamp(0.95rem,0.9rem+0.3vw,1.12rem);
+  letter-spacing:0.42em;
+  text-indent:0.42em;
+  color:var(--stone);
+  text-transform:uppercase;
+}
+.masthead .coord{display:none}
+@media(min-width:980px){.masthead .coord{display:block}}
+.masthead nav{display:flex;gap:clamp(18px,2.4vw,40px);flex-wrap:wrap}
+.masthead nav a{
+  font-family:var(--mono);font-size:0.66rem;
+  text-transform:uppercase;letter-spacing:0.18em;
+  color:var(--stone-mute);
+  position:relative;padding-bottom:3px;
+  transition:color .4s var(--ease);
+}
+.masthead nav a::after{
+  content:"";position:absolute;left:0;bottom:0;
+  width:100%;height:1px;background:var(--indigo);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .4s var(--ease);
+}
+.masthead nav a:hover,.masthead nav a:focus-visible{color:var(--stone)}
+.masthead nav a:hover::after,.masthead nav a:focus-visible::after{transform:scaleX(1)}
+
+/* ── HERO: 70%+ пустого поля, одиночный жест смещён к трети ── */
+.stage{
+  position:relative;z-index:2;
+  min-height:clamp(560px,86vh,920px);
+  display:grid;
+  grid-template-columns:1fr;
+  align-content:center;
+  padding:clamp(40px,8vh,120px) var(--margin) clamp(60px,12vh,150px);
+}
+.stage-mark{
+  font-family:var(--mono);font-size:0.66rem;
+  letter-spacing:0.22em;text-transform:uppercase;color:var(--stone-mute);
+  margin-bottom:clamp(36px,7vh,72px);
+  margin-left:clamp(0px,18vw,360px);
+  display:flex;align-items:center;gap:14px;
+}
+.stage-mark .ln{width:clamp(28px,6vw,80px);height:1px;background:var(--hair)}
+.statement{
+  margin-left:clamp(0px,18vw,360px);
+  max-width:14ch;
+  font-family:var(--sans);
+  font-weight:200;
+  font-size:clamp(2.4rem, 1.2rem + 5.6vw, 6rem);
+  line-height:1.08;
+  letter-spacing:-0.018em;
+  color:var(--stone);
+}
+.statement .soft{color:var(--stone-mute)}
+.statement em{font-style:normal;color:var(--indigo)}
+.stage-foot{
+  margin-top:clamp(44px,9vh,96px);
+  margin-left:clamp(0px,18vw,360px);
+  display:flex;align-items:flex-start;gap:clamp(30px,5vw,72px);
+  flex-wrap:wrap;
+  max-width:680px;
+}
+.stage-foot p{
+  max-width:34ch;
+  color:var(--stone-soft);
+  font-size:0.92rem;
+  line-height:1.8;
+}
+/* текстовая ссылка с волоском вместо залитой кнопки */
+.qlink{
+  display:inline-block;
+  font-family:var(--mono);font-size:0.72rem;
+  text-transform:uppercase;letter-spacing:0.16em;
+  color:var(--stone);
+  position:relative;padding-bottom:5px;white-space:nowrap;
+  align-self:flex-end;
+}
+.qlink::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;
+  background:var(--stone);
+  transform-origin:left;transition:transform .4s var(--ease),background .4s var(--ease);
+}
+.qlink:hover::after,.qlink:focus-visible::after{background:var(--indigo);transform:scaleX(1.0)}
+.qlink:hover,.qlink:focus-visible{color:var(--indigo)}
+
+/* ── общий блок секции ── */
+.section{padding:var(--rhythm) 0;position:relative;z-index:2}
+.section-idx{
+  margin-left:var(--margin);margin-right:var(--margin);
+  display:flex;align-items:baseline;gap:18px;
+  margin-bottom:clamp(48px,9vh,110px);
+}
+.section-idx .no{
+  font-family:var(--mono);font-size:0.72rem;letter-spacing:0.2em;color:var(--indigo);
+}
+.section-idx .ti{
+  font-family:var(--mono);font-size:0.66rem;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--stone-mute);
+}
+.lede{
+  margin-left:var(--margin);margin-right:var(--margin);
+  max-width:22ch;
+  font-weight:200;
+  font-size:clamp(1.5rem, 0.9rem + 2.4vw, 2.9rem);
+  line-height:1.18;letter-spacing:-0.012em;
+  color:var(--stone);
+}
+.lede em{font-style:normal;color:var(--indigo)}
+
+/* ── БОЛИ: единичные строки, разнесённые по вертикали, асимметрия left/right ── */
+.pains{margin-top:clamp(60px,12vh,140px)}
+.pain{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  padding:clamp(34px,6vh,64px) var(--margin);
+  border-top:1px solid var(--hair);
+}
+.pain:last-child{border-bottom:1px solid var(--hair)}
+.pain .inner{
+  display:grid;gap:18px;
+  grid-template-columns:minmax(0,1fr);
+}
+@media(min-width:860px){
+  .pain .inner{grid-template-columns:7rem minmax(0,30ch) minmax(0,1fr);gap:clamp(24px,4vw,72px);align-items:start}
+  /* асимметрия: чётные боли прижаты вправо */
+  .pain:nth-child(even) .inner{margin-left:auto;max-width:78%}
+}
+.pain .no{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.16em;color:var(--indigo);padding-top:6px}
+.pain h3{
+  font-weight:300;
+  font-size:clamp(1.15rem,0.95rem+0.7vw,1.55rem);
+  line-height:1.25;letter-spacing:-0.01em;color:var(--stone);
+}
+.pain p{color:var(--stone-soft);font-size:0.9rem;line-height:1.8;max-width:46ch}
+.pain .what{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone-mute);display:block;margin-bottom:12px}
+.pains-coda{
+  margin:clamp(44px,8vh,80px) var(--margin) 0;
+  max-width:48ch;color:var(--stone-mute);
+  font-family:var(--mono);font-size:0.74rem;letter-spacing:0.06em;line-height:1.9;
+}
+
+/* ── ДВА НАПРАВЛЕНИЯ: две колонки в пустоте, разделены одним волоском ── */
+.dirs{
+  margin:clamp(64px,12vh,140px) var(--margin) 0;
+  display:grid;gap:clamp(48px,8vh,96px);
+  grid-template-columns:minmax(0,1fr);
+}
+@media(min-width:880px){
+  .dirs{grid-template-columns:1fr 1px 1fr;gap:clamp(48px,6vw,110px)}
+  .dirs .seam{background:var(--hair);width:1px}
+}
+.dir .what{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone-mute);margin-bottom:clamp(20px,4vh,40px);display:block}
+.dir h3{
+  font-weight:200;
+  font-size:clamp(1.9rem,1.2rem+2vw,3.1rem);
+  letter-spacing:-0.01em;color:var(--stone);
+  margin-bottom:clamp(18px,3vh,30px);
+}
+.dir h3 .q{color:var(--stone-mute);font-weight:300;font-size:0.5em;letter-spacing:0.04em;vertical-align:0.18em}
+.dir>p{color:var(--stone-soft);font-size:0.92rem;line-height:1.85;max-width:42ch;margin-bottom:clamp(30px,5vh,52px)}
+.dir ul{list-style:none;display:grid;gap:0}
+.dir li{
+  font-size:0.88rem;color:var(--stone);line-height:1.7;
+  padding:16px 0;border-top:1px solid var(--hair-soft);
+  display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;
+}
+.dir li::before{content:counter(li,decimal-leading-zero);counter-increment:li;font-family:var(--mono);font-size:0.62rem;color:var(--stone-mute);letter-spacing:0.1em}
+.dir ul{counter-reset:li}
+.dir .go{
+  display:inline-block;margin-top:clamp(28px,5vh,48px);
+  font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.16em;
+  color:var(--stone);position:relative;padding-bottom:5px;
+}
+.dir .go::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--stone);transform-origin:left;transition:background .4s var(--ease)}
+.dir .go:hover{color:var(--indigo)}
+.dir .go:hover::after,.dir .go:focus-visible::after{background:var(--indigo)}
+
+/* ── РЕШЕНИЯ / ЦЕНЫ: чертёжный список, цена как моно-координата ── */
+.ledger{margin:clamp(60px,11vh,130px) 0 0;border-top:1px solid var(--hair)}
+.row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:14px;
+  padding:clamp(30px,5vh,52px) var(--margin);
+  border-bottom:1px solid var(--hair);
+  transition:background .6s var(--ease);
+}
+.row:hover{background:var(--paper-deep)}
+@media(min-width:840px){
+  .row{grid-template-columns:4rem minmax(0,18ch) minmax(0,1fr) auto;gap:clamp(24px,4vw,64px);align-items:baseline}
+}
+.row .no{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.16em;color:var(--indigo)}
+.row .nm{font-weight:300;font-size:clamp(1.05rem,0.92rem+0.5vw,1.4rem);letter-spacing:-0.01em;color:var(--stone);line-height:1.3}
+.row .ds{color:var(--stone-soft);font-size:0.88rem;line-height:1.75;max-width:48ch}
+.row .pr{
+  font-family:var(--mono);font-size:0.92rem;letter-spacing:0.02em;color:var(--stone);
+  white-space:nowrap;font-feature-settings:"tnum";
+}
+.row .pr .from{color:var(--stone-mute);font-size:0.66rem;text-transform:uppercase;letter-spacing:0.16em;margin-right:8px}
+.ledger-note{margin:clamp(36px,6vh,60px) var(--margin) 0;max-width:50ch;color:var(--stone-mute);font-size:0.82rem;line-height:1.85}
+
+/* ── ПОЧЕМУ: четыре одиночных тезиса, ступенчатый сдвиг ── */
+.tenets{margin:clamp(60px,11vh,130px) 0 0}
+.tenet{
+  padding:clamp(34px,6vh,64px) var(--margin);
+  border-top:1px solid var(--hair);
+  display:grid;grid-template-columns:minmax(0,1fr);gap:16px;
+}
+.tenet:last-child{border-bottom:1px solid var(--hair)}
+@media(min-width:860px){
+  .tenet{grid-template-columns:6rem minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:start}
+  .tenet:nth-child(2){padding-left:calc(var(--margin) + 6vw)}
+  .tenet:nth-child(3){padding-left:calc(var(--margin) + 12vw)}
+  .tenet:nth-child(4){padding-left:calc(var(--margin) + 18vw)}
+}
+.tenet .no{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.16em;color:var(--indigo);padding-top:8px}
+.tenet h3{font-weight:300;font-size:clamp(1.25rem,1rem+0.9vw,1.7rem);letter-spacing:-0.01em;color:var(--stone);margin-bottom:14px;line-height:1.25}
+.tenet p{color:var(--stone-soft);font-size:0.9rem;line-height:1.85;max-width:50ch}
+.tenet .gain{display:block;margin-top:18px;font-family:var(--mono);font-size:0.64rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone-mute)}
+
+/* ── ПУТЬ: пять шагов вдоль вертикального волоска ── */
+.path{margin:clamp(60px,11vh,130px) var(--margin) 0;position:relative}
+.path::before{
+  content:"";position:absolute;
+  top:6px;bottom:6px;left:0;width:1px;background:var(--hair);
+  transform-origin:top;
+}
+.step{
+  position:relative;
+  padding:clamp(26px,5vh,46px) 0 clamp(26px,5vh,46px) clamp(34px,6vw,90px);
+}
+.step:not(:last-child){border-bottom:1px solid var(--hair-soft)}
+.step .dot{position:absolute;left:-3px;top:clamp(32px,5.6vh,52px);width:7px;height:7px;border-radius:50%;background:var(--paper);border:1px solid var(--indigo)}
+.step .no{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.18em;color:var(--stone-mute);margin-bottom:12px;display:block}
+.step h3{font-weight:300;font-size:clamp(1.1rem,0.95rem+0.6vw,1.45rem);letter-spacing:-0.01em;color:var(--stone);margin-bottom:10px}
+.step p{color:var(--stone-soft);font-size:0.9rem;line-height:1.8;max-width:54ch}
+.step .trk{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--indigo)}
+
+/* ── ПРОВЕРКА ОБЪЕКТА: одно поле в большом пустом поле ── */
+.check{margin:clamp(60px,11vh,130px) var(--margin) 0;max-width:640px}
+.check label{display:block;font-family:var(--mono);font-size:0.64rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--stone-mute);margin-bottom:18px}
+.check-field{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap;border-bottom:1px solid var(--stone);padding-bottom:10px}
+.check input{
+  flex:1 1 220px;min-width:0;
+  background:transparent;border:none;
+  font-family:var(--mono);font-size:clamp(1rem,0.9rem+0.4vw,1.3rem);
+  letter-spacing:0.02em;color:var(--stone);
+  padding:6px 0;
+}
+.check input::placeholder{color:var(--stone-mute);opacity:0.55}
+.check input:focus{outline:none}
+.check button{
+  background:transparent;border:none;cursor:pointer;
+  font-family:var(--mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.16em;
+  color:var(--stone);position:relative;padding:0 0 4px;white-space:nowrap;
+  transition:color .4s var(--ease);
+}
+.check button::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--indigo);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.check button:hover,.check button:focus-visible{color:var(--indigo)}
+.check button:hover::after,.check button:focus-visible::after{transform:scaleX(1)}
+.check-note{margin-top:20px;color:var(--stone-mute);font-size:0.8rem;line-height:1.85;max-width:54ch}
+.check-out{margin-top:22px;font-family:var(--mono);font-size:0.78rem;line-height:1.85;color:var(--indigo);min-height:1.2em}
+
+/* ── КОНТАКТЫ: финальная тишина ── */
+.coda{padding:var(--rhythm) var(--margin) clamp(80px,12vh,140px);position:relative;z-index:2}
+.coda .big{
+  font-weight:200;
+  font-size:clamp(2rem,1.2rem+3.6vw,4.4rem);
+  line-height:1.12;letter-spacing:-0.016em;color:var(--stone);
+  max-width:16ch;margin-bottom:clamp(40px,7vh,80px);
+}
+.coda .big em{font-style:normal;color:var(--indigo)}
+.contacts{display:grid;gap:clamp(28px,5vh,48px);grid-template-columns:minmax(0,1fr)}
+@media(min-width:760px){.contacts{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(30px,4vw,72px)}}
+.contact .k{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone-mute);margin-bottom:14px;display:block}
+.contact .v{font-size:clamp(1rem,0.92rem+0.4vw,1.2rem);font-weight:300;color:var(--stone);letter-spacing:0.01em;line-height:1.5}
+.contact a.v{position:relative;display:inline-block}
+.contact a.v::after{content:"";position:absolute;left:0;bottom:-3px;height:1px;width:100%;background:var(--indigo);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.contact a.v:hover::after,.contact a.v:focus-visible::after{transform:scaleX(1)}
+
+/* ── ПОДВАЛ ── */
+.colophon{
+  padding:clamp(40px,6vh,64px) var(--margin) clamp(48px,7vh,72px);
+  border-top:1px solid var(--hair);
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;
+  position:relative;z-index:2;
+}
+.colophon .left{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.1em;color:var(--stone-mute);line-height:1.9;max-width:42ch}
+.colophon .links{display:flex;flex-wrap:wrap;gap:24px}
+.colophon .links a{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone-mute);transition:color .4s var(--ease)}
+.colophon .links a:hover,.colophon .links a:focus-visible{color:var(--stone)}
+
+/* ── focus-visible: тонкий индиго-контур, в духе ── */
+a:focus-visible,button:focus-visible,input:focus-visible{
+  outline:1px solid var(--indigo);
+  outline-offset:4px;
+}
+
+/* ── медленное мягкое появление ── */
+.rise{opacity:1}
+html.js .rise{opacity:0;transform:translateY(14px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+html.js .rise.seen{opacity:1;transform:none}
+html.js .draw{transform:scaleX(0);transform-origin:left center;transition:transform 1.2s var(--ease)}
+html.js .draw.seen{transform:scaleX(1)}
+
+@media(prefers-reduced-motion:reduce){
+  html.js .rise,html.js .draw{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+
+<div class="spine" aria-hidden="true"></div>
+
+<header class="masthead">
+  <div class="lockup">
+    <a class="wordmark" href="#top" aria-label="Единое окно — на главную">единое&nbsp;окно</a>
+    <span class="tag coord">44.49°N&nbsp;·&nbsp;34.16°E&nbsp;/&nbsp;ЯЛТА</span>
+  </div>
+  <nav aria-label="Разделы">
+    <a href="#situations">Ситуации</a>
+    <a href="#directions">Направления</a>
+    <a href="#ledger">Стоимость</a>
+    <a href="#path">Путь</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ── HERO: одно событие в большом пустом поле ── -->
+  <section class="stage" aria-labelledby="hero-statement">
+    <span class="stage-mark rise"><span class="ln" aria-hidden="true"></span>01&nbsp;—&nbsp;<span class="kanji">間</span>&nbsp;—&nbsp;легализация недвижимости</span>
+    <h1 class="statement rise" id="hero-statement">
+      Мы не<br>консультируем.<br><em>Мы&nbsp;легализуем.</em>
+    </h1>
+    <div class="stage-foot">
+      <p class="rise">Весь путь объекта — от полевой геодезии до записи в&nbsp;ЕГРН. Самострой, земля, границы, отказы Росреестра. Юристы, кадастровые инженеры и&nbsp;геодезисты в&nbsp;одной команде. Ялта и&nbsp;весь Крым.</p>
+      <a class="qlink rise" href="#contacts">Начать&nbsp;объект&nbsp;→</a>
+    </div>
+  </section>
+
+  <div class="divline draw" role="presentation"></div>
+
+  <!-- ── СИТУАЦИИ / БОЛИ ── -->
+  <section class="section" id="situations" aria-labelledby="situations-lede">
+    <div class="section-idx rise"><span class="no">02</span><span class="ti">Узнаёте свою ситуацию</span></div>
+    <p class="lede rise" id="situations-lede">Сложные случаи с&nbsp;недвижимостью — наша <em>специализация</em>.</p>
+
+    <div class="pains">
+      <article class="pain">
+        <div class="inner rise">
+          <span class="no">01</span>
+          <div><span class="what">Самострой</span><h3>Построили без документов и&nbsp;боитесь сноса</h3></div>
+          <p>Дом, гараж, пристройка или коммерческий объект без разрешений. Штрафы и&nbsp;угроза сноса — не&nbsp;приговор. Легализуем самовольные постройки и&nbsp;реконструкции «под&nbsp;ключ», в&nbsp;том числе через суд.</p>
+        </div>
+      </article>
+      <article class="pain">
+        <div class="inner rise">
+          <span class="no">02</span>
+          <div><span class="what">Земля</span><h3>Вопросы по&nbsp;земельному участку</h3></div>
+          <p>Не&nbsp;получается оформить, получить или выкупить участок у&nbsp;администрации. Земельный юрист находит законные решения.</p>
+        </div>
+      </article>
+      <article class="pain">
+        <div class="inner rise">
+          <span class="no">03</span>
+          <div><span class="what">Границы</span><h3>Споры по&nbsp;границам</h3></div>
+          <p>Забор соседа на&nbsp;вашей территории, наложение участков. Проведём межевание и&nbsp;защитим в&nbsp;суде.</p>
+        </div>
+      </article>
+      <article class="pain">
+        <div class="inner rise">
+          <span class="no">04</span>
+          <div><span class="what">Росреестр</span><h3>Отказы и&nbsp;приостановки</h3></div>
+          <p>Приостановка или отказ в&nbsp;регистрации прав. Профессионально оспорим незаконное решение.</p>
+        </div>
+      </article>
+      <article class="pain">
+        <div class="inner rise">
+          <span class="no">05</span>
+          <div><span class="what">Сделка</span><h3>Риски при покупке</h3></div>
+          <p>Недвижимость как «кот в&nbsp;мешке». Полная юридическая проверка и&nbsp;безопасное сопровождение сделки.</p>
+        </div>
+      </article>
+    </div>
+    <p class="pains-coda rise">// знаком хотя&nbsp;бы один вопрос — вы&nbsp;по&nbsp;адресу.</p>
+  </section>
+
+  <div class="divline draw" role="presentation"></div>
+
+  <!-- ── ДВА НАПРАВЛЕНИЯ ── -->
+  <section class="section" id="directions" aria-labelledby="directions-lede">
+    <div class="section-idx rise"><span class="no">03</span><span class="ti">Два направления работы</span></div>
+    <p class="lede rise" id="directions-lede">Что нужно сделать с&nbsp;<em>объектом</em>?</p>
+
+    <div class="dirs">
+      <article class="dir rise">
+        <span class="what">Инженерно-кадастровое производство</span>
+        <h3>Оформить <span class="q">— создать право</span></h3>
+        <p>Полный цикл от&nbsp;полевых работ до&nbsp;записи в&nbsp;реестре. Собственное высокоточное GNSS-оборудование, без посредников.</p>
+        <ul>
+          <li>Геодезия, межевание, техпланы и&nbsp;акты обследования</li>
+          <li>Регистрация прав и&nbsp;постановка на&nbsp;кадастровый учёт</li>
+          <li>Дачная и&nbsp;гаражная амнистия, выкуп участков</li>
+          <li>Перевод помещений, узаконивание перепланировок</li>
+        </ul>
+        <a class="go" href="#contacts">Приступить →</a>
+      </article>
+
+      <div class="seam" aria-hidden="true"></div>
+
+      <article class="dir rise">
+        <span class="what">Правовая защита активов</span>
+        <h3>Защитить <span class="q">— сохранить право</span></h3>
+        <p>Спасение активов в&nbsp;правовом поле: судебная защита «токсичной» недвижимости и&nbsp;тупиковых ситуаций.</p>
+        <ul>
+          <li>Легализация самостроя после отказов и&nbsp;приостановок</li>
+          <li>Защита от&nbsp;сноса и&nbsp;демонтажа объектов</li>
+          <li>Земельные споры, оспаривание и&nbsp;установление границ</li>
+          <li>Проверка чистоты и&nbsp;сопровождение сделок</li>
+        </ul>
+        <a class="go" href="#contacts">Активировать →</a>
+      </article>
+    </div>
+  </section>
+
+  <div class="divline draw" role="presentation"></div>
+
+  <!-- ── РЕШЕНИЯ / ЦЕНЫ ── -->
+  <section class="section" id="ledger" aria-labelledby="ledger-lede">
+    <div class="section-idx rise"><span class="no">04</span><span class="ti">Ключевые решения · стоимость</span></div>
+    <p class="lede rise" id="ledger-lede">Прозрачная цена без&nbsp;<em>скрытых</em> платежей.</p>
+
+    <div class="ledger">
+      <div class="row rise">
+        <span class="no">01</span>
+        <div class="nm">Оформление «под&nbsp;ключ»</div>
+        <p class="ds">Полное сопровождение от&nbsp;А до&nbsp;Я: все этапы до&nbsp;зарегистрированного права собственности.</p>
+        <div class="pr"><span class="from">от</span>20&nbsp;000&nbsp;₽</div>
+      </div>
+      <div class="row rise">
+        <span class="no">02</span>
+        <div class="nm">Легализация сложных объектов</div>
+        <p class="ds">Самострой, узаконивание реконструкций, нестандартные задачи. Превращаем проблемные объекты в&nbsp;ликвидные активы.</p>
+        <div class="pr"><span class="from">от</span>60&nbsp;000&nbsp;₽</div>
+      </div>
+      <div class="row rise">
+        <span class="no">03</span>
+        <div class="nm">Сопровождение сделок</div>
+        <p class="ds">Проверка юридической чистоты перед покупкой, безопасное сопровождение купли-продажи.</p>
+        <div class="pr"><span class="from">от</span>25&nbsp;000&nbsp;₽</div>
+      </div>
+      <div class="row rise">
+        <span class="no">04</span>
+        <div class="nm">Защита прав в&nbsp;суде</div>
+        <p class="ds">Земельные споры, оспаривание границ, признание права собственности, обжалование отказов Росреестра.</p>
+        <div class="pr"><span class="from">от</span>50&nbsp;000&nbsp;₽</div>
+      </div>
+    </div>
+    <p class="ledger-note rise">Точная цена фиксируется в&nbsp;договоре после бесплатного анализа документов и&nbsp;сложности ситуации.</p>
+  </section>
+
+  <div class="divline draw" role="presentation"></div>
+
+  <!-- ── ПОЧЕМУ ── -->
+  <section class="section" id="why" aria-labelledby="why-lede">
+    <div class="section-idx rise"><span class="no">05</span><span class="ti">Почему именно мы</span></div>
+    <p class="lede rise" id="why-lede">Беремся за&nbsp;дела, от&nbsp;которых <em>отказываются</em> другие.</p>
+
+    <div class="tenets">
+      <article class="tenet rise">
+        <span class="no">01</span>
+        <div>
+          <h3>Экспертиза в&nbsp;патовых ситуациях</h3>
+          <p>20+&nbsp;лет на&nbsp;легализации самостроя и&nbsp;оспаривании отказов Росреестра. Сложные и&nbsp;тупиковые случаи — наша основная работа.</p>
+          <span class="gain">защита от&nbsp;сноса · рост стоимости актива</span>
+        </div>
+      </article>
+      <article class="tenet rise">
+        <span class="no">02</span>
+        <div>
+          <h3>Все эксперты в&nbsp;одном месте</h3>
+          <p>Юристы, кадастровые инженеры и&nbsp;геодезисты работают как единый механизм — без передачи вас «по&nbsp;подрядчикам».</p>
+          <span class="gain">экономия времени и&nbsp;денег</span>
+        </div>
+      </article>
+      <article class="tenet rise">
+        <span class="no">03</span>
+        <div>
+          <h3>Индивидуальная стратегия</h3>
+          <p>Персональный план под&nbsp;конкретный объект, а&nbsp;не&nbsp;работа по&nbsp;шаблону. Полная прозрачность сроков и&nbsp;стоимости.</p>
+          <span class="gain">ясность правового статуса</span>
+        </div>
+      </article>
+      <article class="tenet rise">
+        <span class="no">04</span>
+        <div>
+          <h3>Конфиденциальность и&nbsp;поддержка</h3>
+          <p>Сопровождение не&nbsp;заканчивается после регистрации. Остаёмся вашей правовой опорой на&nbsp;будущее.</p>
+          <span class="gain">долгосрочная защита интересов</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="divline draw" role="presentation"></div>
+
+  <!-- ── ПУТЬ ── -->
+  <section class="section" id="path" aria-labelledby="path-lede">
+    <div class="section-idx rise"><span class="no">06</span><span class="ti">Порядок работы</span></div>
+    <p class="lede rise" id="path-lede">Пять шагов к&nbsp;<em>законной</em> недвижимости.</p>
+
+    <div class="path">
+      <div class="step rise">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="no">шаг 01</span>
+        <h3>Консультация и&nbsp;анализ</h3>
+        <p>Бесплатно изучаем задачу и&nbsp;ваши документы, оцениваем риски объекта.</p>
+      </div>
+      <div class="step rise">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="no">шаг 02</span>
+        <h3>Стратегия и&nbsp;договор</h3>
+        <p>Чёткий план работ, сроки, фиксация стоимости в&nbsp;договоре.</p>
+      </div>
+      <div class="step rise">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="no">шаг 03</span>
+        <h3>Выполнение работ</h3>
+        <p>Инженеры и&nbsp;юристы готовят всё — от&nbsp;техпланов до&nbsp;исковых заявлений.</p>
+        <span class="trk">→ онлайн-трекер в&nbsp;личном кабинете</span>
+      </div>
+      <div class="step rise">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="no">шаг 04</span>
+        <h3>Взаимодействие с&nbsp;госорганами</h3>
+        <p>Работа с&nbsp;Росреестром и&nbsp;администрацией Ялты и&nbsp;Крыма берём на&nbsp;себя.</p>
+      </div>
+      <div class="step rise">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="no">шаг 05</span>
+        <h3>Результат</h3>
+        <p>Выписка о&nbsp;регистрации права в&nbsp;ЕГРН и&nbsp;дальнейшая поддержка.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divline draw" role="presentation"></div>
+
+  <!-- ── ЭКСПРЕСС-ПРОВЕРКА ── -->
+  <section class="section" id="check" aria-labelledby="check-lede">
+    <div class="section-idx rise"><span class="no">07</span><span class="ti">Экспресс-проверка объекта</span></div>
+    <p class="lede rise" id="check-lede">Начните с&nbsp;<em>кадастрового</em> номера.</p>
+
+    <form class="check rise" id="checkForm" novalidate>
+      <label for="kad">Кадастровый номер или адрес</label>
+      <div class="check-field">
+        <input id="kad" name="kad" type="text" inputmode="text" autocomplete="off" placeholder="90:25:010105:128" aria-describedby="check-note">
+        <button type="submit">Проверить&nbsp;→</button>
+      </div>
+      <p class="check-out" id="checkOut" role="status" aria-live="polite"></p>
+      <p class="check-note" id="check-note">Предварительная оценка по&nbsp;публичным данным. Полная выписка из&nbsp;ЕГРН — по&nbsp;официальному запросу через нашего специалиста.</p>
+    </form>
+  </section>
+
+  <div class="divline draw" role="presentation"></div>
+
+  <!-- ── КОНТАКТЫ ── -->
+  <section class="coda" id="contacts" aria-labelledby="coda-big">
+    <p class="big rise" id="coda-big">Тишина после <em>решённой</em> задачи — это&nbsp;и&nbsp;есть результат.</p>
+    <div class="contacts">
+      <div class="contact rise">
+        <span class="k">Телефон</span>
+        <a class="v" href="tel:+79790775777">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a>
+      </div>
+      <div class="contact rise">
+        <span class="k">Telegram</span>
+        <a class="v" href="https://t.me/makslegal777" target="_blank" rel="noopener">@makslegal777</a>
+      </div>
+      <div class="contact rise">
+        <span class="k">Офис</span>
+        <span class="v">Ялта, ул.&nbsp;Ленинградская,&nbsp;34</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="colophon">
+  <div class="left">© 2026 одно-окно.рф<br>центр легализации недвижимости · ялта и&nbsp;крым</div>
+  <div class="links">
+    <a href="#privacy">Политика&nbsp;ПД</a>
+    <a href="#terms">Согласие&nbsp;на&nbsp;обработку</a>
+    <a href="#requisites">Реквизиты</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var form = document.getElementById('checkForm');
+  var out = document.getElementById('checkOut');
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var v = document.getElementById('kad').value.trim();
+      if(!v){
+        out.textContent = '// введите кадастровый номер или адрес объекта';
+        return;
+      }
+      out.textContent = '// заявка по объекту «'+v+'» принята — специалист свяжется для официального запроса';
+    });
+  }
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var targets = document.querySelectorAll('.rise, .draw');
+  if(reduce || !('IntersectionObserver' in window)){
+    targets.forEach(function(el){ el.classList.add('seen'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        var el = en.target;
+        var delay = el.classList.contains('rise') ? (parseInt(el.dataset.d || '0',10)) : 0;
+        el.style.transitionDelay = delay ? (delay+'ms') : '';
+        el.classList.add('seen');
+        io.unobserve(el);
+      }
+    });
+  }, {threshold:0.18, rootMargin:'0px 0px -10% 0px'});
+
+  // тихий каскад внутри групп: соседние .rise появляются со сдвигом 90мс
+  var groups = [
+    document.querySelectorAll('.stage .rise'),
+    document.querySelectorAll('.pains .rise'),
+    document.querySelectorAll('.dirs .rise'),
+    document.querySelectorAll('.ledger .rise'),
+    document.querySelectorAll('.tenets .rise'),
+    document.querySelectorAll('.path .rise'),
+    document.querySelectorAll('.contacts .rise')
+  ];
+  groups.forEach(function(g){
+    g.forEach(function(el,i){ el.dataset.d = (i*90); });
+  });
+
+  targets.forEach(function(el){ io.observe(el); });
+})();
+</script>
+<!--VSWITCH-->
+<div id="vswitch" aria-label="Переключатель вариантов дизайна">
+  <button id="vswitch-t" type="button" aria-expanded="true" title="Свернуть/развернуть">варианты</button>
+  <div id="vswitch-list">
+      <a href="../../index.html" data-m="construct" style="background:#16a34a;color:#fff;font-weight:800">★ Конструктивизм</a>
+      <a href="../index.html" data-m="index">01 · Индустриальный</a>
+      <a href="../govtech.html" data-m="govtech">08 · Gov-tech</a>
+      <a href="../hybrid.html" data-m="hybrid">10 · Гибрид · госреестр</a>
+      <a href="swiss.html" data-m="swiss">Swiss</a>
+      <a href="broadsheet.html" data-m="broadsheet">Broadsheet</a>
+      <a href="brutalist.html" data-m="brutalist">Brutalist</a>
+      <a href="cinematic.html" data-m="cinematic">Cinematic</a>
+      <a href="ma.html" data-m="ma">Ma</a>
+      <a href="v2-command.html" data-m="v2-command">v2 · Command</a>
+      <a href="v3-geo.html" data-m="v3-geo">v3 · Geo</a>
+      <a href="v4-dossier.html" data-m="v4-dossier">v4 · Dossier</a>
+      <a href="v5-crimea.html" data-m="v5-crimea">v5 · Crimea</a>
+      <a href="v6-registry.html" data-m="v6-registry">v6 · Registry</a>
+      <a href="v7-manifest.html" data-m="v7-manifest">v7 · Manifest</a>
+      <a href="v8-transform.html" data-m="v8-transform">v8 · Transform</a>
+  </div>
+</div>
+<style>
+#vswitch{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:2147483000;display:flex;align-items:center;gap:6px;max-width:96vw;font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(9,13,20,.92);color:#e8edf4;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 8px;box-shadow:0 10px 34px -10px rgba(0,0,0,.65)}
+#vswitch *{box-sizing:border-box}
+#vswitch-t{all:unset;cursor:pointer;padding:7px 11px;border-radius:999px;color:#9aa6b4;white-space:nowrap;letter-spacing:.04em;text-transform:uppercase;font-size:11px}
+#vswitch-t:hover{color:#fff}
+#vswitch-list{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+#vswitch-list::-webkit-scrollbar{display:none}
+#vswitch a{all:unset;cursor:pointer;padding:7px 12px;border-radius:999px;white-space:nowrap;color:#cdd6e0;transition:background .15s,color .15s}
+#vswitch a:hover{background:rgba(255,255,255,.1);color:#fff}
+#vswitch a.cur{background:#cf2417;color:#fff;font-weight:800}
+#vswitch.collapsed #vswitch-list{display:none}
+@media(max-width:640px){#vswitch{bottom:10px;font-size:11px;padding:5px 6px}#vswitch a{padding:6px 9px}}
+@media print{#vswitch{display:none}}
+</style>
+<script>
+(function(){var w=document.getElementById('vswitch');if(!w)return;var p=location.pathname;var f=(p.split('/').pop()||'index.html').replace('.html','');var cur=p.indexOf('/landing/')<0?'construct':f;var a=w.querySelectorAll('a[data-m]');for(var i=0;i<a.length;i++){if(a[i].getAttribute('data-m')===cur)a[i].classList.add('cur');}var t=document.getElementById('vswitch-t');try{if(localStorage.getItem('vswitch-collapsed')==='1')w.classList.add('collapsed');}catch(e){}t.addEventListener('click',function(){w.classList.toggle('collapsed');var c=w.classList.contains('collapsed');t.setAttribute('aria-expanded',String(!c));try{localStorage.setItem('vswitch-collapsed',c?'1':'0');}catch(e){}});})();
+</script>
+<!--/VSWITCH-->
+</body>
+</html>

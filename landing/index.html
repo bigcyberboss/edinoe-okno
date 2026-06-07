@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add('js')</script>
+<title>ЕДИНОЕ ОКНО — Центр легализации недвижимости в Ялте и Крыму</title>
+<meta name="description" content="Оформление, легализация и судебная защита недвижимости в Ялте и Крыму. От полевой геодезии до выписки из ЕГРН. Самострой, земля, споры, отказы Росреестра.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Unbounded:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* ── палитра (oklch, низкая chroma на светлом) ── */
+  --bg:        oklch(0.968 0.006 247);
+  --surface:   oklch(0.993 0.002 247);
+  --surface-2: oklch(0.978 0.004 247);
+  --navy:      oklch(0.255 0.055 252);
+  --navy-2:    oklch(0.305 0.06 252);
+  --navy-deep: oklch(0.175 0.045 252);
+  --cobalt:    oklch(0.455 0.155 258);
+  --tech:      oklch(0.625 0.185 252);
+  --accent:    oklch(0.82 0.165 84);
+  --accent-2:  oklch(0.76 0.16 78);
+  --ink:       oklch(0.255 0.055 252);
+  --ink-soft:  oklch(0.30 0.04 252 / 0.74);
+  --ink-mute:  oklch(0.30 0.03 252 / 0.55);
+  --line:      oklch(0.455 0.155 258 / 0.15);
+  --line-2:    oklch(0.455 0.155 258 / 0.28);
+  --on-navy:   oklch(0.97 0.01 247);
+  --on-navy-soft: oklch(0.92 0.012 247 / 0.66);
+
+  /* ── типографика ── */
+  --display: 'Unbounded', sans-serif;
+  --body: 'Golos Text', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --fs-display: clamp(1.6rem, 0.95rem + 2.7vw, 3.7rem);
+  --fs-h2: clamp(1.85rem, 1.25rem + 2.5vw, 3rem);
+  --fs-h3: clamp(1.12rem, 0.98rem + 0.7vw, 1.4rem);
+  --fs-body: clamp(1rem, 0.96rem + 0.18vw, 1.08rem);
+  --fs-label: 0.74rem;
+
+  /* ── пространство (4pt) ── */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px;
+  --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px; --s-10:128px;
+  --pad-x: clamp(20px, 6vw, 120px);
+  --sect-y: clamp(64px, 8vw, 128px);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --radius: 3px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+/* предотвращаем grid/flex blowout (min-width:auto = min-content) */
+.bento>*,.split>*,.why-grid>*,.timeline>*,.sol>*,.proof>*,.cta-row>*,.cta-contacts>*{min-width:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{
+  font-family:var(--body);
+  font-size:var(--fs-body);
+  line-height:1.6;
+  color:var(--ink);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+}
+h1,h2,h3{line-height:1.05;letter-spacing:-0.01em;text-wrap:balance;overflow-wrap:normal;word-break:keep-all;hyphens:none}
+:lang(ru) h1,:lang(ru) h2,:lang(ru) h3{-webkit-hyphens:none;hyphens:none}
+p{text-wrap:pretty}
+a{color:inherit;text-decoration:none}
+img,svg{display:block}
+
+/* монометки */
+.label{
+  font-family:var(--mono);
+  font-size:var(--fs-label);
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:0.14em;
+  color:var(--cobalt);
+}
+
+/* blueprint-сетка как бренд-приём */
+.blueprint{position:relative}
+.blueprint::before{
+  content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:clamp(38px,5vw,64px) clamp(38px,5vw,64px);
+  -webkit-mask-image:radial-gradient(ellipse 90% 80% at 30% 35%, #000 35%, transparent 78%);
+          mask-image:radial-gradient(ellipse 90% 80% at 30% 35%, #000 35%, transparent 78%);
+}
+
+/* ─────────── ХЕДЕР ─────────── */
+header{
+  position:sticky;top:0;z-index:100;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:var(--s-3) var(--s-5);
+  padding:14px var(--pad-x);
+  background:oklch(0.968 0.006 247 / 0.82);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line-2);
+}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand-mark{width:38px;height:38px;flex:none;color:var(--accent);background:var(--navy);display:grid;place-items:center;border-radius:var(--radius)}
+.brand>span:last-child{min-width:0}
+.brand-name{font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:0.02em;color:var(--navy);white-space:nowrap}
+.brand-sub{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-mute)}
+nav{display:flex;gap:clamp(14px,1.6vw,28px)}
+nav a{font-weight:600;font-size:0.92rem;color:var(--navy);transition:color .25s var(--ease)}
+nav a:hover{color:var(--tech)}
+.header-right{display:flex;align-items:center;gap:var(--s-5);flex:none}
+.status{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft)}
+.status .dot{width:7px;height:7px;border-radius:50%;background:var(--tech);box-shadow:0 0 0 0 var(--tech);animation:ping 2.4s infinite var(--ease)}
+@keyframes ping{0%{box-shadow:0 0 0 0 oklch(0.625 0.185 252 / .5)}70%{box-shadow:0 0 0 7px oklch(0.625 0.185 252 / 0)}100%{box-shadow:0 0 0 0 oklch(0.625 0.185 252 / 0)}}
+.phone{font-family:var(--mono);font-weight:600;font-size:0.95rem;color:var(--navy);white-space:nowrap}
+.phone .phone-ico{display:none;color:var(--navy)}
+.btn-lk{padding:9px 16px;border:1.5px solid var(--navy);border-radius:var(--radius);font-weight:600;font-size:0.85rem;color:var(--navy);transition:.25s var(--ease)}
+.btn-lk:hover{background:var(--navy);color:var(--on-navy)}
+
+/* ─────────── HERO ─────────── */
+.hero{
+  position:relative;
+  scroll-margin-top:84px;
+  padding:clamp(56px,7vw,104px) var(--pad-x) var(--sect-y);
+  display:grid;
+  grid-template-columns:minmax(0,1.32fr) minmax(0,1fr);
+  gap:clamp(28px,4vw,72px);
+  align-items:center;
+}
+.hero-l{position:relative;z-index:2;max-width:680px;min-width:0}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:var(--s-5)}
+.eyebrow::before{content:'';width:28px;height:1.5px;background:var(--cobalt)}
+.hero h1{
+  font-family:var(--display);font-weight:800;font-size:var(--fs-display);
+  color:var(--navy);margin-bottom:var(--s-5);
+  letter-spacing:-0.02em;
+  -webkit-hyphens:none;hyphens:none;
+}
+.hero h1 .em{color:var(--cobalt)}
+.hero-sub{font-size:clamp(1.05rem,0.95rem+0.6vw,1.3rem);color:var(--ink-soft);max-width:54ch;margin-bottom:var(--s-6);line-height:1.5}
+.cta-row{display:flex;flex-wrap:wrap;gap:var(--s-3);margin-bottom:var(--s-7)}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:16px 30px;border-radius:var(--radius);font-family:var(--display);font-weight:700;font-size:0.92rem;letter-spacing:0.01em;cursor:pointer;border:none;transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .25s var(--ease)}
+.btn-primary{background:var(--accent);color:var(--navy);box-shadow:0 12px 30px -10px oklch(0.82 0.165 84 / .65)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 38px -10px oklch(0.82 0.165 84 / .7);background:var(--accent-2)}
+.btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--line-2)}
+.btn-ghost:hover{border-color:var(--navy);background:var(--surface)}
+
+/* пруф-бар */
+.proof{display:grid;grid-template-columns:repeat(4,auto);gap:clamp(18px,3vw,44px);padding-top:var(--s-6);border-top:1px solid var(--line-2);max-width:fit-content}
+.proof .n{font-family:var(--mono);font-weight:700;font-size:clamp(1.5rem,1rem+1.4vw,2.1rem);color:var(--navy);letter-spacing:-0.02em}
+.proof .t{font-size:0.78rem;color:var(--ink-mute);line-height:1.3;margin-top:2px}
+
+/* приборная панель (экспресс-проверка) */
+.panel{position:relative;z-index:2;min-width:0;scroll-margin-top:84px;background:var(--navy);color:var(--on-navy);border-radius:var(--radius);padding:clamp(22px,2.4vw,32px);box-shadow:0 40px 80px -40px oklch(0.255 0.055 252 / .55);align-self:stretch}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:var(--s-4);margin-bottom:var(--s-5);border-bottom:1px solid oklch(0.625 0.185 252 / .25)}
+.panel-head .label{color:var(--accent)}
+.panel-head .corner{font-family:var(--mono);font-size:0.62rem;color:var(--on-navy-soft);letter-spacing:0.1em}
+.field{margin-bottom:var(--s-3)}
+.field label{display:block;font-family:var(--mono);font-size:0.66rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--on-navy-soft);margin-bottom:8px}
+.field input{width:100%;padding:14px 14px;background:oklch(0.175 0.045 252);border:1px solid oklch(0.625 0.185 252 / .3);border-radius:var(--radius);color:var(--on-navy);font-family:var(--mono);font-size:0.95rem;letter-spacing:0.02em;transition:border-color .25s var(--ease)}
+.field input::placeholder{color:oklch(0.92 0.012 247 / .35)}
+.field input:focus{outline:none;border-color:var(--tech)}
+.panel .btn-primary{width:100%;justify-content:center;margin-top:var(--s-2)}
+.panel-note{font-size:0.74rem;color:var(--on-navy-soft);margin-top:var(--s-3);line-height:1.45}
+.flow{margin-top:var(--s-5);padding-top:var(--s-5);border-top:1px solid oklch(0.625 0.185 252 / .25);display:grid;gap:2px}
+.flow-row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;padding:9px 0;position:relative}
+.flow-row .idx{font-family:var(--mono);font-size:0.7rem;color:var(--accent);width:24px}
+.flow-row .step{font-weight:600;font-size:0.9rem;color:var(--on-navy)}
+.flow-row:not(:last-child)::after{content:'';position:absolute;left:11px;top:26px;bottom:-2px;width:1px;background:oklch(0.625 0.185 252 / .3)}
+
+/* ─────────── СЕКЦИИ общее ─────────── */
+section.block{padding:var(--sect-y) var(--pad-x);position:relative;scroll-margin-top:84px}
+.sec-head{max-width:760px;margin-bottom:var(--s-7)}
+.sec-head h2{font-family:var(--display);font-weight:700;font-size:var(--fs-h2);color:var(--navy);margin-top:var(--s-3)}
+.sec-head p{color:var(--ink-soft);margin-top:var(--s-4);max-width:60ch}
+
+/* ─────────── БОЛИ (bento, не одинаковые) ─────────── */
+.pains{background:var(--surface-2);border-block:1px solid var(--line-2)}
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--s-3)}
+.pain{background:var(--surface);border:1px solid var(--line-2);border-radius:var(--radius);padding:clamp(22px,2vw,30px);transition:transform .35s var(--ease),border-color .35s var(--ease),box-shadow .35s var(--ease);display:flex;flex-direction:column;gap:var(--s-3)}
+.pain:hover{transform:translateY(-4px);border-color:var(--cobalt);box-shadow:0 24px 44px -28px oklch(0.455 0.155 258 / .5)}
+.pain .idx{font-family:var(--mono);font-size:0.8rem;color:var(--cobalt);font-weight:600}
+.pain h3{font-family:var(--display);font-weight:600;font-size:var(--fs-h3);color:var(--navy)}
+.pain p{font-size:0.93rem;color:var(--ink-soft);line-height:1.55}
+.pain.lg{grid-column:span 3}
+.pain.sm{grid-column:span 3}
+.pain.t{grid-column:span 2}
+@media(min-width:900px){
+  .pain.lg{grid-column:span 3;grid-row:span 2}
+  .pain.lg h3{font-size:clamp(1.4rem,1rem+1vw,1.9rem)}
+  .pain.sm{grid-column:span 3}
+  .pain.t{grid-column:span 2}
+}
+.pains-foot{margin-top:var(--s-6);font-family:var(--mono);font-size:0.82rem;color:var(--ink-mute);letter-spacing:0.04em}
+
+/* ─────────── ОФОРМИТЬ / ЗАЩИТИТЬ ─────────── */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4)}
+.cyl{background:var(--surface);border:1px solid var(--line-2);border-top:3px solid var(--cobalt);border-radius:var(--radius);padding:clamp(28px,3vw,48px);display:flex;flex-direction:column}
+.cyl.protect{border-top-color:var(--accent)}
+.cyl .tag{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:var(--s-3);overflow-wrap:normal}
+.cyl h3{font-family:var(--display);font-weight:800;font-size:clamp(1.7rem,1.2rem+1.4vw,2.4rem);color:var(--navy);margin-bottom:var(--s-4);letter-spacing:0.01em}
+.cyl p{color:var(--ink-soft);margin-bottom:var(--s-5);flex:1}
+.cyl ul{list-style:none;display:grid;gap:10px;margin-bottom:var(--s-6)}
+.cyl li{position:relative;padding-left:24px;font-size:0.92rem;color:var(--ink)}
+.cyl li::before{content:'';position:absolute;left:0;top:9px;width:9px;height:9px;border:1.5px solid var(--cobalt);border-radius:1px;transform:rotate(45deg)}
+.cyl.protect li::before{border-color:var(--accent-2)}
+.cyl .go{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;font-size:0.9rem;color:var(--navy);align-self:flex-start;border-bottom:2px solid var(--accent);padding-bottom:3px;transition:gap .25s var(--ease)}
+.cyl .go:hover{gap:14px}
+
+/* ─────────── РЕШЕНИЯ / ЦЕНЫ (инженерный список) ─────────── */
+.solutions{background:var(--navy);color:var(--on-navy)}
+.solutions .sec-head h2{color:var(--on-navy)}
+.solutions .sec-head p{color:var(--on-navy-soft)}
+.solutions .label{color:var(--accent)}
+.sol-list{display:grid;gap:0;border-top:1px solid oklch(0.625 0.185 252 / .25)}
+.sol{display:grid;grid-template-columns:auto 1fr auto auto;gap:clamp(14px,2.5vw,40px);align-items:center;padding:clamp(22px,2.4vw,32px) 0;border-bottom:1px solid oklch(0.625 0.185 252 / .25);transition:padding-left .3s var(--ease)}
+.sol:hover{padding-left:14px}
+.sol .si{font-family:var(--mono);font-size:0.8rem;color:var(--accent)}
+.sol .sn{font-family:var(--display);font-weight:600;font-size:clamp(1.05rem,0.9rem+0.7vw,1.45rem);color:var(--on-navy)}
+.sol .sd{color:var(--on-navy-soft);font-size:0.9rem;max-width:46ch;line-height:1.5}
+.sol .sp{font-family:var(--mono);font-weight:700;font-size:clamp(1rem,0.85rem+0.6vw,1.3rem);color:var(--accent);white-space:nowrap;text-align:right}
+@media(max-width:780px){
+  .sol{grid-template-columns:auto 1fr;row-gap:8px}
+  .sol .sd{grid-column:2}
+  .sol .sp{grid-column:2;text-align:left}
+}
+
+/* ─────────── ПОЧЕМУ ─────────── */
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s-7) var(--s-8)}
+.why{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s-4)}
+.why .num{font-family:var(--mono);font-size:1.1rem;font-weight:700;color:var(--cobalt);padding-top:4px}
+.why h3{font-family:var(--display);font-weight:600;font-size:1.18rem;color:var(--navy);margin-bottom:10px}
+.why p{font-size:0.93rem;color:var(--ink-soft);line-height:1.55}
+.why .gain{display:block;margin-top:10px;font-family:var(--mono);font-size:0.74rem;letter-spacing:0.04em;color:var(--cobalt);text-transform:uppercase}
+
+/* ─────────── ЭТАПЫ ─────────── */
+.steps{background:var(--surface-2);border-block:1px solid var(--line-2)}
+.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s-3);counter-reset:st}
+.tstep{position:relative;padding-top:var(--s-6)}
+.tstep::before{counter-increment:st;content:"0" counter(st);position:absolute;top:0;left:0;font-family:var(--mono);font-weight:700;font-size:0.85rem;color:var(--accent-2)}
+.tstep::after{content:'';position:absolute;top:7px;left:38px;right:0;height:1px;background:var(--line-2)}
+.tstep:last-child::after{display:none}
+.tstep .dot{position:absolute;top:4px;left:30px;width:7px;height:7px;background:var(--cobalt);border-radius:50%}
+.tstep h3{font-family:var(--display);font-weight:600;font-size:1rem;color:var(--navy);margin-bottom:8px;margin-top:6px}
+.tstep p{font-size:0.85rem;color:var(--ink-soft);line-height:1.5}
+.tstep .tag{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:0.64rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cobalt);border:1px solid var(--line-2);border-radius:2px;padding:3px 7px}
+@media(max-width:900px){.timeline{grid-template-columns:1fr 1fr}.tstep::after{display:none}}
+@media(max-width:560px){.timeline{grid-template-columns:1fr}}
+
+/* ─────────── CTA ─────────── */
+.cta{background:var(--navy-deep);color:var(--on-navy);text-align:center;padding:var(--sect-y) var(--pad-x);scroll-margin-top:84px}
+.cta h2{font-family:var(--display);font-weight:800;font-size:var(--fs-h2);margin-bottom:var(--s-5);color:var(--on-navy)}
+.cta p{color:var(--on-navy-soft);max-width:58ch;margin:0 auto var(--s-6);font-size:1.05rem}
+.cta-contacts{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s-3) var(--s-7);margin-bottom:var(--s-7);font-family:var(--mono);font-size:0.9rem}
+.cta-contacts span{color:var(--on-navy-soft)}
+.cta-contacts b{color:var(--accent);font-weight:600}
+
+/* ─────────── FOOTER ─────────── */
+footer{background:var(--navy-deep);color:var(--on-navy-soft);padding:var(--s-7) var(--pad-x);border-top:1px solid oklch(0.625 0.185 252 / .18);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s-5);font-size:0.82rem}
+footer .fl{display:flex;flex-wrap:wrap;gap:var(--s-5)}
+footer a{transition:color .25s var(--ease)}
+footer a:hover{color:var(--on-navy)}
+
+/* ─────────── reveal (progressive enhancement: контент виден без JS) ─────────── */
+.reveal{transition:opacity .7s var(--ease),transform .7s var(--ease)}
+html.js .reveal{opacity:0;transform:translateY(22px)}
+html.js .reveal.in{opacity:1;transform:none}
+
+/* ─────────── адаптив ─────────── */
+@media(max-width:980px){
+  nav,.header-right .status,.brand-sub{display:none}
+  header{gap:12px}
+  .header-right{gap:14px}
+  .hero{grid-template-columns:minmax(0,1fr);gap:var(--s-7)}
+  .blueprint::before{-webkit-mask-image:radial-gradient(ellipse 120% 60% at 40% 18%, #000 30%, transparent 75%);mask-image:radial-gradient(ellipse 120% 60% at 40% 18%, #000 30%, transparent 75%)}
+  .split,.why-grid{grid-template-columns:1fr}
+  .bento{grid-template-columns:1fr}
+  .pain.lg,.pain.sm,.pain.t{grid-column:auto}
+  .proof{grid-template-columns:repeat(2,1fr);gap:var(--s-5)}
+}
+@media(max-width:600px){
+  .hero h1{font-size:clamp(1.5rem,1.05rem + 2.4vw,2.1rem)}
+  .proof .n{font-size:clamp(1.5rem,1.2rem+1.2vw,1.9rem)}
+  .cta-row .btn{flex:1;justify-content:center}
+  /* шапка: бренд слева + кликабельный телефон-иконка справа, ЛК скрыт */
+  header{padding:12px var(--pad-x)}
+  .header-right{gap:10px}
+  .btn-lk{display:none}
+  .phone{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:0 4px}
+  .phone .phone-num{display:none}
+  .phone .phone-ico{display:block}
+}
+@media(max-width:430px){
+  .brand-name{font-size:0.92rem}
+  .panel-head{flex-wrap:wrap;gap:4px}
+  .panel-head .corner{font-size:0.58rem}
+}
+/* увеличенные тач-таргеты на тач-устройствах */
+@media(hover:none),(max-width:600px){
+  footer .fl a{padding:11px 0;display:inline-block}
+  .cta-contacts a{display:inline-block;padding:10px 0}
+  .cyl .go{padding:10px 0 7px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ХЕДЕР -->
+<header>
+  <a class="brand" href="#top" aria-label="Единое окно">
+    <span class="brand-mark">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="18" height="18" rx="1"/>
+        <path d="M12 3v18M3 12h18"/>
+        <path d="M3 7h2M19 3v2M3 17h2M19 19v2" stroke-width="2.4"/>
+      </svg>
+    </span>
+    <span>
+      <span class="brand-name">ЕДИНОЕ ОКНО</span><br>
+      <span class="brand-sub">Центр легализации недвижимости</span>
+    </span>
+  </a>
+  <nav>
+    <a href="#services">Услуги</a>
+    <a href="#offer">Направления</a>
+    <a href="#why">Почему мы</a>
+    <a href="#steps">Этапы</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+  <div class="header-right">
+    <span class="status"><span class="dot"></span>Приём заявок</span>
+    <a class="phone" href="tel:+79790775777" aria-label="Позвонить +7 979 077 5 777">
+      <span class="phone-num">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</span>
+      <svg class="phone-ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </a>
+    <a class="btn-lk" href="#lk">Личный кабинет</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero blueprint" id="top">
+  <div class="hero-l">
+    <span class="eyebrow label">Ялта · Крым · оформление и&nbsp;защита</span>
+    <h1>Мы не консультируем.<br><span class="em">Мы легализуем.</span></h1>
+    <p class="hero-sub">Берём на себя весь путь объекта — от полевой геодезии до выписки из ЕГРН. Самострой, земля, споры по границам, отказы Росреестра. Юристы, кадастровые инженеры и геодезисты в одной команде.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#contacts">Оформить объект →</a>
+      <a class="btn btn-ghost" href="#check">Экспресс-проверка</a>
+    </div>
+    <div class="proof">
+      <div><div class="n">400+</div><div class="t">объектов<br>зарегистрировано</div></div>
+      <div><div class="n">20+</div><div class="t">лет<br>опыта</div></div>
+      <div><div class="n">250+</div><div class="t">успешных<br>дел</div></div>
+      <div><div class="n">100+</div><div class="t">млн&nbsp;₽ ущерба<br>возмещено</div></div>
+    </div>
+  </div>
+
+  <aside class="panel" id="check">
+    <div class="panel-head">
+      <span class="label">Экспресс-проверка объекта</span>
+      <span class="corner">[&nbsp;01&nbsp;/&nbsp;РОСРЕЕСТР&nbsp;]</span>
+    </div>
+    <form id="checkForm">
+      <div class="field">
+        <label for="kad">Кадастровый номер или адрес</label>
+        <input id="kad" type="text" placeholder="90:25:010105:128" autocomplete="off">
+      </div>
+      <button class="btn btn-primary" type="submit">Проверить объект →</button>
+      <p class="panel-note">Предварительная оценка по публичным данным. Полная выписка из ЕГРН — по официальному запросу через нашего специалиста.</p>
+    </form>
+    <div class="flow">
+      <div class="flow-row"><span class="idx">01</span><span class="step">Геодезия и полевые работы</span></div>
+      <div class="flow-row"><span class="idx">02</span><span class="step">Технический план</span></div>
+      <div class="flow-row"><span class="idx">03</span><span class="step">Судебная защита</span></div>
+      <div class="flow-row"><span class="idx">04</span><span class="step">Регистрация в ЕГРН</span></div>
+      <div class="flow-row"><span class="idx">05</span><span class="step">Подключение коммуникаций</span></div>
+    </div>
+  </aside>
+</section>
+
+<!-- БОЛИ -->
+<section class="block pains" id="pains">
+  <div class="sec-head reveal">
+    <span class="label">Узнаёте свою ситуацию?</span>
+    <h2>Решаем сложные проблемы с недвижимостью в&nbsp;Ялте и&nbsp;по&nbsp;всему Крыму</h2>
+  </div>
+  <div class="bento">
+    <article class="pain lg reveal">
+      <span class="idx">01 — Самострой</span>
+      <h3>Построили без документов и боитесь сноса?</h3>
+      <p>Дом, гараж, пристройка или коммерческий объект без разрешений? Штрафы и угроза сноса — не приговор. Легализуем самовольные постройки и реконструкции в Ялте «под ключ», в том числе через суд.</p>
+    </article>
+    <article class="pain sm reveal">
+      <span class="idx">02 — Земля</span>
+      <h3>Вопросы по земельному участку</h3>
+      <p>Не можете оформить, получить или выкупить участок у администрации? Наш земельный юрист в Ялте находит законные решения.</p>
+    </article>
+    <article class="pain t reveal">
+      <span class="idx">03 — Границы</span>
+      <h3>Споры по границам</h3>
+      <p>Забор соседа на вашей территории, наложение участков? Проведём межевание и защитим в суде.</p>
+    </article>
+    <article class="pain t reveal">
+      <span class="idx">04 — Росреестр</span>
+      <h3>Отказы госорганов</h3>
+      <p>Приостановка или отказ в регистрации прав? Профессионально оспорим незаконное решение.</p>
+    </article>
+    <article class="pain t reveal">
+      <span class="idx">05 — Сделка</span>
+      <h3>Риски при покупке</h3>
+      <p>Недвижимость — «кот в мешке»? Полная юридическая проверка и безопасное сопровождение сделки.</p>
+    </article>
+  </div>
+  <p class="pains-foot reveal">// Знаком хотя бы один вопрос — вы по адресу. Мы специализируемся именно на таких задачах.</p>
+</section>
+
+<!-- ОФОРМИТЬ / ЗАЩИТИТЬ -->
+<section class="block" id="offer">
+  <div class="sec-head reveal">
+    <span class="label">Два направления работы</span>
+    <h2>Что нужно сделать с&nbsp;объектом?</h2>
+  </div>
+  <div class="split">
+    <article class="cyl reveal">
+      <span class="tag">[&nbsp;Инженерно-кадастровое производство&nbsp;]</span>
+      <h3>«ОФОРМИТЬ»</h3>
+      <p>Полный цикл от полевых работ до записи в реестре. Собственное высокоточное GNSS-оборудование, без посредников.</p>
+      <ul>
+        <li>Геодезия, межевание, техпланы и акты обследования</li>
+        <li>Регистрация прав и постановка на кадастровый учёт</li>
+        <li>Дачная и гаражная амнистия, выкуп участков</li>
+        <li>Перевод помещений, узаконивание перепланировок</li>
+      </ul>
+      <a class="go" href="#contacts">Приступить к оформлению →</a>
+    </article>
+    <article class="cyl protect reveal">
+      <span class="tag">[&nbsp;Правовая защита&nbsp;активов&nbsp;]</span>
+      <h3>«ЗАЩИТИТЬ»</h3>
+      <p>Спасение активов в правовом поле: судебная защита «токсичной» недвижимости и сложных, тупиковых ситуаций.</p>
+      <ul>
+        <li>Легализация самостроя после отказов и приостановок</li>
+        <li>Защита от сноса и демонтажа объектов</li>
+        <li>Земельные споры, оспаривание и установление границ</li>
+        <li>Проверка чистоты и сопровождение сделок</li>
+      </ul>
+      <a class="go" href="#contacts">Активировать защиту →</a>
+    </article>
+  </div>
+</section>
+
+<!-- РЕШЕНИЯ / ЦЕНЫ -->
+<section class="block solutions" id="services">
+  <div class="sec-head reveal">
+    <span class="label">Ключевые решения · цены</span>
+    <h2>Прозрачная стоимость без скрытых платежей</h2>
+    <p>Точная цена фиксируется в договоре после бесплатного анализа документов и сложности ситуации.</p>
+  </div>
+  <div class="sol-list">
+    <div class="sol reveal">
+      <span class="si">01</span>
+      <div><div class="sn">Оформление «Под ключ»</div></div>
+      <div class="sd">Полное сопровождение от А до Я: все этапы до зарегистрированного права собственности.</div>
+      <div class="sp">от&nbsp;20&nbsp;000&nbsp;₽</div>
+    </div>
+    <div class="sol reveal">
+      <span class="si">02</span>
+      <div><div class="sn">Легализация сложных объектов</div></div>
+      <div class="sd">Самострой, узаконивание реконструкций, нестандартные задачи. Превращаем проблемные объекты в ликвидные активы.</div>
+      <div class="sp">от&nbsp;60&nbsp;000&nbsp;₽</div>
+    </div>
+    <div class="sol reveal">
+      <span class="si">03</span>
+      <div><div class="sn">Сопровождение сделок и проверка</div></div>
+      <div class="sd">Проверка юридической чистоты перед покупкой, безопасное сопровождение купли-продажи.</div>
+      <div class="sp">от&nbsp;25&nbsp;000&nbsp;₽</div>
+    </div>
+    <div class="sol reveal">
+      <span class="si">04</span>
+      <div><div class="sn">Защита прав в суде</div></div>
+      <div class="sd">Земельные споры, оспаривание границ, признание права собственности, обжалование отказов Росреестра.</div>
+      <div class="sp">от&nbsp;50&nbsp;000&nbsp;₽</div>
+    </div>
+  </div>
+</section>
+
+<!-- ПОЧЕМУ -->
+<section class="block" id="why">
+  <div class="sec-head reveal">
+    <span class="label">Почему выбирают нас</span>
+    <h2>Сложные случаи — наша&nbsp;специализация</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why reveal">
+      <span class="num">01</span>
+      <div>
+        <h3>Экспертиза в патовых ситуациях</h3>
+        <p>20+ лет на легализации самостроя и оспаривании отказов Росреестра. Беремся за дела, от которых отказываются другие.</p>
+        <span class="gain">→ защита от сноса, рост стоимости актива</span>
+      </div>
+    </div>
+    <div class="why reveal">
+      <span class="num">02</span>
+      <div>
+        <h3>Все эксперты в одном месте</h3>
+        <p>Юристы, кадастровые инженеры и геодезисты работают как единый механизм — без передачи вас «по подрядчикам».</p>
+        <span class="gain">→ экономия времени и денег</span>
+      </div>
+    </div>
+    <div class="why reveal">
+      <span class="num">03</span>
+      <div>
+        <h3>Индивидуальная стратегия</h3>
+        <p>Персональный план под конкретный объект, а не работа по шаблону. Полная прозрачность сроков и стоимости.</p>
+        <span class="gain">→ ясность правового статуса</span>
+      </div>
+    </div>
+    <div class="why reveal">
+      <span class="num">04</span>
+      <div>
+        <h3>Конфиденциальность и поддержка</h3>
+        <p>Сопровождение не заканчивается после регистрации. Остаёмся вашей правовой опорой на будущее.</p>
+        <span class="gain">→ долгосрочная защита интересов</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ЭТАПЫ -->
+<section class="block steps" id="steps">
+  <div class="sec-head reveal">
+    <span class="label">Порядок работы</span>
+    <h2>Пять прозрачных шагов к&nbsp;законной недвижимости</h2>
+    <p>От бесплатной первичной консультации до результата — с онлайн-контролем статуса в личном кабинете.</p>
+  </div>
+  <div class="timeline">
+    <div class="tstep reveal"><span class="dot"></span><h3>Консультация и анализ</h3><p>Бесплатно изучаем задачу и ваши документы, оцениваем риски объекта.</p></div>
+    <div class="tstep reveal"><span class="dot"></span><h3>Стратегия и договор</h3><p>Чёткий план работ, сроки, фиксация стоимости в договоре.</p></div>
+    <div class="tstep reveal"><span class="dot"></span><h3>Выполнение работ</h3><p>Инженеры и юристы готовят всё — от техпланов до исковых заявлений.</p><span class="tag">Онлайн-трекер в ЛК</span></div>
+    <div class="tstep reveal"><span class="dot"></span><h3>Госорганы</h3><p>Взаимодействие с Росреестром и администрацией Ялты и Крыма.</p></div>
+    <div class="tstep reveal"><span class="dot"></span><h3>Результат</h3><p>Выписка о регистрации права и дальнейшая поддержка.</p></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contacts">
+  <h2>Готовы обрести уверенность в&nbsp;своей&nbsp;недвижимости?</h2>
+  <p>Доверьте задачу команде, которая специализируется на оформлении и защите недвижимости в Крыму. Первичная консультация — бесплатно.</p>
+  <div class="cta-contacts">
+    <span>Телефон: <b><a href="tel:+79790775777">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a></b></span>
+    <span>Офис: <b>Ялта, ул.&nbsp;Ленинградская,&nbsp;34</b></span>
+    <span>Telegram: <b><a href="https://t.me/makslegal777" target="_blank" rel="noopener">@makslegal777</a></b></span>
+  </div>
+  <a class="btn btn-primary" href="tel:+79790775777">Заказать звонок →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2026 одно-окно.рф — Центр легализации недвижимости в Ялте и Крыму.</div>
+  <div class="fl">
+    <a href="#privacy">Политика конфиденциальности</a>
+    <a href="#terms">Согласие на обработку ПД</a>
+    <a href="#requisites">Реквизиты</a>
+  </div>
+</footer>
+
+<script>
+  // экспресс-проверка — заглушка (бэкенд позже, легальный путь через специалиста)
+  document.getElementById('checkForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var v = document.getElementById('kad').value.trim();
+    alert(v ? 'Заявка на предварительную проверку объекта «'+v+'» принята. Наш специалист свяжется с вами для уточнения и официального запроса.' : 'Введите кадастровый номер или адрес объекта.');
+  });
+  // плавное появление секций (с фолбэком: нет IO/reduced-motion → показать всё)
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)){
+      els.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+    },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+<!--VSWITCH-->
+<div id="vswitch" aria-label="Переключатель вариантов дизайна">
+  <button id="vswitch-t" type="button" aria-expanded="true" title="Свернуть/развернуть">варианты</button>
+  <div id="vswitch-list">
+      <a href="../index.html" data-m="construct" style="background:#16a34a;color:#fff;font-weight:800">★ Конструктивизм</a>
+      <a href="index.html" data-m="index">01 · Индустриальный</a>
+      <a href="govtech.html" data-m="govtech">08 · Gov-tech</a>
+      <a href="hybrid.html" data-m="hybrid">10 · Гибрид · госреестр</a>
+      <a href="_archive/swiss.html" data-m="swiss">Swiss</a>
+      <a href="_archive/broadsheet.html" data-m="broadsheet">Broadsheet</a>
+      <a href="_archive/brutalist.html" data-m="brutalist">Brutalist</a>
+      <a href="_archive/cinematic.html" data-m="cinematic">Cinematic</a>
+      <a href="_archive/ma.html" data-m="ma">Ma</a>
+      <a href="_archive/v2-command.html" data-m="v2-command">v2 · Command</a>
+      <a href="_archive/v3-geo.html" data-m="v3-geo">v3 · Geo</a>
+      <a href="_archive/v4-dossier.html" data-m="v4-dossier">v4 · Dossier</a>
+      <a href="_archive/v5-crimea.html" data-m="v5-crimea">v5 · Crimea</a>
+      <a href="_archive/v6-registry.html" data-m="v6-registry">v6 · Registry</a>
+      <a href="_archive/v7-manifest.html" data-m="v7-manifest">v7 · Manifest</a>
+      <a href="_archive/v8-transform.html" data-m="v8-transform">v8 · Transform</a>
+  </div>
+</div>
+<style>
+#vswitch{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:2147483000;display:flex;align-items:center;gap:6px;max-width:96vw;font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(9,13,20,.92);color:#e8edf4;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 8px;box-shadow:0 10px 34px -10px rgba(0,0,0,.65)}
+#vswitch *{box-sizing:border-box}
+#vswitch-t{all:unset;cursor:pointer;padding:7px 11px;border-radius:999px;color:#9aa6b4;white-space:nowrap;letter-spacing:.04em;text-transform:uppercase;font-size:11px}
+#vswitch-t:hover{color:#fff}
+#vswitch-list{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+#vswitch-list::-webkit-scrollbar{display:none}
+#vswitch a{all:unset;cursor:pointer;padding:7px 12px;border-radius:999px;white-space:nowrap;color:#cdd6e0;transition:background .15s,color .15s}
+#vswitch a:hover{background:rgba(255,255,255,.1);color:#fff}
+#vswitch a.cur{background:#cf2417;color:#fff;font-weight:800}
+#vswitch.collapsed #vswitch-list{display:none}
+@media(max-width:640px){#vswitch{bottom:10px;font-size:11px;padding:5px 6px}#vswitch a{padding:6px 9px}}
+@media print{#vswitch{display:none}}
+</style>
+<script>
+(function(){var w=document.getElementById('vswitch');if(!w)return;var p=location.pathname;var f=(p.split('/').pop()||'index.html').replace('.html','');var cur=p.indexOf('/landing/')<0?'construct':f;var a=w.querySelectorAll('a[data-m]');for(var i=0;i<a.length;i++){if(a[i].getAttribute('data-m')===cur)a[i].classList.add('cur');}var t=document.getElementById('vswitch-t');try{if(localStorage.getItem('vswitch-collapsed')==='1')w.classList.add('collapsed');}catch(e){}t.addEventListener('click',function(){w.classList.toggle('collapsed');var c=w.classList.contains('collapsed');t.setAttribute('aria-expanded',String(!c));try{localStorage.setItem('vswitch-collapsed',c?'1':'0');}catch(e){}});})();
+</script>
+<!--/VSWITCH-->
+</body>
+</html>
