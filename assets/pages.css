@@ -1,0 +1,232 @@
+/* ЕДИНОЕ ОКНО — внутренние страницы, язык конструктивизма.
+   Имена классов сохранены из portal-разметки, вид перекрашен под constructivist.css. */
+:root{
+  --paper:#ece4d4; --paper-2:#e3d9c4;
+  --ink:#1c1916; --ink-soft:#423b32;
+  --red:#cf2417; --red-deep:#a81b10;
+  --display:'Oswald',sans-serif;
+  --body:'PT Root UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --axis:-7deg; --pad:clamp(20px,5.5vw,96px); --rule:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.55;overflow-x:clip;position:relative;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");mix-blend-mode:multiply}
+img,svg{display:block}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+h1,h2,h3,h4{font-family:var(--display);font-weight:700;text-transform:uppercase;line-height:.95;letter-spacing:-.015em;text-wrap:balance;overflow-wrap:normal;word-break:keep-all;hyphens:none}
+.wrap{max-width:1320px;margin:0 auto;padding-inline:var(--pad);position:relative;z-index:2}
+.nb{white-space:nowrap}
+.axis-line{position:absolute;top:0;bottom:0;left:50%;width:clamp(28px,3.4vw,52px);background:var(--red);transform:translateX(40vw) rotate(var(--axis));transform-origin:top center;z-index:0;mix-blend-mode:multiply;opacity:.9;pointer-events:none}
+
+/* ───── ШАПКА ───── */
+header{position:relative;z-index:30;border-bottom:var(--rule) solid var(--ink);background:var(--paper)}
+.hwrap{display:flex;align-items:stretch;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:13px;padding:14px 0;min-width:0}
+.brand-mark{width:46px;height:46px;flex:none;display:flex;align-items:center;justify-content:center}
+.brand-mark img{width:100%;height:100%;object-fit:contain}
+.brand-tx{display:flex;flex-direction:column;min-width:0}
+.brand-name{font-family:var(--display);font-weight:700;font-size:1.16rem;letter-spacing:.01em;line-height:.9;white-space:nowrap;color:var(--ink)}
+.brand-tx::after{content:'центр легализации · Ялта · Крым';font-family:var(--mono);font-weight:500;font-size:.54rem;letter-spacing:.2em;color:var(--ink-soft);margin-top:5px;text-transform:uppercase;white-space:nowrap}
+.mainnav{display:flex;align-items:stretch}
+.mainnav a{font-family:var(--display);font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.04em;padding:0 clamp(12px,1.3vw,20px);display:flex;align-items:center;white-space:nowrap;border-left:1px solid color-mix(in srgb,var(--ink) 22%,transparent);transition:background .15s,color .15s}
+.mainnav a:hover{background:var(--ink);color:var(--paper)}
+.mainnav a.cur{color:var(--red);box-shadow:inset 0 -4px 0 var(--red)}
+.hr{display:flex;align-items:stretch;gap:0}
+.hphone{display:flex;align-items:center;gap:8px;background:var(--red);color:var(--paper);font-family:var(--mono);font-weight:700;font-size:.9rem;padding:0 clamp(14px,1.5vw,22px);white-space:nowrap;transition:background .15s,transform .12s}
+.hphone:hover{background:var(--ink);transform:translateX(-3px)}
+.theme-toggle{display:none}
+.btn-enter{display:flex;align-items:center;gap:8px;background:var(--ink);color:var(--paper);font-family:var(--display);font-weight:700;font-size:.82rem;text-transform:uppercase;letter-spacing:.03em;padding:0 16px;transition:background .15s}
+.btn-enter svg{width:17px;height:17px}
+.btn-enter:hover{background:var(--red)}
+.burger{display:none;align-items:center;background:var(--ink);color:var(--paper);border:none;padding:0 14px;cursor:pointer}
+.burger svg{width:24px;height:24px}
+/* мобменю */
+.mobnav-back{position:fixed;inset:0;background:rgba(28,25,22,.55);opacity:0;visibility:hidden;transition:opacity .2s;z-index:40}
+.mobnav-back.open{opacity:1;visibility:visible}
+.mobnav{position:fixed;top:0;right:0;bottom:0;width:min(82vw,340px);background:var(--ink);color:var(--paper);transform:translateX(100%);transition:transform .26s cubic-bezier(.7,0,.3,1);z-index:50;display:flex;flex-direction:column;padding:0 28px 28px;overflow-y:auto}
+.mobnav.open{transform:none}
+.mobnav-top{display:flex;justify-content:flex-end;padding:16px 0 8px;margin:0 -4px 12px}
+.mobnav-close{all:unset;cursor:pointer;color:var(--paper);padding:8px}
+.mobnav-close svg{width:26px;height:26px}
+.mobnav a{font-family:var(--display);font-weight:700;font-size:1.3rem;text-transform:uppercase;letter-spacing:.02em;padding:15px 0;border-bottom:1px solid color-mix(in srgb,var(--paper) 18%,transparent);transition:color .15s}
+.mobnav a:hover,.mobnav a.cur{color:var(--red)}
+
+/* ───── ЗАГОЛОВОК СТРАНИЦЫ ───── */
+.subhero{position:relative;background:var(--paper);border-bottom:var(--rule) solid var(--ink);padding:clamp(34px,5vw,72px) 0 clamp(30px,4vw,56px);overflow:hidden}
+.subhero .axis-line{transform:translateX(33vw) rotate(var(--axis));opacity:.85}
+.subhero-in{position:relative;z-index:2}
+.crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.16em;color:var(--ink-soft);margin-bottom:clamp(18px,2.4vw,30px)}
+.crumbs a{transition:color .15s}.crumbs a:hover{color:var(--red)}
+.crumbs a::after{content:'·';margin-left:8px;color:color-mix(in srgb,var(--ink) 40%,transparent)}
+.subhero h1{font-size:clamp(2.1rem,6vw,5rem);color:var(--ink);max-width:20ch}
+.subhero h1 em{font-style:normal;color:var(--red)}
+.subhero .lead{font-family:var(--body);font-size:clamp(1.02rem,1.4vw,1.24rem);color:var(--ink-soft);max-width:60ch;margin-top:clamp(18px,2vw,28px);border-left:var(--rule) solid var(--ink);padding-left:18px;line-height:1.5}
+
+/* ───── КОНТЕНТ ───── */
+.block{position:relative;padding:clamp(40px,6vw,96px) 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:clamp(28px,3.5vw,56px)}
+.sec-head h2{font-size:clamp(1.8rem,4.5vw,3.6rem);color:var(--ink);max-width:20ch}
+.sec-head h2 em{font-style:normal;color:var(--red)}
+.sec-head .meta{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.2em;color:var(--ink-soft);text-align:right;white-space:nowrap}
+.lead{font-family:var(--body);font-size:clamp(1.04rem,1.5vw,1.28rem);color:var(--ink-soft);max-width:62ch;line-height:1.55}
+
+/* проза услуги */
+.prose{max-width:74ch;font-family:var(--body)}
+.prose>*+*{margin-top:1.05em}
+.prose h2{font-size:clamp(1.5rem,3.4vw,2.6rem);color:var(--ink);margin-top:1.6em;padding-bottom:.32em;border-bottom:3px solid var(--red);display:inline-block}
+.prose h3{font-size:clamp(1.2rem,2.2vw,1.7rem);color:var(--ink);margin-top:1.4em}
+.prose h4{font-family:var(--mono);font-weight:700;font-size:.8rem;letter-spacing:.18em;color:var(--red-deep);text-transform:uppercase;margin-top:1.6em}
+.prose p{font-size:clamp(1rem,1.15vw,1.1rem);color:var(--ink-soft);line-height:1.62}
+.prose b,.prose strong{color:var(--ink);font-weight:700}
+.prose em{font-style:normal;color:var(--red-deep);font-weight:500}
+.prose a{color:var(--red-deep);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:2px}
+.prose a:hover{color:var(--ink)}
+.prose ul,.prose ol{list-style:none;display:grid;gap:12px;margin-top:1.1em}
+.prose li{position:relative;padding-left:30px;font-size:clamp(1rem,1.15vw,1.1rem);color:var(--ink-soft);line-height:1.5}
+.prose ul li::before{content:'';position:absolute;left:0;top:.45em;width:13px;height:13px;background:var(--red);clip-path:polygon(0 0,100% 50%,0 100%)}
+.prose ol{counter-reset:c}
+.prose ol li{counter-increment:c}
+.prose ol li::before{content:counter(c);position:absolute;left:0;top:-.05em;font-family:var(--mono);font-weight:700;font-size:.9em;color:var(--red)}
+.prose blockquote{border-left:var(--rule) solid var(--ink);padding:6px 0 6px 20px;color:var(--ink);font-weight:500}
+.prose img{max-width:100%;height:auto;margin-top:1.2em;border:1px solid color-mix(in srgb,var(--ink) 20%,transparent)}
+
+/* ───── CTA ───── */
+.cta{position:relative;padding:clamp(40px,6vw,88px) 0}
+.cta-card{position:relative;background:var(--red);color:var(--paper);padding:clamp(28px,4vw,64px);overflow:hidden;border-top:var(--rule) solid var(--ink)}
+.cta-card h2,.cta-card h3{font-size:clamp(1.8rem,4.5vw,3.4rem);color:var(--paper);max-width:20ch;margin-bottom:16px}
+.cta-card p{font-family:var(--body);font-size:clamp(1.02rem,1.3vw,1.22rem);max-width:54ch;color:color-mix(in srgb,var(--paper) 92%,transparent);margin-bottom:clamp(22px,2.6vw,36px);line-height:1.5}
+.cta-contacts{display:flex;flex-wrap:wrap;gap:0 clamp(20px,3vw,44px);margin-top:clamp(20px,2.4vw,32px);font-family:var(--mono);font-size:.85rem;letter-spacing:.04em}
+.btn-primary,.plan-cta,.usl-go{font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(.9rem,1.1vw,1.05rem);padding:16px 30px;display:inline-flex;align-items:center;gap:12px;cursor:pointer;border:none;background:var(--ink);color:var(--paper);transition:transform .12s cubic-bezier(.7,0,.3,1),background .15s,color .15s}
+.cta-card .btn-primary{background:var(--ink);color:var(--paper)}
+.cta-card .btn-primary:hover{background:var(--paper);color:var(--ink);transform:translate(-3px,-3px)}
+.btn-primary:hover{background:var(--red);color:var(--paper);transform:translate(-3px,-3px)}
+
+/* ───── ХАБ УСЛУГ ───── */
+.subhub{margin-top:clamp(40px,5vw,80px)}
+.subhub:first-child{margin-top:0}
+.subhub-title{font-size:clamp(1.5rem,3.4vw,2.8rem);color:var(--ink);margin-bottom:10px}
+.subhub-title em{font-style:normal;color:var(--red)}
+.subhub-lead{font-family:var(--body);color:var(--ink-soft);max-width:60ch;margin-bottom:clamp(22px,2.6vw,36px);line-height:1.55}
+.usl-wing{margin-top:clamp(36px,4.5vw,72px)}
+.usl-wing-head{display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(20px,2.4vw,32px);padding-bottom:14px;border-bottom:var(--rule) solid var(--ink)}
+.usl-wing-head h2{font-size:clamp(1.8rem,4vw,3.2rem);color:var(--ink)}
+.usl-wing-badge{font-family:var(--mono);font-weight:700;font-size:.7rem;text-transform:uppercase;letter-spacing:.18em;color:var(--paper);background:var(--red);padding:6px 12px;white-space:nowrap}
+.usl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0;border-top:1px solid color-mix(in srgb,var(--ink) 24%,transparent);border-left:1px solid color-mix(in srgb,var(--ink) 24%,transparent)}
+.usl-card{position:relative;display:flex;flex-direction:column;gap:8px;padding:clamp(20px,2.2vw,30px);border-right:1px solid color-mix(in srgb,var(--ink) 24%,transparent);border-bottom:1px solid color-mix(in srgb,var(--ink) 24%,transparent);background:var(--paper);transition:background .15s,color .15s,transform .12s}
+.usl-card:hover{background:var(--ink);color:var(--paper);z-index:2}
+.usl-card h3,.usl-card .usl-name{font-family:var(--display);font-weight:700;font-size:clamp(1.05rem,1.5vw,1.35rem);text-transform:uppercase;line-height:1;color:inherit}
+.usl-sub{font-family:var(--body);font-size:.92rem;color:var(--ink-soft);line-height:1.45;flex:1}
+.usl-card:hover .usl-sub{color:color-mix(in srgb,var(--paper) 80%,transparent)}
+.usl-go{background:none;color:var(--red);padding:0;font-size:.8rem;letter-spacing:.12em;margin-top:6px}
+.usl-card:hover .usl-go{color:var(--paper)}
+
+/* ───── ЮРЛИЦАМ / ТАРИФЫ ───── */
+.tags-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(20px,2.4vw,32px)}
+.tag-aud,.tag,.chip{font-family:var(--mono);font-weight:700;font-size:.68rem;text-transform:uppercase;letter-spacing:.14em;color:var(--ink);border:2px solid var(--ink);padding:6px 11px}
+.sect{margin-top:clamp(40px,5vw,80px)}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;border-top:var(--rule) solid var(--ink)}
+.plan{display:flex;flex-direction:column;padding:clamp(22px,2.6vw,36px);background:var(--paper);border-left:1px solid color-mix(in srgb,var(--ink) 24%,transparent);border-bottom:1px solid color-mix(in srgb,var(--ink) 24%,transparent)}
+.plan:first-child{border-left:none}
+.plan.feat{background:var(--ink);color:var(--paper)}
+.plan-name{font-family:var(--display);font-weight:700;font-size:clamp(1.3rem,2vw,1.7rem);text-transform:uppercase;color:inherit;margin-bottom:6px}
+.plan.feat .plan-name{color:var(--paper)}
+.plan-price{font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,3.4vw,3rem);color:var(--red);line-height:.9;margin:6px 0 4px}
+.plan-price small{display:block;font-family:var(--mono);font-weight:500;font-size:.32em;letter-spacing:.16em;color:var(--ink-soft);text-transform:uppercase;margin-bottom:6px}
+.plan.feat .plan-price small{color:color-mix(in srgb,var(--paper) 60%,transparent)}
+.plan-feats{list-style:none;display:grid;gap:11px;margin:clamp(16px,2vw,24px) 0;flex:1}
+.plan-feats li{position:relative;padding-left:26px;font-family:var(--body);font-size:.96rem;line-height:1.4;color:var(--ink-soft)}
+.plan.feat .plan-feats li{color:color-mix(in srgb,var(--paper) 85%,transparent)}
+.plan-feats li::before{content:'';position:absolute;left:0;top:.4em;width:12px;height:12px;background:var(--red);clip-path:polygon(0 0,100% 50%,0 100%)}
+.plan-cta{justify-content:center;width:100%}
+.plan.feat .plan-cta{background:var(--red)}
+.plan-note{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;color:var(--ink-soft);margin-top:14px;text-transform:uppercase;line-height:1.4}
+.plan.feat .plan-note{color:color-mix(in srgb,var(--paper) 60%,transparent)}
+.pf-l{font-family:var(--body)}
+
+/* ───── ПОЧЕМУ / ЭТАПЫ / ПЛИТКИ (запас) ───── */
+.why-grid,.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;border-top:1px solid color-mix(in srgb,var(--ink) 24%,transparent);border-left:1px solid color-mix(in srgb,var(--ink) 24%,transparent)}
+.why,.tile{padding:clamp(22px,2.4vw,34px);border-right:1px solid color-mix(in srgb,var(--ink) 24%,transparent);border-bottom:1px solid color-mix(in srgb,var(--ink) 24%,transparent)}
+.why-ic,.tile-ic{width:40px;height:40px;color:var(--red);margin-bottom:14px}
+.why h3,.tile-name{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(1.1rem,1.7vw,1.45rem);color:var(--ink);margin-bottom:8px}
+.why p,.tile-d{font-family:var(--body);color:var(--ink-soft);font-size:.96rem;line-height:1.5}
+.steps-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0}
+.step{padding:clamp(18px,2.2vw,30px) clamp(14px,1.6vw,24px) clamp(18px,2.2vw,30px) 0;border-left:2px solid var(--ink)}
+.step:first-child{padding-left:0;border-left:none}
+.step-n{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,4vw,3.6rem);color:var(--red);line-height:.8;margin-bottom:12px}
+.step h3{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(1rem,1.6vw,1.3rem);color:var(--ink);margin-bottom:8px}
+.step p{font-family:var(--body);font-size:.9rem;color:var(--ink-soft);line-height:1.45}
+
+/* ───── КОНТАКТЫ (форма) ───── */
+.formwrap,.oo-contact-form-holder{border:var(--rule) solid var(--ink);padding:clamp(22px,2.8vw,40px);background:var(--paper-2)}
+.contact-card{display:flex;align-items:center;gap:16px;padding:clamp(16px,2vw,24px) 0;border-bottom:1px solid color-mix(in srgb,var(--ink) 22%,transparent)}
+.ci{width:46px;height:46px;flex:none;color:var(--red);display:flex;align-items:center;justify-content:center}
+.ci svg{width:100%;height:100%}
+.contact-card .ck{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.16em;color:var(--ink-soft);display:block;margin-bottom:3px}
+.contact-card .cv,.contact-card b{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(1rem,1.5vw,1.3rem);color:var(--ink);line-height:1.05}
+.oo-form-group{margin-bottom:18px}
+.oo-form-h4,.formwrap label,.oo-form-group label{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.16em;color:var(--ink-soft);display:block;margin-bottom:8px}
+.formwrap input,.formwrap textarea,.oo-form-group input,.oo-form-group textarea,.oo-form-group select{width:100%;background:transparent;border:none;border-bottom:3px solid var(--ink);color:var(--ink);font-family:var(--mono);font-weight:700;font-size:clamp(1rem,1.6vw,1.25rem);padding:8px 0 12px}
+.formwrap textarea,.oo-form-group textarea{border:3px solid var(--ink);padding:12px;min-height:120px;font-family:var(--body);font-weight:400}
+.formwrap input:focus,.formwrap textarea:focus,.oo-form-group input:focus,.oo-form-group textarea:focus{outline:none;border-color:var(--red)}
+.oo-btn-submit{width:100%;justify-content:center;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:1.05rem;padding:16px 30px;background:var(--red);color:var(--paper);border:none;cursor:pointer;transition:background .15s,transform .12s}
+.oo-btn-submit:hover{background:var(--ink);transform:translateY(-2px)}
+.contact-side{font-family:var(--body)}
+.disclaimer-note,.sep{color:var(--ink-soft)}
+
+/* ───── ФУТЕР ───── */
+footer{background:var(--ink);color:color-mix(in srgb,var(--paper) 72%,transparent);padding:clamp(40px,5vw,72px) 0 clamp(24px,3vw,40px);position:relative;z-index:2;border-top:var(--rule) solid var(--red)}
+.fwrap{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:clamp(20px,2.4vw,40px);margin-bottom:clamp(28px,3.5vw,48px)}
+.fbrand-row{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+.fbrand .brand-mark{width:34px;height:34px}
+.fbrand .brand-name{color:var(--paper)}
+.fbrand p{font-family:var(--body);font-size:.92rem;line-height:1.5;color:color-mix(in srgb,var(--paper) 64%,transparent)}
+.fcol h4{font-family:var(--mono);font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;color:var(--red);margin-bottom:16px}
+.fcol a,.fcol .fitem{display:block;font-family:var(--body);font-size:.94rem;color:color-mix(in srgb,var(--paper) 72%,transparent);padding:5px 0;transition:color .15s}
+.fcol a:hover{color:var(--red)}
+.fbottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;padding-top:clamp(20px,2.4vw,32px);border-top:1px solid color-mix(in srgb,var(--paper) 18%,transparent);font-family:var(--mono);font-size:.74rem;letter-spacing:.03em;color:color-mix(in srgb,var(--paper) 56%,transparent)}
+.disclaimer{max-width:60ch;line-height:1.5}
+
+/* ───── REVEAL (отказоустойчиво) ─────
+   скрыто только при html.js; CSS-анимация-fallback принудительно показывает
+   контент через 1.2s, даже если app.js не загрузился (контент не пропадёт);
+   при живом JS .in перебивает анимацию плавным въездом по скроллу. */
+@keyframes revealSafe{to{opacity:1;transform:none}}
+.reveal{will-change:transform,opacity}
+html.js .reveal{opacity:0;transform:translateY(20px);animation:revealSafe .01s linear 1.2s forwards}
+html.js .reveal.in{opacity:1;transform:none;animation:none;transition:opacity .45s cubic-bezier(.7,0,.3,1),transform .5s cubic-bezier(.7,0,.3,1)}
+
+/* ───── АДАПТИВ ───── */
+@media(max-width:1080px){
+  .mainnav,.btn-enter{display:none}
+  .burger{display:flex}
+  .fwrap{grid-template-columns:1fr 1fr 1fr}
+}
+@media(max-width:560px){
+  .hphone{display:none}
+}
+@media(max-width:760px){
+  .usl-grid,.plans,.why-grid,.tiles{grid-template-columns:1fr}
+  .plan{border-left:none}
+  .steps-row{grid-template-columns:1fr}
+  .step{border-left:none;border-top:2px solid var(--ink);padding:22px 0}
+  .step:first-child{border-top:none}
+  .fwrap{grid-template-columns:1fr 1fr}
+  .sec-head{flex-direction:column;align-items:flex-start}
+  .sec-head .meta{text-align:left}
+}
+@media(max-width:640px){
+  .hphone span{display:none}
+  .brand-tx::after{display:none}
+  .fwrap{grid-template-columns:1fr}
+}
+@media(max-width:380px){
+  .brand-mark{width:38px;height:38px}
+  .brand-name{font-size:.96rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto}
+  html.js .reveal{opacity:1;transform:none}
+}
