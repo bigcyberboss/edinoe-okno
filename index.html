@@ -9,29 +9,46 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=PT+Root+UI:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/constructivist.css?v=1">
+<link rel="stylesheet" href="assets/pages.css?v=1">
+<link rel="stylesheet" href="assets/constructivist.css?v=2">
 </head>
 <body>
 
 <header>
-  <div class="wrap bar">
-    <a class="logo" href="#top" aria-label="ЕДИНОЕ ОКНО — на главную">
-      <img class="glyph" src="logo/logo-mark.png" alt="" aria-hidden="true">
-      <span class="name">ЕДИНОЕ&nbsp;ОКНО<span>центр легализации · Ялта · Крым</span></span>
+  <div class="wrap hwrap">
+    <a class="brand" href="#top" aria-label="ЕДИНОЕ ОКНО — на главную">
+      <span class="brand-mark" aria-hidden="true"><img src="logo/logo-mark.png" alt=""></span>
+      <span class="brand-tx"><span class="brand-name">ЕДИНОЕ ОКНО</span></span>
     </a>
-    <nav class="nav" aria-label="Основная навигация">
-      <a href="#pains">Задачи</a>
-      <a href="#offer">Направления</a>
-      <a href="#services">Цены</a>
-      <a href="#why">Почему мы</a>
-      <a href="#steps">Этапы</a>
+    <nav class="mainnav" aria-label="Основное меню">
+      <a href="uslugi.html">Услуги</a>
+      <a href="o-kompanii.html">О компании</a>
+      <a href="keysy.html">Кейсы</a>
+      <a href="yuristam.html">Юрлицам</a>
+      <a href="kontakty.html">Контакты</a>
     </nav>
-    <a class="head-call" href="tel:+79790775777" aria-label="Позвонить +7 979 077 5 777">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <span class="cn">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</span>
-    </a>
+    <div class="hr">
+      <a class="hphone" href="tel:+79790775777">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a>
+      <a class="btn-enter" href="kontakty.html" aria-label="Личный кабинет">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-3.4 4.1-5 7.5-5s6.3 1.6 7.5 5"/></svg>
+        <span class="btn-tx">Войти</span>
+      </a>
+      <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
   </div>
 </header>
+<div class="mobnav-back" id="mobnavBack"></div>
+<aside class="mobnav" id="mobnav" aria-label="Мобильное меню">
+  <div class="mobnav-top"><button class="mobnav-close" id="mobnavClose" type="button" aria-label="Закрыть меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+      <a href="uslugi.html">Услуги</a>
+      <a href="o-kompanii.html">О компании</a>
+      <a href="keysy.html">Кейсы</a>
+      <a href="yuristam.html">Юрлицам</a>
+      <a href="kontakty.html">Контакты</a>
+  <a href="tel:+79790775777" style="color:var(--red);margin-top:8px">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a>
+</aside>
 
 <!-- HERO -->
 <section class="hero" id="top">
@@ -300,15 +317,50 @@
 </section>
 
 <footer>
-  <div class="wrap foot">
-    <div>© 2026 одно-окно.рф — центр легализации недвижимости в Ялте и Крыму</div>
-    <div class="fl">
-      <a href="#privacy">Политика конфиденциальности</a>
-      <a href="#terms">Согласие на обработку ПД</a>
-      <a href="#requisites">Реквизиты</a>
+  <div class="wrap">
+    <div class="fwrap">
+      <div class="fcol fbrand">
+        <div class="fbrand-row">
+          <span class="brand-mark" aria-hidden="true"><img src="logo/logo-mark-light.png" alt=""></span>
+          <span class="brand-name">ЕДИНОЕ ОКНО</span>
+        </div>
+        <p>Центр оформления и&nbsp;защиты недвижимости в&nbsp;Ялте и&nbsp;по&nbsp;всему Крыму.</p>
+      </div>
+      <div class="fcol">
+        <h4>Услуги</h4>
+        <a href="uslugi.html">Все услуги</a>
+        <a href="uslugi.html#oformit">Оформить</a>
+        <a href="uslugi.html#zashchitit">Защитить</a>
+        <a href="yuristam.html">Юридическим лицам</a>
+      </div>
+      <div class="fcol">
+        <h4>Компания</h4>
+        <a href="o-kompanii.html">О нас</a>
+        <a href="keysy.html">Кейсы и практика</a>
+        <a href="kontakty.html">Контакты</a>
+      </div>
+      <div class="fcol">
+        <h4>Документы</h4>
+        <a href="#privacy">Политика конфиденциальности</a>
+        <a href="#terms">Согласие на обработку ПД</a>
+        <a href="#requisites">Реквизиты</a>
+      </div>
+      <div class="fcol">
+        <h4>Контакты</h4>
+        <a href="tel:+79790775777">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a>
+        <span class="fitem">Ялта, ул.&nbsp;Ленинградская,&nbsp;34</span>
+        <a href="https://t.me/makslegal777" target="_blank" rel="noopener">@makslegal777</a>
+      </div>
+    </div>
+    <div class="fbottom">
+      <span class="copy">© 2026 ЕДИНОЕ ОКНО · одно-окно.рф</span>
+      <span class="disclaimer">ЕДИНОЕ ОКНО — частная юридическая компания. Не является государственным органом и&nbsp;не связана с&nbsp;порталом «Госуслуги».</span>
     </div>
   </div>
 </footer>
+<script>
+(function(){var b=document.getElementById('burger'),m=document.getElementById('mobnav'),bk=document.getElementById('mobnavBack'),c=document.getElementById('mobnavClose');if(!b)return;function open(){m.classList.add('open');bk.classList.add('open');b.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}function close(){m.classList.remove('open');bk.classList.remove('open');b.setAttribute('aria-expanded','false');document.body.style.overflow='';}b.addEventListener('click',open);c.addEventListener('click',close);bk.addEventListener('click',close);})();
+</script>
 
 <script>
 (function(){
