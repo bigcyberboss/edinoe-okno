@@ -95,13 +95,10 @@ header{
   display:flex;align-items:center;gap:14px;padding:16px 0;min-width:0;
 }
 .logo .glyph{
-  width:46px;height:46px;flex:none;background:var(--red);position:relative;
+  width:48px;height:48px;flex:none;display:block;object-fit:contain;
+  transition:transform .15s;
 }
-.logo .glyph::after{
-  content:'';position:absolute;inset:0;
-  background:var(--ink);
-  clip-path:polygon(0 0,100% 0,0 100%);
-}
+.logo:hover .glyph{transform:scale(1.05)}
 .logo .name{font-family:var(--display);font-weight:700;font-size:1.18rem;letter-spacing:.01em;line-height:.9;white-space:nowrap}
 .logo .name span{display:block;font-family:var(--mono);font-weight:500;font-size:.56rem;letter-spacing:.22em;color:var(--ink-soft);margin-top:5px;text-transform:uppercase}
 .nav{display:flex;align-items:center}
@@ -426,7 +423,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .55s cubic-bezier(.
 <header>
   <div class="wrap bar">
     <a class="logo" href="#top" aria-label="ЕДИНОЕ ОКНО — на главную">
-      <span class="glyph" aria-hidden="true"></span>
+      <img class="glyph" src="../logo/logo-mark.png" alt="" aria-hidden="true">
       <span class="name">ЕДИНОЕ&nbsp;ОКНО<span>центр легализации · Ялта · Крым</span></span>
     </a>
     <nav class="nav" aria-label="Основная навигация">
@@ -746,34 +743,5 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .55s cubic-bezier(.
   els.forEach(function(el){io.observe(el);});
 })();
 </script>
-<!--VSWITCH--><!-- превью-переключатель вариантов (dev, убрать в проде) -->
-<div id="vswitch" aria-label="Переключатель вариантов дизайна">
-  <button id="vswitch-t" type="button" aria-expanded="true" title="Свернуть/развернуть">варианты</button>
-  <div id="vswitch-list">
-      <a href="../index.html" data-f="" style="background:#16a34a;color:#fff;font-weight:800">★ Актуальный сайт</a>
-      <a href="index.html" data-f="index.html">01 · Индустриальный</a>
-      <a href="constructivist.html" data-f="constructivist.html">03 · Конструктивизм</a>
-      <a href="govtech.html" data-f="govtech.html">08 · Gov-tech</a>
-      <a href="hybrid.html" data-f="hybrid.html">10 · Гибрид · госреестр</a>
-  </div>
-</div>
-<style>
-#vswitch{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:2147483000;display:flex;align-items:center;gap:6px;max-width:96vw;font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(9,13,20,.9);color:#e8edf4;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 8px;box-shadow:0 10px 34px -10px rgba(0,0,0,.65)}
-#vswitch *{box-sizing:border-box}
-#vswitch-t{all:unset;cursor:pointer;padding:7px 11px;border-radius:999px;color:#9aa6b4;white-space:nowrap;letter-spacing:.04em;text-transform:uppercase;font-size:11px}
-#vswitch-t:hover{color:#fff}
-#vswitch-list{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
-#vswitch-list::-webkit-scrollbar{display:none}
-#vswitch a{all:unset;cursor:pointer;padding:7px 12px;border-radius:999px;white-space:nowrap;color:#cdd6e0;transition:background .15s,color .15s}
-#vswitch a:hover{background:rgba(255,255,255,.1);color:#fff}
-#vswitch a.cur{background:#ffb800;color:#0a0e14;font-weight:800}
-#vswitch.collapsed #vswitch-list{display:none}
-@media(max-width:640px){#vswitch{bottom:10px;font-size:11px;padding:5px 6px}#vswitch a{padding:6px 9px}}
-@media print{#vswitch{display:none}}
-</style>
-<script>
-(function(){var w=document.getElementById('vswitch');if(!w)return;var f=(location.pathname.split('/').pop()||'index.html');if(f==='')f='index.html';var a=w.querySelectorAll('a[data-f]');for(var i=0;i<a.length;i++){if(a[i].getAttribute('data-f')===f)a[i].classList.add('cur');}var t=document.getElementById('vswitch-t');try{if(localStorage.getItem('vswitch-collapsed')==='1')w.classList.add('collapsed');}catch(e){}t.addEventListener('click',function(){w.classList.toggle('collapsed');var c=w.classList.contains('collapsed');t.setAttribute('aria-expanded',String(!c));try{localStorage.setItem('vswitch-collapsed',c?'1':'0');}catch(e){}});})();
-</script>
-<!--/VSWITCH-->
 </body>
 </html>
