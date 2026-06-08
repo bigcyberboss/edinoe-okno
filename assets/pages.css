@@ -165,6 +165,13 @@ header{position:sticky;top:0;z-index:30;border-bottom:var(--rule) solid var(--in
 .usl-card:hover .usl-sub{color:color-mix(in srgb,var(--paper) 80%,transparent)}
 .usl-go{background:none;color:var(--red);padding:0;font-size:.8rem;letter-spacing:.12em;margin-top:6px}
 .usl-card:hover .usl-go{color:var(--paper)}
+/* иконка услуги (символическая пиктограмма сверху плитки) */
+.usl-ico{width:clamp(38px,3.6vw,50px);height:clamp(38px,3.6vw,50px);color:var(--red);margin-bottom:2px}
+.usl-ico svg{width:100%;height:100%;display:block}
+.usl-card:hover .usl-ico{color:var(--paper)}
+/* короткое описание под названием — ровняем по 3 строкам */
+.usl-card>p{font-family:var(--body);font-size:.86rem;line-height:1.45;color:var(--ink-soft);flex:1;display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.usl-card:hover>p{color:color-mix(in srgb,var(--paper) 78%,transparent)}
 
 /* ───── ЮРЛИЦАМ / ТАРИФЫ ───── */
 .tags-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(20px,2.4vw,32px)}
