@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script>document.documentElement.classList.add('js');try{var _p=localStorage.getItem('eo-palette');if(_p&&_p!=='red')document.documentElement.setAttribute('data-palette',_p);}catch(e){}</script>
+<script>document.documentElement.classList.add('js')</script>
 <title>Получить Разрешение на Строительство (РнС) и Ввод в Эксплуатацию в Ялте | «ЕДИНОЕ ОКНО»</title>
 <meta name="description" content="Оформление РнС и РнВ для коммерческих объектов, гостиниц и МКД в Ялте и по всему Крыму. Полное сопровождение в Министерстве жилищной политики Крыма.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=PT+Root+UI:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/pages.css?v=7">
+<link rel="stylesheet" href="../assets/pages.css?v=8">
 </head>
 <body>
 
@@ -152,26 +152,5 @@
 <script>(function(){var f=(location.pathname.split('/').pop()||'index.html');var u=location.pathname.indexOf('/uslugi/')>-1;document.querySelectorAll('.mainnav a,.mobnav a').forEach(function(a){var h=(a.getAttribute('href')||'').split('/').pop();if(h===f||(u&&h==='uslugi.html'))a.classList.add('cur');});})();</script>
 <button class="to-top" id="toTop" type="button" aria-label="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <script>(function(){var p=document.getElementById('scrollProg'),t=document.getElementById('toTop'),h=document.documentElement;function u(){var st=h.scrollTop||document.body.scrollTop,sh=h.scrollHeight-h.clientHeight,pc=sh>0?(st/sh*100):0;if(p)p.style.width=pc+'%';if(t)t.classList.toggle('show',st>400);}window.addEventListener('scroll',u,{passive:true});window.addEventListener('resize',u);u();if(t)t.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script>
-<div id="palsw" aria-label="Цвет оформления"><span class="palsw-t">цвет</span><button type="button" data-p="red" title="Красно-чёрный"></button><button type="button" data-p="blue" title="Сине-белый"></button><button type="button" data-p="greige" title="Грейдж"></button><button type="button" data-p="forest" title="Изумруд"></button><button type="button" data-p="wine" title="Бордо"></button><button type="button" data-p="teal" title="Петроль"></button><button type="button" data-p="espresso" title="Эспрессо"></button><button type="button" data-p="plum" title="Баклажан"></button></div>
-<style>
-#palsw{position:fixed;left:clamp(12px,2vw,24px);bottom:clamp(12px,2.2vw,28px);z-index:2147483000;display:flex;align-items:center;gap:8px;background:rgba(9,13,20,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:7px 11px;box-shadow:0 10px 34px -10px rgba(0,0,0,.65)}
-#palsw .palsw-t{font:600 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#9aa6b4;text-transform:uppercase;letter-spacing:.08em}
-#palsw button{all:unset;cursor:pointer;width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.25);transition:transform .12s,border-color .12s,box-shadow .12s}
-#palsw button:hover{transform:scale(1.12)}
-#palsw button[data-p=red]{background:linear-gradient(135deg,#ece4d4 0 50%,#cf2417 50% 100%)}
-#palsw button[data-p=blue]{background:linear-gradient(135deg,#e9edf4 0 50%,#1a40c4 50% 100%)}
-#palsw button[data-p=greige]{background:linear-gradient(135deg,#e7e3db 0 50%,#b23320 50% 100%)}
-#palsw button[data-p=forest]{background:linear-gradient(135deg,#ecefe7 0 50%,#18794a 50% 100%)}
-#palsw button[data-p=wine]{background:linear-gradient(135deg,#f0eae7 0 50%,#91223e 50% 100%)}
-#palsw button[data-p=teal]{background:linear-gradient(135deg,#e8eeed 0 50%,#0f6b66 50% 100%)}
-#palsw button[data-p=espresso]{background:linear-gradient(135deg,#efe7d9 0 50%,#a8631c 50% 100%)}
-#palsw button[data-p=plum]{background:linear-gradient(135deg,#efe9ef 0 50%,#5e2e74 50% 100%)}
-#palsw button.on{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.22)}
-@media(max-width:640px){#palsw{bottom:58px;padding:6px 9px;gap:6px}#palsw button{width:20px;height:20px}}
-@media print{#palsw{display:none}}
-</style>
-<script>
-(function(){var w=document.getElementById('palsw');if(!w)return;var H=document.documentElement;function set(p){if(p==='red')H.removeAttribute('data-palette');else H.setAttribute('data-palette',p);try{localStorage.setItem('eo-palette',p);}catch(e){}var b=w.querySelectorAll('button');for(var i=0;i<b.length;i++)b[i].classList.toggle('on',b[i].getAttribute('data-p')===p);}var cur='red';try{cur=localStorage.getItem('eo-palette')||'red';}catch(e){}set(cur);var bs=w.querySelectorAll('button');for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){set(this.getAttribute('data-p'));});})();
-</script>
 </body>
 </html>
