@@ -198,13 +198,13 @@ h1 .sm{font-size:.42em;color:var(--ink);vertical-align:top}
 .montage .photo{
   position:absolute;inset:0;
   background:
-    linear-gradient(125deg,rgba(207,36,23,.55),rgba(28,25,22,.85)),
-    repeating-linear-gradient(125deg,#2a2622 0 14px,#211d1a 14px 28px);
+    linear-gradient(125deg,color-mix(in srgb,var(--red) 58%,transparent),color-mix(in srgb,var(--ink) 85%,transparent)),
+    repeating-linear-gradient(125deg,color-mix(in srgb,var(--ink) 86%,#fff) 0 14px,var(--ink) 14px 28px);
   mix-blend-mode:normal;
 }
 .montage .grid-ov{
   position:absolute;inset:0;
-  background-image:linear-gradient(rgba(236,228,212,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(236,228,212,.14) 1px,transparent 1px);
+  background-image:linear-gradient(color-mix(in srgb,var(--paper) 16%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--paper) 16%,transparent) 1px,transparent 1px);
   background-size:34px 34px;
 }
 .montage .wedge{
