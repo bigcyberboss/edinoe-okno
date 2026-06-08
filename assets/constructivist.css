@@ -15,6 +15,42 @@
   --pad: clamp(20px,5.5vw,96px);
   --rule: 6px;
 }
+/* ── Палитры (проба цвета). red = дефолт выше ── */
+html[data-palette="blue"]{
+  --paper:#e9edf4; --paper-2:#d8e0ec;
+  --ink:#13243f; --ink-soft:#3c4d68;
+  --red:#1a40c4; --red-deep:#102f96; --steel:#26375a;
+}
+html[data-palette="greige"]{
+  --paper:#e7e3db; --paper-2:#d9d3c8;
+  --ink:#211e1a; --ink-soft:#48423a;
+  --red:#b23320; --red-deep:#8f2616; --steel:#3a352e;
+}
+html[data-palette="forest"]{
+  --paper:#ecefe7; --paper-2:#dbe2d2;
+  --ink:#18241b; --ink-soft:#3b4a3d;
+  --red:#18794a; --red-deep:#11603a; --steel:#2c4036;
+}
+html[data-palette="wine"]{
+  --paper:#f0eae7; --paper-2:#e4d8d3;
+  --ink:#1e1418; --ink-soft:#45303a;
+  --red:#91223e; --red-deep:#6f1830; --steel:#3a2630;
+}
+html[data-palette="teal"]{
+  --paper:#e8eeed; --paper-2:#d4e0dd;
+  --ink:#10201f; --ink-soft:#324d49;
+  --red:#0f6b66; --red-deep:#094e4a; --steel:#234442;
+}
+html[data-palette="espresso"]{
+  --paper:#efe7d9; --paper-2:#e3d6bf;
+  --ink:#251a11; --ink-soft:#4b3a2a;
+  --red:#a8631c; --red-deep:#844c14; --steel:#463726;
+}
+html[data-palette="plum"]{
+  --paper:#efe9ef; --paper-2:#e0d3e0;
+  --ink:#1d1620; --ink-soft:#423648;
+  --red:#5e2e74; --red-deep:#46225a; --steel:#382c40;
+}
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip;scroll-padding-top:96px}
