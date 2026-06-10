@@ -274,10 +274,10 @@
 <div id="vswitch" aria-label="Переключатель вариантов дизайна">
   <button id="vswitch-t" type="button" aria-expanded="true" title="Свернуть/развернуть">варианты</button>
   <div id="vswitch-list">
-      <a href="../index.html" data-m="construct" style="background:#16a34a;color:#fff;font-weight:800">★ Конструктивизм</a>
+      <a href="../index.html" data-m="hybrid" style="background:#16a34a;color:#fff;font-weight:800">★ Гибрид · госреестр</a>
+      <a href="../classic/index.html" data-m="construct">Конструктивизм</a>
       <a href="index.html" data-m="index">01 · Индустриальный</a>
       <a href="govtech.html" data-m="govtech">08 · Gov-tech</a>
-      <a href="hybrid.html" data-m="hybrid">10 · Гибрид · госреестр</a>
   </div>
 </div>
 <style>
@@ -289,13 +289,13 @@
 #vswitch-list::-webkit-scrollbar{display:none}
 #vswitch a{all:unset;cursor:pointer;padding:7px 12px;border-radius:999px;white-space:nowrap;color:#cdd6e0;transition:background .15s,color .15s}
 #vswitch a:hover{background:rgba(255,255,255,.1);color:#fff}
-#vswitch a.cur{background:#cf2417;color:#fff;font-weight:800}
+#vswitch a.cur{background:#1F50E8;color:#fff;font-weight:800}
 #vswitch.collapsed #vswitch-list{display:none}
 @media(max-width:640px){#vswitch{bottom:10px;font-size:11px;padding:5px 6px}#vswitch a{padding:6px 9px}}
 @media print{#vswitch{display:none}}
 </style>
 <script>
-(function(){var w=document.getElementById('vswitch');if(!w)return;var p=location.pathname;var f=(p.split('/').pop()||'index.html').replace('.html','');var cur=p.indexOf('/landing/')<0?'construct':f;var a=w.querySelectorAll('a[data-m]');for(var i=0;i<a.length;i++){if(a[i].getAttribute('data-m')===cur)a[i].classList.add('cur');}var t=document.getElementById('vswitch-t');try{if(localStorage.getItem('vswitch-collapsed')==='1')w.classList.add('collapsed');}catch(e){}t.addEventListener('click',function(){w.classList.toggle('collapsed');var c=w.classList.contains('collapsed');t.setAttribute('aria-expanded',String(!c));try{localStorage.setItem('vswitch-collapsed',c?'1':'0');}catch(e){}});})();
+(function(){var w=document.getElementById('vswitch');if(!w)return;var p=location.pathname;var cur;if(p.indexOf('/classic/')>-1)cur='construct';else if(p.indexOf('/landing/')>-1)cur=(p.split('/').pop()||'').replace('.html','');else cur='hybrid';var a=w.querySelectorAll('a[data-m]');for(var i=0;i<a.length;i++){if(a[i].getAttribute('data-m')===cur)a[i].classList.add('cur');}var t=document.getElementById('vswitch-t');try{if(localStorage.getItem('vswitch-collapsed')==='1')w.classList.add('collapsed');}catch(e){}t.addEventListener('click',function(){w.classList.toggle('collapsed');var c=w.classList.contains('collapsed');t.setAttribute('aria-expanded',String(!c));try{localStorage.setItem('vswitch-collapsed',c?'1':'0');}catch(e){}});})();
 </script>
 <!--/VSWITCH-->
 </body>
