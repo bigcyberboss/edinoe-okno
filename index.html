@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/hybrid.css?v=7">
+<link rel="stylesheet" href="assets/hybrid.css?v=10">
 </head>
 <body>
 
@@ -265,7 +265,7 @@
   // счётчики
   var stats=document.querySelector('.ledger');
   if(stats){var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function run(){stats.querySelectorAll('.cnt').forEach(function(el){var to=parseInt(el.getAttribute('data-to'),10)||0;if(reduce||!('requestAnimationFrame' in window)){el.textContent=to;return;}var dur=1100,t0=null;function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(to*e);if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);});}
+    function run(){stats.querySelectorAll('.cnt').forEach(function(el){var to=parseInt(el.getAttribute('data-to'),10)||0;if(reduce||!('requestAnimationFrame' in window)){el.textContent=to;return;}var dur=2200,t0=null;function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/dur,1),e=1-Math.pow(1-p,5);el.textContent=Math.round(to*e);if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);});}
     if(!('IntersectionObserver' in window)){run();}else{var io2=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){run();io2.disconnect();}});},{threshold:.4});io2.observe(stats);}}
 })();
 </script>

@@ -63,10 +63,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .btn-cab{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;font-weight:600;font-size:.86rem;padding:10px 17px;border:2px solid var(--blue);transition:background .15s,border-color .15s}
 .btn-cab svg{width:17px;height:17px}
 .btn-cab:hover{background:var(--blue-deep);border-color:var(--blue-deep)}
-.mast-nav{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(4px,.8vw,12px);border-top:1px solid var(--rule-soft);padding-top:10px;margin-top:5px;overflow-x:auto;scrollbar-width:none}
+.mast-nav{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(6px,1vw,18px);border-top:1px solid var(--rule-soft);padding-top:13px;margin-top:7px;overflow-x:auto;scrollbar-width:none}
 .mast-nav::-webkit-scrollbar{display:none}
-.mast-nav a{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;font-weight:600;font-size:.84rem;color:var(--ink-2);padding:9px clamp(12px,1.6vw,22px);white-space:nowrap;border-radius:11px;transition:color .15s,background .15s}
-.mast-nav a svg{width:22px;height:22px;color:var(--ink-mute);transition:color .15s,transform .15s}
+.mast-nav a{position:relative;display:flex;flex-direction:column;align-items:center;gap:9px;font-weight:600;font-size:1.04rem;color:var(--ink-2);padding:13px clamp(20px,2.2vw,36px);white-space:nowrap;border-radius:15px;transition:color .15s,background .15s}
+.mast-nav a svg{width:30px;height:30px;color:var(--ink-mute);transition:color .15s,transform .15s}
 .mast-nav a:hover,.mast-nav a.cur{color:var(--blue);background:var(--tint)}
 .mast-nav a:hover svg,.mast-nav a.cur svg{color:var(--blue)}
 .mast-nav a:hover svg{transform:translateY(-1px)}
@@ -110,9 +110,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .ledger{background:var(--paper);padding:0 0 clamp(30px,4vw,58px)}
 .ledger-in{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-top:none}
 .lc{background:var(--sheet);padding:clamp(24px,2.8vw,38px) clamp(18px,1.9vw,28px)}
-.lc .n{font-family:var(--mono);font-weight:700;font-size:clamp(2.1rem,1.3rem+2.5vw,3.5rem);letter-spacing:-.03em;color:var(--seal-ink);white-space:nowrap;line-height:1}
+.lc .n{font-family:var(--mono);font-weight:700;font-size:clamp(2.7rem,1.6rem+3.4vw,4.6rem);letter-spacing:-.03em;color:var(--seal-ink);white-space:nowrap;line-height:1}
 .lc .n .u{font-size:.5em;letter-spacing:0;color:var(--blue);font-weight:700;vertical-align:.06em}
-.lc .t{font-size:.9rem;color:var(--ink-2);margin-top:9px;line-height:1.34}
+.lc .t{font-size:1.02rem;color:var(--ink-2);margin-top:12px;line-height:1.34}
 
 /* ─── секции ─── */
 section.reg{padding-block:var(--rhythm)}
@@ -307,6 +307,7 @@ footer{background:var(--seal-deep);color:#c2d2ec;padding-block:clamp(40px,5vw,64
 
 /* ─── секции / заголовки секций ─── */
 .block{position:relative;padding-block:var(--rhythm)}
+.block+.block{padding-top:0}
 .sect{margin-top:clamp(36px,4.5vw,72px)}
 .sect:first-child{margin-top:0}
 .sec-head{margin-bottom:clamp(24px,3.2vw,44px);max-width:64ch}
@@ -349,11 +350,9 @@ footer{background:var(--seal-deep);color:#c2d2ec;padding-block:clamp(40px,5vw,64
 .usl-wing-head{display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:clamp(18px,2.2vw,28px);padding-bottom:13px;border-bottom:2px solid var(--ink)}
 .usl-wing-head h2{font-size:clamp(1.5rem,1.1rem+1.5vw,2.6rem);font-weight:800;letter-spacing:-.02em;color:var(--ink)}
 .usl-wing-badge{font-family:var(--mono);font-weight:600;font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;color:#fff;background:var(--blue);padding:6px 12px;white-space:nowrap}
-.usl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
-.usl-card{position:relative;display:flex;flex-direction:column;gap:8px;padding:clamp(20px,2.2vw,30px);background:var(--sheet);transition:background .15s}
-.usl-card::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .22s var(--ease)}
-.usl-card:hover{background:#fbfcfe}
-.usl-card:hover::before{transform:scaleX(1)}
+.usl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:clamp(10px,1.3vw,16px)}
+.usl-card{position:relative;display:flex;flex-direction:column;gap:8px;padding:clamp(20px,2.2vw,30px);background:var(--sheet);border:1px solid var(--rule);border-radius:12px;transition:border-color .15s,box-shadow .15s,transform .15s}
+.usl-card:hover{border-color:var(--blue);box-shadow:0 12px 30px -16px rgba(11,31,51,.4);transform:translateY(-2px)}
 .usl-ico{width:clamp(40px,3.6vw,50px);height:clamp(40px,3.6vw,50px);flex:none;border-radius:11px;background:var(--tint);color:var(--blue);display:grid;place-items:center;margin-bottom:4px}
 .usl-ico svg{width:58%;height:58%}
 .usl-card h3,.usl-card .usl-name{font-weight:700;font-size:clamp(1.05rem,.95rem+.4vw,1.28rem);letter-spacing:-.01em;line-height:1.2;color:var(--ink)}
@@ -377,6 +376,13 @@ footer{background:var(--seal-deep);color:#c2d2ec;padding-block:clamp(40px,5vw,64
 .plan.feat .plan-feats li{color:#e4eeff}
 .plan-feats li::before{content:'';position:absolute;left:0;top:.45em;width:9px;height:9px;background:var(--blue);border-radius:2px}
 .plan.feat .plan-feats li::before{background:#fff}
+.plan-feats li .pf-l{display:block}
+.plan-feats li b{display:block;margin-top:1px;color:var(--blue);font-weight:700}
+.plan.feat .plan-feats li b{color:#fff}
+.plan-feats li.sect{margin-top:18px;padding-left:0;font-family:var(--mono);font-weight:600;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute)}
+.plan-feats li.sect:first-child{margin-top:0}
+.plan-feats li.sect::before{display:none}
+.plan.feat .plan-feats li.sect{color:#bcd0ff}
 .plan-note{font-family:var(--mono);font-size:.72rem;letter-spacing:.02em;color:var(--ink-mute);margin-top:14px;line-height:1.4}
 .plan.feat .plan-note{color:#cfe0ff}
 .plan .btn-primary,.plan .plan-cta,.plan-cta{justify-content:center;width:100%}
