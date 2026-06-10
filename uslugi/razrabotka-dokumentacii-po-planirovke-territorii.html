@@ -8,50 +8,38 @@
 <meta name="description" content="Профессиональная разработка и сопровождение утверждения ППТ и ПМТ в Ялте и по всему Крыму. Комплексные градостроительные услуги для застройщиков и девелоперов.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=PT+Root+UI:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/pages.css?v=8">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/hybrid.css?v=7">
 </head>
 <body>
 
-<!-- ШАПКА -->
-<header>
-  <div class="wrap hwrap">
-    <a class="brand" href="../index.html" aria-label="Единое окно">
-      <span class="brand-mark" aria-hidden="true"><img src="../logo/logo-mark.png" alt=""></span>
-      <span class="brand-tx"><span class="brand-name">ЕДИНОЕ ОКНО</span></span>
-    </a>
-    <nav class="mainnav" aria-label="Основное меню">
-      <a href="../uslugi.html">Услуги</a>
-      <a href="../o-kompanii.html">О компании</a>
-      <a href="../keysy.html">Кейсы</a>
-      <a href="../yuristam.html">Юрлицам</a>
-      <a href="../kontakty.html">Контакты</a>
-    </nav>
-    <div class="hr">
-      <a class="hphone" href="tel:+79790775777">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a>
-      <a class="btn-enter" href="../kontakty.html" aria-label="Личный кабинет">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-3.4 4.1-5 7.5-5s6.3 1.6 7.5 5"/></svg>
-        <span class="btn-tx">Войти</span>
-      </a>
-      <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
-    </div>
-  </div>
-  <div class="scroll-prog" id="scrollProg"></div>
-</header>
-<div class="mobnav-back" id="mobnavBack"></div>
-<aside class="mobnav" id="mobnav" aria-label="Мобильное меню">
-  <div class="mobnav-top"><button class="mobnav-close" id="mobnavClose" type="button" aria-label="Закрыть меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
-      <a href="../uslugi.html">Услуги</a>
-      <a href="../o-kompanii.html">О компании</a>
-      <a href="../keysy.html">Кейсы</a>
-      <a href="../yuristam.html">Юрлицам</a>
-      <a href="../kontakty.html">Контакты</a>
-  <a href="../index.html">Главная</a>
-  <a href="tel:+79790775777" style="color:var(--red);margin-top:8px">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a>
-</aside>
+<!-- верхняя полоса -->
+<div class="gov-strip"><div class="wrap">
+  <span class="gs-l"><span class="dot" aria-hidden="true"></span><span>Онлайн-приём заявлений · Ялта и Республика Крым</span></span>
+  <span class="gs-r"><a href="tel:+79790775777">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a><a class="gs-tg" href="https://t.me/makslegal777" target="_blank" rel="noopener">@makslegal777</a></span>
+</div></div>
 
+<!-- шапка-бланк -->
+<header class="mast"><div class="wrap mast-in">
+  <a class="crest" href="../index.html" aria-label="Единое окно">
+    <span class="seal-mini" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 3v18M3 12h18"/></svg></span>
+    <span class="crest-tx"><span class="crest-name">ЕДИНОЕ ОКНО</span><span class="crest-sub">Центр легализации недвижимости · Ялта</span></span>
+  </a>
+  <div class="mast-r">
+    <a class="mast-phone" href="tel:+79790775777">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a>
+    <a class="btn-cab" href="../kontakty.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-3.4 4.1-5 7.5-5s6.3 1.6 7.5 5"/></svg>
+      <span class="btn-tx">Личный кабинет</span>
+    </a>
+  </div>
+  <nav class="mast-nav" aria-label="Основное меню">
+    <a href="../o-kompanii.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 21v-4h6v4"/></svg>О&nbsp;компании</a>
+    <a href="../uslugi.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.2"/><rect x="14" y="3" width="7" height="7" rx="1.2"/><rect x="3" y="14" width="7" height="7" rx="1.2"/><rect x="14" y="14" width="7" height="7" rx="1.2"/></svg>Услуги</a>
+    <a href="../keysy.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h3.5l2 2H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg>Кейсы</a>
+    <a href="../yuristam.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/><path d="M3 13h18"/></svg>Юрлицам</a>
+    <a href="../kontakty.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Контакты</a>
+  </nav>
+</div></header>
 
 <section class="subhero"><div class="wrap subhero-in reveal">
   <nav class="crumbs" aria-label="Хлебные крошки">
@@ -106,55 +94,57 @@
   <p>Бесплатно изучим документы по объекту, оценим сроки и стоимость.</p>
   <a class="btn-primary" href="../kontakty.html">Получить консультацию →</a>
 </div></section>
-<!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="fwrap">
-      <div class="fcol fbrand">
-        <div class="fbrand-row">
-          <span class="brand-mark" aria-hidden="true"><img src="../logo/logo-mark-light.png" alt=""></span>
-          <span class="brand-name">ЕДИНОЕ ОКНО</span>
-        </div>
-        <p>Центр оформления и&nbsp;защиты недвижимости в&nbsp;Ялте и&nbsp;по&nbsp;всему Крыму.</p>
+<!-- footer -->
+<footer><div class="wrap">
+  <div class="fwrap">
+    <div class="fcol fbrand">
+      <div class="fbrand-row">
+        <span class="seal-mini" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 3v18M3 12h18"/></svg></span>
+        <span class="crest-name">ЕДИНОЕ ОКНО</span>
       </div>
-      <div class="fcol">
-        <h4>Услуги</h4>
-        <a href="../uslugi.html">Все услуги</a>
-        <a href="../uslugi.html#oformit">Оформить</a>
-        <a href="../uslugi.html#zashchitit">Защитить</a>
-        <a href="../yuristam.html">Юридическим лицам</a>
-      </div>
-      <div class="fcol">
-        <h4>Компания</h4>
-        <a href="../o-kompanii.html">О нас</a>
-        <a href="../keysy.html">Кейсы и практика</a>
-        <a href="../kontakty.html">Контакты</a>
-      </div>
-      <div class="fcol">
-        <h4>Документы</h4>
-        <a href="#privacy">Политика конфиденциальности</a>
-        <a href="#terms">Согласие на обработку ПД</a>
-        <a href="#requisites">Реквизиты</a>
-      </div>
-      <div class="fcol">
-        <h4>Контакты</h4>
-        <a href="tel:+79790775777">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a>
-        <span class="fitem">Ялта, ул.&nbsp;Ленинградская,&nbsp;34</span>
-        <a href="https://t.me/makslegal777" target="_blank" rel="noopener">@makslegal777</a>
-      </div>
+      <p>Центр оформления и&nbsp;защиты недвижимости в&nbsp;Ялте и&nbsp;по&nbsp;всему Крыму.</p>
     </div>
-    <div class="fbottom">
-      <span class="copy">© 2026 ЕДИНОЕ ОКНО · одно-окно.рф</span>
-      <span class="disclaimer">ЕДИНОЕ ОКНО — частная юридическая компания. Не является государственным органом и&nbsp;не связана с&nbsp;порталом «Госуслуги».</span>
+    <div class="fcol">
+      <h4>Услуги</h4>
+      <a href="../uslugi.html">Все услуги</a>
+      <a href="../uslugi.html#oformit">Оформить</a>
+      <a href="../uslugi.html#zashchitit">Защитить</a>
+      <a href="../yuristam.html">Юридическим лицам</a>
+    </div>
+    <div class="fcol">
+      <h4>Компания</h4>
+      <a href="../o-kompanii.html">О нас</a>
+      <a href="../keysy.html">Кейсы и&nbsp;практика</a>
+      <a href="../kontakty.html">Контакты</a>
+    </div>
+    <div class="fcol">
+      <h4>Документы</h4>
+      <a href="#privacy">Политика конфиденциальности</a>
+      <a href="#terms">Согласие на&nbsp;обработку ПД</a>
+      <a href="#requisites">Реквизиты</a>
+    </div>
+    <div class="fcol">
+      <h4>Контакты</h4>
+      <a href="tel:+79790775777">+7&nbsp;979&nbsp;077&nbsp;5&nbsp;777</a>
+      <span class="fitem">Ялта, ул.&nbsp;Ленинградская,&nbsp;34</span>
+      <a href="https://t.me/makslegal777" target="_blank" rel="noopener">@makslegal777</a>
     </div>
   </div>
-</footer>
-<script src="../assets/app.js?v=4"></script>
+  <div class="fbottom">
+    <span class="copy">© 2026 ЕДИНОЕ ОКНО · одно-окно.рф</span>
+    <span class="disclaimer">ЕДИНОЕ ОКНО — частная юридическая компания. Не&nbsp;является государственным органом и&nbsp;не&nbsp;связана с&nbsp;порталом «Госуслуги».</span>
+  </div>
+</div></footer>
+
 <script>
-(function(){var b=document.getElementById('burger'),m=document.getElementById('mobnav'),bk=document.getElementById('mobnavBack'),c=document.getElementById('mobnavClose');if(!b)return;function open(){m.classList.add('open');bk.classList.add('open');b.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}function close(){m.classList.remove('open');bk.classList.remove('open');b.setAttribute('aria-expanded','false');document.body.style.overflow='';}b.addEventListener('click',open);c.addEventListener('click',close);bk.addEventListener('click',close);})();
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('in');});}
+  else{var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:.12,rootMargin:'0px 0px -8% 0px'});els.forEach(function(el){io.observe(el);});}
+  // подсветка текущего пункта
+  var f=(location.pathname.split('/').pop()||'index.html');var u=location.pathname.indexOf('/uslugi/')>-1;
+  document.querySelectorAll('.mast-nav a').forEach(function(a){var h=(a.getAttribute('href')||'').split('/').pop();if(h===f||(u&&h==='uslugi.html'))a.classList.add('cur');});
+})();
 </script>
-<script>(function(){var f=(location.pathname.split('/').pop()||'index.html');var u=location.pathname.indexOf('/uslugi/')>-1;document.querySelectorAll('.mainnav a,.mobnav a').forEach(function(a){var h=(a.getAttribute('href')||'').split('/').pop();if(h===f||(u&&h==='uslugi.html'))a.classList.add('cur');});})();</script>
-<button class="to-top" id="toTop" type="button" aria-label="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
-<script>(function(){var p=document.getElementById('scrollProg'),t=document.getElementById('toTop'),h=document.documentElement;function u(){var st=h.scrollTop||document.body.scrollTop,sh=h.scrollHeight-h.clientHeight,pc=sh>0?(st/sh*100):0;if(p)p.style.width=pc+'%';if(t)t.classList.toggle('show',st>400);}window.addEventListener('scroll',u,{passive:true});window.addEventListener('resize',u);u();if(t)t.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script>
 </body>
 </html>
