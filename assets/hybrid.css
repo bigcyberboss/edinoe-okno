@@ -82,15 +82,25 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .hero h1{font-size:clamp(1.85rem,1.05rem+3.1vw,3.7rem);font-weight:800;letter-spacing:-.025em;margin-bottom:clamp(15px,1.8vw,22px);max-width:17ch}
 .hero-lead{font-size:clamp(1.04rem,.97rem+.42vw,1.26rem);color:var(--ink-2);max-width:46ch;margin-bottom:clamp(22px,2.6vw,30px);line-height:1.5}
 .hero-lead b{color:var(--ink);font-weight:700}
-.searchbar{display:flex;align-items:center;gap:8px;background:var(--sheet);border:1.5px solid var(--line,#cdd8e8);border-color:var(--rule);padding:7px 7px 7px 14px;max-width:560px;margin-bottom:18px;transition:border-color .15s,box-shadow .15s}
-.searchbar:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px var(--tint)}
+.searchbar{position:relative;display:flex;align-items:center;gap:11px;background:var(--sheet);border:1.5px solid var(--rule);border-radius:14px;padding:9px 9px 9px 19px;max-width:640px;margin-bottom:18px;box-shadow:0 6px 20px -10px rgba(11,31,51,.14);transition:border-color .18s,box-shadow .18s}
+.searchbar:focus-within{border-color:var(--blue);box-shadow:0 0 0 4px var(--tint),0 10px 28px -12px rgba(13,76,211,.28)}
 .search-ico{flex:none;color:var(--ink-mute);display:grid;place-items:center}
-.search-ico svg{width:19px;height:19px}
-.searchbar input{flex:1;min-width:0;border:none;outline:none;background:none;font:inherit;font-size:.96rem;color:var(--ink);padding:8px 0}
+.search-ico svg{width:21px;height:21px}
+.searchbar input{flex:1;min-width:0;border:none;outline:none;background:none;font:inherit;font-size:1.06rem;color:var(--ink);padding:11px 0}
 .searchbar input::placeholder{color:var(--ink-mute)}
-.search-go{flex:none;width:42px;height:42px;background:var(--blue);color:#fff;border:none;cursor:pointer;display:grid;place-items:center;transition:background .15s}
-.search-go svg{width:20px;height:20px}
-.search-go:hover{background:var(--blue-deep)}
+.search-go{flex:none;width:48px;height:48px;background:var(--blue);color:#fff;border:none;border-radius:10px;cursor:pointer;display:grid;place-items:center;transition:background .15s,transform .12s}
+.search-go svg{width:21px;height:21px}
+.search-go:hover{background:var(--blue-deep);transform:translateX(2px)}
+/* выпадашка результатов поиска */
+.search-dd{position:absolute;top:calc(100% + 9px);left:0;right:0;background:var(--sheet);border:1px solid var(--rule);border-radius:14px;box-shadow:0 20px 48px -16px rgba(11,31,51,.34);overflow:hidden;z-index:60;display:none}
+.search-dd.open{display:block;animation:sddIn .16s var(--ease)}
+@keyframes sddIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.search-dd a{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 17px;border-bottom:1px solid var(--rule-soft);transition:background .12s}
+.search-dd a:last-child{border-bottom:none}
+.search-dd a:hover{background:var(--tint)}
+.search-dd .sdd-t{font-weight:600;font-size:.98rem;color:var(--ink);line-height:1.3}
+.search-dd a:hover .sdd-t{color:var(--blue)}
+.search-dd a svg{width:18px;height:18px;color:var(--blue);flex:none;opacity:.7}
 .chips{display:flex;flex-wrap:wrap;gap:7px}
 .chip{font-family:var(--mono);font-size:.72rem;letter-spacing:.01em;color:var(--ink-2);background:var(--paper);border:1px solid var(--rule);padding:6px 11px;transition:border-color .15s,color .15s,background .15s}
 .chip:hover{border-color:var(--blue);color:var(--blue);background:var(--tint)}

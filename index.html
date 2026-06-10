@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/hybrid.css?v=10">
+<link rel="stylesheet" href="assets/hybrid.css?v=11">
 </head>
 <body>
 
@@ -257,7 +257,7 @@
 (function(){
   // поиск по сайту — заглушка
   var f=document.getElementById('checkForm');
-  if(f)f.addEventListener('submit',function(e){e.preventDefault();var i=f.querySelector('input');var v=i?i.value.trim():'';alert(v?'Поиск по запросу «'+v+'» скоро заработает. Пока напишите нам — подскажем по вашему вопросу.':'Введите ваш вопрос для поиска по сайту.');});
+  // поиск по сайту — см. assets/search.js
   // reveal
   var els=document.querySelectorAll('.reveal');
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('in');});}
@@ -298,5 +298,6 @@
 (function(){var w=document.getElementById('vswitch');if(!w)return;var p=location.pathname;var cur;if(p.indexOf('/classic/')>-1)cur='construct';else if(p.indexOf('/landing/')>-1)cur=(p.split('/').pop()||'').replace('.html','');else cur='hybrid';var a=w.querySelectorAll('a[data-m]');for(var i=0;i<a.length;i++){if(a[i].getAttribute('data-m')===cur)a[i].classList.add('cur');}var t=document.getElementById('vswitch-t');try{if(localStorage.getItem('vswitch-collapsed')==='1')w.classList.add('collapsed');}catch(e){}t.addEventListener('click',function(){w.classList.toggle('collapsed');var c=w.classList.contains('collapsed');t.setAttribute('aria-expanded',String(!c));try{localStorage.setItem('vswitch-collapsed',c?'1':'0');}catch(e){}});})();
 </script>
 <!--/VSWITCH-->
+<script src="assets/search.js?v=1"></script>
 </body>
 </html>
