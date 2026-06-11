@@ -579,7 +579,7 @@
             <a href="tel:+79790775777" class="phone-link">+7 979 077 5 777</a>
             <a href="#lk" class="btn-lk">Личный кабинет</a>
         </div>
-    </header>
+    <div class="mast-prog" aria-hidden="true"></div></header>
 
     <!-- 1.1 БЛОК 1. ПЕРВЫЙ ЭКРАН -->
     <section class="hero">
@@ -756,6 +756,7 @@
         </div>
     </footer>
 
-<script>/*shrink*/(function(){var f=function(){document.documentElement.classList.toggle("scrolled",(window.scrollY||window.pageYOffset||0)>12);};f();addEventListener("scroll",f,{passive:true});})();</script>
+<button class="totop" type="button" aria-label="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>/*scrollui*/(function(){var d=document.documentElement,t=document.querySelector(".totop");function f(){var y=window.scrollY||window.pageYOffset||0,h=d.scrollHeight-window.innerHeight;d.classList.toggle("scrolled",y>12);d.style.setProperty("--scroll",h>0?(y/h):0);if(t)t.classList.toggle("show",y>500);}f();addEventListener("scroll",f,{passive:true});addEventListener("resize",f,{passive:true});if(t)t.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});})();</script>
 </body>
 </html>
