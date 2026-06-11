@@ -70,7 +70,11 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .mast-nav a:hover,.mast-nav a.cur{color:var(--blue);background:var(--tint)}
 .mast-nav a:hover svg,.mast-nav a.cur svg{color:var(--blue)}
 .mast-nav a:hover svg{transform:translateY(-1px)}
-.burger{display:none}
+.burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:46px;height:46px;flex:none;border:1px solid var(--rule);border-radius:11px;background:var(--sheet);cursor:pointer}
+.burger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s,opacity .2s}
+html.nav-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+html.nav-open .burger span:nth-child(2){opacity:0}
+html.nav-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* ─── HERO — портал-обращение ─── */
 .hero{position:relative;background:var(--paper);padding:clamp(26px,4.4vw,60px) 0 clamp(20px,2.6vw,34px);overflow:hidden}
@@ -217,22 +221,22 @@ section.reg{padding-block:var(--rhythm)}
 .badge.work{background:var(--tint);color:var(--blue);border-color:var(--blue-light)}
 
 /* ─── услуги + цены — тёмная секция ─── */
-.tariff{background:linear-gradient(165deg,#1B54E2 0%,#103FC3 100%);color:#eaf1ff}
-.tariff .reg-head h2{color:#fff}
-.tariff .reg-head p{color:#cdddff}
-.tar-table{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.04)}
-.tar-row{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(12px,2vw,26px);align-items:center;padding:clamp(20px,2.4vw,28px) clamp(16px,2vw,26px);border-bottom:1px solid rgba(255,255,255,.16);transition:background .15s}
+.tariff{background:var(--tint);color:var(--ink-2)}
+.tariff .reg-head h2{color:var(--ink)}
+.tariff .reg-head p{color:var(--ink-2)}
+.tar-table{border:1px solid var(--rule);background:var(--sheet)}
+.tar-row{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(12px,2vw,26px);align-items:center;padding:clamp(20px,2.4vw,28px) clamp(16px,2vw,26px);border-bottom:1px solid var(--rule-soft);transition:background .15s}
 .tar-row:last-child{border-bottom:none}
-.tar-row:hover{background:rgba(255,255,255,.07)}
-.tar-pos{font-family:var(--mono);font-size:.8rem;color:#a9c4ff;white-space:nowrap}
-.tar-name{font-weight:700;font-size:clamp(1.12rem,1rem + .4vw,1.32rem);color:#fff}
-.tar-desc{color:#cbdcff;font-size:.95rem;margin-top:6px;max-width:62ch;line-height:1.48}
-.tar-price{font-family:var(--mono);font-weight:700;font-size:clamp(1.1rem,.95rem + .5vw,1.4rem);color:#fff;white-space:nowrap;text-align:right}
-.tar-note{margin-top:18px;font-family:var(--mono);font-size:.74rem;color:#bcd0ff;letter-spacing:.02em;line-height:1.5}
+.tar-row:hover{background:var(--tint)}
+.tar-pos{font-family:var(--mono);font-size:.8rem;color:var(--blue);white-space:nowrap}
+.tar-name{font-weight:700;font-size:clamp(1.12rem,1rem + .4vw,1.32rem);color:var(--ink)}
+.tar-desc{color:var(--ink-2);font-size:.95rem;margin-top:6px;max-width:62ch;line-height:1.48}
+.tar-price{font-family:var(--mono);font-weight:700;font-size:clamp(1.1rem,.95rem + .5vw,1.4rem);color:var(--blue);white-space:nowrap;text-align:right}
+.tar-note{margin-top:18px;font-family:var(--mono);font-size:.74rem;color:var(--ink-mute);letter-spacing:.02em;line-height:1.5}
 /* социальная поддержка — зелёным, не красным */
-.tar-row.vet{background:rgba(18,184,134,.16)}
-.tar-row.vet:hover{background:rgba(18,184,134,.24)}
-.tar-row.vet .tar-pos{color:#8ff0cf}
+.tar-row.vet{background:var(--ok-bg)}
+.tar-row.vet:hover{background:#d6efe8}
+.tar-row.vet .tar-pos{color:var(--ok)}
 .tar-badge{display:inline-flex;align-items:center;font-family:var(--mono);font-size:.66rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:7px 13px;background:#12B886;color:#06281d;white-space:nowrap}
 
 /* регламент / этапы */
@@ -268,7 +272,7 @@ section.reg{padding-block:var(--rhythm)}
 .cta-contacts{display:flex;flex-wrap:wrap;gap:10px 26px;margin:22px 0;font-family:var(--mono);font-size:.84rem;color:var(--ink-2)}
 .cta-contacts b{color:var(--ink);font-weight:600}
 .cta-contacts a:hover{color:var(--blue)}
-.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--blue);color:#fff;font-weight:700;font-size:.98rem;padding:15px 28px;border:2px solid var(--blue);transition:background .15s,border-color .15s}
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--blue);color:#fff;font-weight:700;font-size:.98rem;padding:15px 28px;border:2px solid var(--blue);white-space:nowrap;transition:background .15s,border-color .15s}
 .btn-primary:hover{background:var(--blue-deep);border-color:var(--blue-deep)}
 
 /* footer */
@@ -299,6 +303,11 @@ footer{background:var(--seal-deep);color:#c2d2ec;padding-block:clamp(40px,5vw,64
   .ledger-in{grid-template-columns:repeat(2,minmax(0,1fr))}
   .fwrap{grid-template-columns:1fr 1fr}
   .fbrand{grid-column:1/-1}
+  .burger{display:flex}
+  .mast-nav{display:none;flex-wrap:nowrap;flex-direction:column;gap:3px;padding-top:12px;margin-top:10px}
+  html.nav-open .mast-nav{display:flex}
+  .mast-nav a{flex-direction:row;justify-content:flex-start;gap:13px;padding:13px 15px;font-size:1.02rem;border-radius:12px}
+  .mast-nav a svg{width:24px;height:24px}
 }
 @media(max-width:560px){
   .tile-grid,.tile-grid.big{grid-template-columns:1fr}
@@ -311,9 +320,6 @@ footer{background:var(--seal-deep);color:#c2d2ec;padding-block:clamp(40px,5vw,64
   .btn-cab .btn-tx{display:none}
   .btn-cab{padding:10px}
   .gov-strip .gs-l span:not(.dot){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .mast-nav{flex-wrap:nowrap;justify-content:flex-start;gap:6px;padding-top:10px;margin-top:6px;-webkit-overflow-scrolling:touch}
-  .mast-nav a{flex-direction:row;gap:8px;padding:9px 13px;font-size:.9rem;border:1px solid var(--rule-soft);border-radius:11px}
-  .mast-nav a svg{width:19px;height:19px}
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -366,7 +372,7 @@ footer{background:var(--seal-deep);color:#c2d2ec;padding-block:clamp(40px,5vw,64
 
 /* ─── теги аудитории [Для частных домов] и т.п. ─── */
 .tags-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(18px,2.2vw,28px)}
-.tag-aud{font-family:var(--mono);font-weight:500;font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:var(--blue);border:1px solid var(--rule);background:var(--sheet);padding:6px 11px}
+.tag-aud{display:inline-block;white-space:nowrap;font-family:var(--mono);font-weight:500;font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:var(--blue);border:1px solid var(--rule);background:var(--sheet);padding:6px 11px;margin:0 6px 7px 0}
 
 /* ─── хаб услуг: под-хабы + крылья + сетка плиток ─── */
 .subhub{margin-top:clamp(40px,5vw,80px)}

@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/hybrid.css?v=22">
+<link rel="stylesheet" href="assets/hybrid.css?v=23">
 </head>
 <body>
 
@@ -31,6 +31,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-3.4 4.1-5 7.5-5s6.3 1.6 7.5 5"/></svg>
       <span class="btn-tx">Личный кабинет</span>
     </a>
+    <button class="burger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
   <nav class="mast-nav" aria-label="Основное меню">
     <a href="o-kompanii.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 21v-4h6v4"/></svg>О&nbsp;компании</a>
@@ -120,5 +121,6 @@
   document.querySelectorAll('.mast-nav a').forEach(function(a){var h=(a.getAttribute('href')||'').split('/').pop();if(h===f||(u&&h==='uslugi.html'))a.classList.add('cur');});
 })();
 </script>
+<script>/*burger*/(function(){var b=document.querySelector(".burger");if(b){b.addEventListener("click",function(){var o=document.documentElement.classList.toggle("nav-open");b.setAttribute("aria-expanded",o);});}document.querySelectorAll(".mast-nav a").forEach(function(a){a.addEventListener("click",function(){document.documentElement.classList.remove("nav-open");});});})();</script>
 </body>
 </html>
