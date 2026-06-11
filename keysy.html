@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/hybrid.css?v=28">
+<link rel="stylesheet" href="assets/hybrid.css?v=29">
 </head>
 <body>
 
@@ -158,5 +158,6 @@
 })();
 </script>
 <script>/*burger*/(function(){var b=document.querySelector(".burger");if(b){b.addEventListener("click",function(){var o=document.documentElement.classList.toggle("nav-open");b.setAttribute("aria-expanded",o);});}document.querySelectorAll(".mast-nav a").forEach(function(a){a.addEventListener("click",function(){document.documentElement.classList.remove("nav-open");});});})();</script>
+<script>/*shrink*/(function(){var f=function(){document.documentElement.classList.toggle("scrolled",(window.scrollY||window.pageYOffset||0)>12);};f();addEventListener("scroll",f,{passive:true});})();</script>
 </body>
 </html>

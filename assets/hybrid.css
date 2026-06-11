@@ -51,7 +51,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 
 /* ─── шапка-бланк ─── */
 .mast{background:var(--sheet);border-bottom:2px solid var(--ink);position:sticky;top:0;z-index:90}
-.mast-in{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px clamp(14px,2vw,28px);padding-block:clamp(11px,1.3vw,15px) 0}
+.mast-in{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px clamp(14px,2vw,28px);padding-block:clamp(11px,1.3vw,15px) 0;transition:padding .28s var(--ease)}
 .crest{display:flex;align-items:center;gap:13px;min-width:0}
 .seal-mini{width:46px;height:46px;flex:none}
 .seal-mini img{width:100%;height:100%;object-fit:contain;display:block}
@@ -63,13 +63,20 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .btn-cab{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;font-weight:600;font-size:.86rem;padding:10px 17px;border:2px solid var(--blue);transition:background .15s,border-color .15s}
 .btn-cab svg{width:17px;height:17px}
 .btn-cab:hover{background:var(--blue-deep);border-color:var(--blue-deep)}
-.mast-nav{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(4px,0.6vw,12px);margin-top:clamp(10px,1.2vw,14px);margin-inline:calc(50% - 50vw);padding:clamp(8px,1vw,13px) calc(50vw - 50%);background:var(--blue);overflow-x:auto;scrollbar-width:none}
+.mast-nav{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(4px,0.6vw,12px);margin-top:clamp(10px,1.2vw,14px);margin-inline:calc(50% - 50vw);padding:clamp(8px,1vw,13px) calc(50vw - 50%);background:var(--blue);overflow-x:auto;scrollbar-width:none;transition:padding .28s var(--ease)}
 .mast-nav::-webkit-scrollbar{display:none}
-.mast-nav a{position:relative;display:flex;flex-direction:column;align-items:center;gap:9px;font-weight:600;font-size:1.04rem;color:#fff;padding:11px clamp(18px,2vw,32px);white-space:nowrap;border-radius:14px;transition:color .15s,background .15s}
-.mast-nav a svg{width:30px;height:30px;color:rgba(255,255,255,.88);transition:color .15s,transform .15s}
+.mast-nav a{position:relative;display:flex;flex-direction:column;align-items:center;gap:9px;font-weight:600;font-size:1.04rem;color:#fff;padding:11px clamp(18px,2vw,32px);white-space:nowrap;border-radius:14px;transition:color .15s,background .15s,gap .28s var(--ease),padding .28s var(--ease)}
+.mast-nav a svg{width:30px;height:30px;color:rgba(255,255,255,.88);transition:color .15s,transform .15s,height .28s var(--ease),opacity .2s ease,margin .28s var(--ease)}
 .mast-nav a:hover,.mast-nav a.cur{color:var(--blue);background:#fff}
 .mast-nav a:hover svg,.mast-nav a.cur svg{color:var(--blue)}
 .mast-nav a:hover svg{transform:translateY(-1px)}
+/* компактная шапка при скролле — иконки навигации схлопываются, остаются слова */
+@media(min-width:761px){
+  html.scrolled .mast-in{padding-top:clamp(8px,1vw,11px)}
+  html.scrolled .mast-nav{padding-block:5px}
+  html.scrolled .mast-nav a{gap:0;padding-block:8px}
+  html.scrolled .mast-nav a svg{height:0;opacity:0;margin:0;overflow:hidden}
+}
 .burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:46px;height:46px;flex:none;border:1px solid var(--rule);border-radius:11px;background:var(--sheet);cursor:pointer}
 .burger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .25s,opacity .2s}
 html.nav-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}

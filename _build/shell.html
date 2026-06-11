@@ -104,5 +104,6 @@
 <script>(function(){var f=(location.pathname.split('/').pop()||'index.html');var u=location.pathname.indexOf('/uslugi/')>-1;document.querySelectorAll('.mainnav a,.mobnav a').forEach(function(a){var h=(a.getAttribute('href')||'').split('/').pop();if(h===f||(u&&h==='uslugi.html'))a.classList.add('cur');});})();</script>
 <button class="to-top" id="toTop" type="button" aria-label="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <script>(function(){var p=document.getElementById('scrollProg'),t=document.getElementById('toTop'),h=document.documentElement;function u(){var st=h.scrollTop||document.body.scrollTop,sh=h.scrollHeight-h.clientHeight,pc=sh>0?(st/sh*100):0;if(p)p.style.width=pc+'%';if(t)t.classList.toggle('show',st>400);}window.addEventListener('scroll',u,{passive:true});window.addEventListener('resize',u);u();if(t)t.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script>
+<script>/*shrink*/(function(){var f=function(){document.documentElement.classList.toggle("scrolled",(window.scrollY||window.pageYOffset||0)>12);};f();addEventListener("scroll",f,{passive:true});})();</script>
 </body>
 </html>
