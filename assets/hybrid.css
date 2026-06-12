@@ -535,6 +535,10 @@ a.contact-row:hover .cv{color:var(--blue)}
   --ink:#E8EAED; --ink-2:#A6AEBF; --ink-mute:#717A8C;
   /* hairline-границы низкой насыщенности */
   --rule:#2C313D; --rule-soft:#21252F;
+  /* navy-секции (шапка-полоса/футер/форма) приглушены — #0A2E73 «светился» на графите */
+  --seal-deep:#141C30; --seal:#1B2C52;
+  /* был тёмный navy-текст → невидим на тёмном; светлый для цифр статистики и .reg-no */
+  --seal-ink:#D8E0EE;
   --ok-bg:#0E2A24; --ok-bd:#1C4A40;
   --warn-bg:#2C2410; --warn-bd:#4E4018;
   --deny-bg:#2E1418; --deny-bd:#50242C;
