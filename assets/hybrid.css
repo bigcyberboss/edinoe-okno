@@ -537,6 +537,7 @@ a.contact-row:hover .cv{color:var(--blue)}
 :root[data-theme="dark"] .theme-tog .ic-moon{display:none}
 :root[data-theme="dark"] .theme-tog .ic-sun{display:block}
 :root[data-theme="dark"] .mast{border-bottom-color:var(--blue)}
+:root[data-theme="dark"] .mast .seal-mini img{filter:brightness(0) invert(1)}
 :root[data-theme="dark"] .subhero{border-bottom-color:var(--blue)}
 :root[data-theme="dark"] .tile:hover{background:#1d1e22}
 :root[data-theme="dark"] .tar-row.vet:hover{background:#14241f}
