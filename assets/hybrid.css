@@ -522,14 +522,19 @@ a.contact-row:hover .cv{color:var(--blue)}
 .theme-tog .ic-sun{display:none}
 .theme-tog .ic-moon{display:block}
 
-/* ─── ТЁМНАЯ ТЕМА — угольный минимал, бренд-синий звенит акцентом ─── */
+/* ─── ТЁМНАЯ ТЕМА — мягкий графит (research-based: не чёрный, не навязчивый navy) ─── */
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --blue:#3B73FF; --blue-deep:#2A5CEF; --blue-2:#5A85FF; --blue-light:#7E9DF5;
-  --tint:#1A1C26; --tint-2:#222531;
-  --paper:#0B0B0D; --paper-edge:#08080A; --sheet:#161619;
-  --ink:#F2F3F5; --ink-2:#9A9CA3; --ink-mute:#6E7077;
-  --rule:#26272B; --rule-soft:#1B1B1F;
+  /* бренд-синий десатурирован — был #3B73FF (S=100%, «вибрировал» на тёмном) */
+  --blue:#4C7DEA; --blue-deep:#3F6BD6; --blue-2:#6E9BFF; --blue-light:#8DB0FF;
+  /* surface-лесенка: база → карточка лучше отрывается; еле-уловимый прохладный тон */
+  --paper:#14161C; --paper-edge:#101218; --sheet:#1E212A;
+  /* акцентные подложки (чипы иконок, выделение строк) */
+  --tint:#20283C; --tint-2:#28324C;
+  /* текст off-white, 3 уровня иерархии (не чистый #fff — он бликует на тёмном) */
+  --ink:#E8EAED; --ink-2:#A6AEBF; --ink-mute:#717A8C;
+  /* hairline-границы низкой насыщенности */
+  --rule:#2C313D; --rule-soft:#21252F;
   --ok-bg:#0E2A24; --ok-bd:#1C4A40;
   --warn-bg:#2C2410; --warn-bd:#4E4018;
   --deny-bg:#2E1418; --deny-bd:#50242C;
@@ -539,6 +544,6 @@ a.contact-row:hover .cv{color:var(--blue)}
 :root[data-theme="dark"] .mast{border-bottom-color:var(--blue)}
 :root[data-theme="dark"] .mast .seal-mini img{filter:brightness(0) invert(1)}
 :root[data-theme="dark"] .subhero{border-bottom-color:var(--blue)}
-:root[data-theme="dark"] .tile:hover{background:#1d1e22}
-:root[data-theme="dark"] .tar-row.vet:hover{background:#14241f}
+:root[data-theme="dark"] .tile:hover{background:#242836}
+:root[data-theme="dark"] .tar-row.vet:hover{background:#16291f}
 :root[data-theme="dark"] .hero-in{box-shadow:0 1px 0 var(--paper-edge),0 34px 64px -38px rgba(0,0,0,.7)}
