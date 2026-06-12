@@ -552,6 +552,7 @@
             .footer-links a { margin: 0 10px; }
         }
     </style>
+<script>(function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
 </head>
 <body>
 
@@ -758,5 +759,6 @@
 
 <button class="totop" type="button" aria-label="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <script>/*scrollui*/(function(){var d=document.documentElement,t=document.querySelector(".totop");function f(){var y=window.scrollY||window.pageYOffset||0,h=d.scrollHeight-window.innerHeight;d.classList.toggle("scrolled",y>12);d.style.setProperty("--scroll",h>0?(y/h):0);if(t)t.classList.toggle("show",y>500);}f();addEventListener("scroll",f,{passive:true});addEventListener("resize",f,{passive:true});if(t)t.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});})();</script>
+<script>/*theme*/(function(){var b=document.querySelector('.theme-tog');if(!b)return;b.addEventListener('click',function(){var d=document.documentElement,dark=d.getAttribute('data-theme')==='dark';if(dark){d.removeAttribute('data-theme');}else{d.setAttribute('data-theme','dark');}try{localStorage.setItem('theme',dark?'light':'dark');}catch(e){}});})();</script>
 </body>
 </html>

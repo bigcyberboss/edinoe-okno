@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=PT+Root+UI:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{P}}assets/pages.css?v=8">
+<script>(function(){try{if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
 </head>
 <body>
 
@@ -106,5 +107,6 @@
 <script>(function(){var p=document.getElementById('scrollProg'),t=document.getElementById('toTop'),h=document.documentElement;function u(){var st=h.scrollTop||document.body.scrollTop,sh=h.scrollHeight-h.clientHeight,pc=sh>0?(st/sh*100):0;if(p)p.style.width=pc+'%';if(t)t.classList.toggle('show',st>400);}window.addEventListener('scroll',u,{passive:true});window.addEventListener('resize',u);u();if(t)t.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script>
 <button class="totop" type="button" aria-label="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <script>/*scrollui*/(function(){var d=document.documentElement,t=document.querySelector(".totop");function f(){var y=window.scrollY||window.pageYOffset||0,h=d.scrollHeight-window.innerHeight;d.classList.toggle("scrolled",y>12);d.style.setProperty("--scroll",h>0?(y/h):0);if(t)t.classList.toggle("show",y>500);}f();addEventListener("scroll",f,{passive:true});addEventListener("resize",f,{passive:true});if(t)t.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});})();</script>
+<script>/*theme*/(function(){var b=document.querySelector('.theme-tog');if(!b)return;b.addEventListener('click',function(){var d=document.documentElement,dark=d.getAttribute('data-theme')==='dark';if(dark){d.removeAttribute('data-theme');}else{d.setAttribute('data-theme','dark');}try{localStorage.setItem('theme',dark?'light':'dark');}catch(e){}});})();</script>
 </body>
 </html>
