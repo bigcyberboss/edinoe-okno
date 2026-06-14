@@ -1,4 +1,4 @@
-/* ЕДИНОЕ ОКНО — гибрид · общие стили (вынесено из landing/hybrid.html) */
+/* ОДНО ОКНО — гибрид · общие стили (вынесено из landing/hybrid.html) */
 :root{
   color-scheme:light;
   /* синяя гамма госуслуг */
@@ -560,7 +560,7 @@ a.contact-row:hover .cv{color:var(--blue)}
 :root[data-theme="dark"] .subhero{border-bottom-color:var(--blue)}
 :root[data-theme="dark"] .tile:hover{background:#242836}
 :root[data-theme="dark"] .tar-row.vet:hover{background:#16291f}
-/* секция тарифов: спокойный фон чуть темнее paper — карточка приподнимается над ним, секция не выбивается (--tint был светлее карточки) */
-:root[data-theme="dark"] .tariff{background:var(--paper-edge)}
+/* секция тарифов: тот же графит, что фон выше — без стыка графит→тёмный; карточка --sheet всё равно приподнимается */
+:root[data-theme="dark"] .tariff{background:var(--paper)}
 :root[data-theme="dark"] .tar-row:hover{background:#252a38}
 :root[data-theme="dark"] .hero-in{box-shadow:0 1px 0 var(--paper-edge),0 34px 64px -38px rgba(0,0,0,.7)}

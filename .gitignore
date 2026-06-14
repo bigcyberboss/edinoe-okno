@@ -24,3 +24,13 @@ new files/_mmap_extract/
 new files/*.mmap
 new files/Preview*.png
 logo/IMG_*.PNG
+
+# приватные документы/медиа/ресёрч — НЕ в публичную репу
+*.pdf
+*.m4a
+_build/
+_research/
+/План-*
+/Чек-лист-*
+/ТЗ_*
+logo/tg-avatar-*.png
